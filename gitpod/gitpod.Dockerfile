@@ -1,6 +1,6 @@
 FROM gitpod/workspace-full
 
-USER gitpod
+USER root
 
 # Update apt repositories
 RUN apt-get update
