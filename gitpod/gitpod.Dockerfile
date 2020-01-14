@@ -2,11 +2,18 @@ FROM gitpod/workspace-full
 
 USER gitpod
 
-# Install custom tools, runtime, etc. using apt-get
-# For example, the command below would install "bastet" - a command line tetris clone:
-#
-# RUN sudo apt-get -q update && \
-#     sudo apt-get install -yq bastet && \
-#     sudo rm -rf /var/lib/apt/lists/*
-#
-# More information: https://www.gitpod.io/docs/42_config_docker/
+# Update apt repositories
+RUN apt-get update
+
+# Upgrade the image
+RUN apt upgrade -y
+RUN apt dist-upgrade -y
+
+# Install linting dependencies
+RUN apt install -y shellcheck
+
+# Remove apt sources to clean up space
+RUN rm -rf /var/lib/apt/lists/*
+
+# Clean-up unneeded packages
+RUN apt autoremove -y
