@@ -1,3 +1,4 @@
-[submodule "RXT0112"]
-	path = RXT0112
-	url = https://github.com/RXT0112/RXT0112.git
+[submodule "tests"]
+	path = tests
+	url = git@github.com:RXT0113/HELL.git
+	branch = master
