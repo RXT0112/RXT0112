@@ -2,7 +2,7 @@
 
 use clap::{Arg, App, SubCommand};
 
-mod output/efixme;
+mod output { mod efixme; }
 
 fn main() {
 	efixme::run("ping");
