@@ -1,0 +1,19 @@
+# These are supported funding model platforms
+
+# Limited on 4 github-sponsor enabled accounts
+github: kreyren
+
+# Patreon of rustlang developers and important contributors (http://aturon.github.io/sponsor/)
+patreon: RiXotStudio leodasvacas matklad QuietMisdreavus xanewok stjepang japaric newrustacean hellorust retep998 tomaka
+
+# misc
+open_collective: rixotstudio
+ko_fi: rixotstudio
+tidelift: RiXotStudio/RiXotStudio
+community_bridge: rixotstudio
+liberapay: RiXotStudio
+issuehunt: rixotstudio
+otechie: rixotstudio
+
+# Replace with up to 4 custom sponsorship URLs e.g., ['link1', 'link2']
+custom: https://my.fsf.org/join

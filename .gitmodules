@@ -1,0 +1,4 @@
+[submodule "tests"]
+	path = tests
+	url = https://github.com/RXT0113/HELL.git
+	branch = master
