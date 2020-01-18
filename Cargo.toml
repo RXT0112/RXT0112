@@ -1,0 +1,13 @@
+# Reference https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[package]
+name = "RXT0112"
+description = "FIXME: description needed"
+keywords = ["package-manager"]
+version = "0.0.0"
+authors = ["Kreyren <KostWarCZE@RiXotStudio.cz>"]
+edition = "2018"
+
+[dependencies]
+# FIXME: Replace with latest once development is done
+clap = "2.30.0"

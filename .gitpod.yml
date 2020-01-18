@@ -4,3 +4,7 @@ image:
 ports:
   - port: 6080
     onOpen: open-preview
+
+vscode:
+  extensions:
+    - kalitaalexey.vscode-rust@0.4.2:iw09QffwKU6Xcxr7C2zalA==
