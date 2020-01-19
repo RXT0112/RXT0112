@@ -8,6 +8,11 @@ version = "0.0.0"
 authors = ["Kreyren <KostWarCZE@RiXotStudio.cz>"]
 edition = "2018"
 
+# FIXME: Implement automation that bumps the dependencies in a new commit to make it easier to track dependency-caused issues
 [dependencies]
-# FIXME: Replace with latest once development is done
-clap = "2.30.0"
+# FIXME: Replace with latest once development is in gold
+clap = "2.33.0"
+# FIXME: Replace with latest once development is in gold
+log = "0.4.8"
+# FIXME: Replace with latest once development is in gold
+die = "0.2.0"
