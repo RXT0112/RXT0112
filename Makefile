@@ -14,18 +14,18 @@ run:
 build:
 	@ cargo build \
 		--jobs "$$(nproc)" \
-		--target-dir "target"
-		# --manifest-path="$$(pwd)/src/Cargo.toml"
+		--bin main \ 
+		-- "$*"
 
 ## RELEASE ## 
 
 release:
-	@ printf '%s\n' "FIXME: Release logic needed" ; exit 1
+	@ printf '%s\n' "FIXME: Release logic needed, currently unknown usecase" ; exit 1
 
 ## EXPERIMENTS ##
 
 experiment:
 	@ cargo run \
-		--bin main-experiment \
 		--jobs "$$(nproc)" \
-		-- debug
+		--bin main-experiment \
+		-- "$*"
