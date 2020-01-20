@@ -1,117 +1,13 @@
 // Created by Jacob Hrbek <kreyren@rixotstudio.cz> under GPL-3 license (https://www.gnu.org/licenses/gpl-3.0.en.html) in 2020
 
-// Library used for cli argument management
-extern crate clap;
-use clap::{Arg, App, SubCommand};
-
-// Export for metadata?
-/// FIXME: Verify unused
-use std::fs;
-
-// Export of standard library to make a new directory (works cross-platform)
-/// FIXME: Make create_dir to output TRACE message of level 2
-/// FIXME: Output helpful error in CLI and logs
-use std::fs::create_dir;
-
-// Get die macro
-/// FIXME: Contribute in die crate to allow customization of messages by the end-user
-use die::die;
-
-// Required for create_dir
-use std::fs::metadata;
-
-// Required for emkdir
-use std::io;
-
-// Macro to handle fixme messages
-// FIXME: Implement export in log directory based on system used
-// FIXME: Allow end-user to customize the message
-// FIXME: Allow end-user to mute the messages through configuration
-// FIXME: Contribute in log to outsource maintainance on them
-macro_rules! fixme {
-	($msg:expr) => ( println!("FIXME: {}", $msg);)
-}
-
-// Macro to inform the end-user about non-fatal error
-// FIXME: Implement export in log directory based on system used
-// FIXME: Allow end-user to customize the message
-// FIXME: Contribute in log to outsource maintainance on them
-macro_rules! error {
-	($msg:expr) => ( println!("ERROR: {}", $msg);)
-}
-
-// Macro to perform tracing
-// FIXME: Implement export in log directory based on system used and debug level
-// FIXME: Allow end-user to customize the message
-// FIXME: Contribute in log to outsource maintainance on them
-// FIXME: Output only if debug level 2 and higger is used
-macro_rules! trace {
-	($msg:expr) => ( println!("TRACE: {}", $msg);)
-}
-
-// Macro to handle info messages
-/// FIXME: Implement export in log directory based on system used
-/// FIXME: Outsource parts of the code in log crate?
-/// FIXME: Allow end-user to customize the message
-macro_rules! info {
-	($msg:expr) => ( println!("INFO: {}", $msg);)
-}
-
-// Macro to overwrite default `unimplemented!();` to be more user-friendly
-// FIXME: Determine error code for unimplemented
-macro_rules! unimplemented {
-	($msg:expr) => (
-		die!(126; "UNIMPLEMENTED: {}", $msg);
-	)
-}
-
-// Sanitized method to make a new directory
-fn emkdir<PATH: AsRef<std::path::Path>>(pathname: PATH) {
-	//unimplemented!("Mkdir needs implementation");
-	// FIXME: Verify that parsed argument is valid
-	// FIXME-TEST: Make sure that this works on Linux
-	// FIXME-TEST: Make sure that this works on Windows
-	// FIXME-TEST: Make sure that this works on Redox
-	// FIXME-TEST: Make sure that this works on MacOS
-	// FIXME-TEST: Make sure that this works on FreeBSD
-	// FIXME: Implement permission management for new directory
-	fixme!("die() doesn't accept pathname println-way, using some/path as stub");
-	if !metadata(pathname.as_ref()).unwrap().is_dir() {
-		match fs::create_dir(pathname.as_ref()) {
-			Ok(..) => { trace!("Created a new directory in some/path"); },
-			Err(ref error) if error.kind() == io::ErrorKind::AlreadyExists => {
-				// For scenerio where pathname was parsed after sanity checks and prior to create_dir() call
-				if metadata(pathname.as_ref()).unwrap().is_file() {
-					die!(1; "Pathname some/path points to a file, created after sanity checks and prior to create_dir() call, suspecting malicous injection");
-				} else if metadata(pathname.as_ref()).unwrap().is_dir() {
-					die!(1; "Pathname some/path points to already existing directory, created after sanity checks and prior to create_dir() call suspecting malicious injection");
-				} else if false { // FIXME: Check for symlink
-					die!(1; "Pathname some/path points to already existing symlink, created after sanity checks and prior to create_dir() call, suspecting malicious injection");
-				} else {
-					die!(256; "Unexpected happend for creation of some/path after sanity checks and prior to create_dir() call");
-				}
-			},
-			Err(error) => { die!(256; "Unexpected happend while creating a directory some/path"); }
-		}
-	} else if metadata(pathname.as_ref()).unwrap().is_dir() {
-		trace!("Directory some/path already exists no need to create it");
-	} else if metadata(pathname.as_ref()).unwrap().is_file() {
-		// FIXME: die!(1; "Path {} is already a file which is unexpected", pathname);
-			die!(1; "Path somepath is already a file which is unexpected");
-	} else if false { // FIXME: Implement checking for symlink
-		die!(1; "Path some/path is a symlink which is unexpected for creating a directory");
-	} else {
-		die!(256; "Unexpected happend while creating a new directory in some/path");
-	}
-}
-
 fn main() {
+	die!(1; "ping");
 	fixme!("Add method to handle translations");
 	fixme!("Allow changing name based on config file");
 	fixme!("Verify that this works on POSIX");
 
 	// Capture arguments (https://docs.rs/clap/2.33.0/clap/)
-	// FIXME: Check if structOpt (https://docs.rs/structopt/0.3.7/structopt/#subcommands) is not better for our usecase
+  // FIXME-BENCHMARK: Benchmark other option like structOpt (https://docs.rs/structopt/0.3.7/structopt/#subcommands)
 	// FIXME-TEST: Add test to make sure that clap works the way we want it
 	let matches = App::new("RXT0112")
 		.version("INIT_PHASE_VERSION") // Replace with valid versioning
