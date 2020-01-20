@@ -8,7 +8,6 @@ use clap::{Arg, App, SubCommand};
 /// FIXME: Verify unused
 use std::fs;
 
-
 // Export of standard library to make a new directory (works cross-platform)
 /// FIXME: Make create_dir to output TRACE message of level 2
 /// FIXME: Output helpful error in CLI and logs
@@ -76,8 +75,8 @@ fn emkdir<PATH: AsRef<std::path::Path>>(pathname: PATH) {
 	// FIXME-TEST: Make sure that this works on MacOS
 	// FIXME-TEST: Make sure that this works on FreeBSD
 	// FIXME: Implement permission management for new directory
-	fixme!("die() doesn't accept pathname println!();-way, using some/path as stub");
-	if metadata(pathname.as_ref()).unwrap().is_dir() {
+	fixme!("die() doesn't accept pathname println-way, using some/path as stub");
+	if !metadata(pathname.as_ref()).unwrap().is_dir() {
 		match fs::create_dir(pathname.as_ref()) {
 			Ok(..) => { trace!("Created a new directory in some/path"); },
 			Err(ref error) if error.kind() == io::ErrorKind::AlreadyExists => {
@@ -92,10 +91,10 @@ fn emkdir<PATH: AsRef<std::path::Path>>(pathname: PATH) {
 					die!(256; "Unexpected happend for creation of some/path after sanity checks and prior to create_dir() call");
 				}
 			},
-			Err(e) => { die!(256; "Unexpected happend while creating a directory some/path"); }
+			Err(error) => { die!(256; "Unexpected happend while creating a directory some/path"); }
 		}
 	} else if metadata(pathname.as_ref()).unwrap().is_dir() {
-		info!("Directory {} already exists");
+		trace!("Directory some/path already exists no need to create it");
 	} else if metadata(pathname.as_ref()).unwrap().is_file() {
 		// FIXME: die!(1; "Path {} is already a file which is unexpected", pathname);
 			die!(1; "Path somepath is already a file which is unexpected");
@@ -157,6 +156,7 @@ fn main() {
 		// FIXME-TEST: Make a test to ensure that features are not escaping sandbox
 		// FIXME: Translate in rustlang from english
 		fixme!("Create a new directory in tmpdir/name-of-project");
+		emkdir("/var/tmp/RXT0112");
 		fixme!("Create sandboxed environment for testing of features");
 		unimplemented!("Development method is not yet supported");
 	}

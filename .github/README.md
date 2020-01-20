@@ -1,3 +1,5 @@
+**NOTICE:** This project in in "init phase" so everything will be remade into a new orphen branch once methods for quality assurance, documentation, automatization and code is decided to be used as a foundation for new commits
+
 fixme: Source the header in different markdown file to make GitHub README different from GitLab
 
 fixme: Change the name based on repository used
