@@ -1,7 +1,9 @@
 {
   "editor.wordWrap": "on",
+  // To show invisibles
   "editor.renderWhitespace": "all",
   "editor.tabSize": 2,
   "editor.tabCompletion": "on",
+  // To get rid of annoying emoji in Cargo.toml
   "crates.upToDateDecorator": "",
 }
