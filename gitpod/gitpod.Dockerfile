@@ -16,7 +16,7 @@ RUN apt install -y shellcheck firefox tree xclip
 RUN if ! grep -qF 'ix()' /etc/bash.bashrc; then printf '%s\n' \
 	'# Custom' \
 	"ix() { curl -F 'f:1=<-' ix.io 2>/dev/null ;}" \
-	"xcopy() { xcopy="xclip -se C" ;}" \
+	"xcopy() { xclip -se C ;}" \
 	>> /etc/bash.bashrc; fi
 
 # Remove apt sources to clean up space
