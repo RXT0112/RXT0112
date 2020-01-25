@@ -10,12 +10,12 @@ RUN apt upgrade -y
 RUN apt dist-upgrade -y
 
 # Install linting dependencies
-RUN apt install -y shellcheck firefox tree
+RUN apt install -y shellcheck firefox tree xclip
 
 # Add custom functions
 RUN if ! grep -qF 'ix()' /etc/bash.bashrc; then printf '%s\n' \
 	'# Custom' \
-	"ix() { curl -F 'f:1=<-' ix.io ;}" \
+	"ix() { curl -F 'f:1=<-' ix.io 2>/dev/null ;}" \
 	"xcopy() { xcopy="xclip -se C" ;}" \
 	>> /etc/bash.bashrc; fi
 
