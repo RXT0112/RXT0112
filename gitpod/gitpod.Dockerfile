@@ -1,4 +1,4 @@
-FROM gitpod/workspace-full
+FROM gitpod/workspace-full-vnc:latest
 
 USER root
 
@@ -10,7 +10,7 @@ RUN apt upgrade -y
 RUN apt dist-upgrade -y
 
 # Install linting dependencies
-RUN apt install -y shellcheck
+RUN apt install -y shellcheck firefox
 
 # Remove apt sources to clean up space
 RUN rm -rf /var/lib/apt/lists/*
