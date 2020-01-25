@@ -1,1 +1,0 @@
-This directory is used for various subcommands used by zernif

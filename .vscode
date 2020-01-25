@@ -1,0 +1,7 @@
+{
+  "editor.wordWrap": "on",
+  "editor.renderWhitespace": "all",
+  "editor.tabSize": 2,
+  "editor.tabCompletion": "on",
+  "crates.upToDateDecorator": "",
+}

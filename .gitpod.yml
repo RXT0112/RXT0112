@@ -8,3 +8,8 @@ ports:
 vscode:
   extensions:
     - kalitaalexey.vscode-rust@0.4.2:iw09QffwKU6Xcxr7C2zalA==
+    - Swellaby.vscode-rust-test-adapter@0.11.0:Xg+YeZZQiVpVUsIkH+uiiw==
+    - bungcip.better-toml@0.3.2:3QfgGxxYtGHfJKQU7H0nEw==
+    - hbenl.vscode-test-explorer@2.15.0:koqDUMWDPJzELp/hdS/lWw==
+    - belfz.search-crates-io@1.2.1:kSLnyrOhXtYPjQpKnMr4eQ==
+    - serayuzgur.crates@0.4.7:HMkoguLcXp9M3ud7ac3eIw==

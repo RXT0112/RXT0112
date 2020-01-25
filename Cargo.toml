@@ -3,7 +3,7 @@
 [package]
 name = "zernif"
 description = "FIXME: description needed"
-keywords = ["package-manager"]
+keywords = ["system-manager"]
 version = "0.0.0"
 authors = ["Kreyren <KostWarCZE@RiXotStudio.cz>"]
 edition = "2018"

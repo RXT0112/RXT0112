@@ -4,3 +4,6 @@
 
 // Use modules
 pub mod modules;
+
+// Use subcommands
+pub mod subcoms;
