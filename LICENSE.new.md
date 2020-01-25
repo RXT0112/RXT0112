@@ -1,11 +1,11 @@
-This license is now voided untill finished into a production to replace current license by which it's meant to be announced the change by the original creator of this project (github.com/kreyren)
+This license is now voided until finished into a production to replace current license by which it's meant to be announced the change by the original creator of this project (github.com/kreyren)
 
 ---
 
 # RXT GENERAL LICENSE (RXT-G0)
 Version 0, 20 January 2020
 
-Copyright (C) 2020 [RiXotStudio](http://rixotstudio.cz) and contributors
+Copyright (C) 2020 [RiXotStudio](http://rixotstudio.cz)
 
 Everyone is permitted to copy and distribute verbatim copies of this license
 document, but changing it is not allowed.

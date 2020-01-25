@@ -7,6 +7,7 @@
 // FIXME: Allow end-user to customize the message
 // FIXME: Allow end-user to mute the messages through configuration
 // FIXME: Contribute in log to outsource maintainance on them
+#[macro_export]
 macro_rules! fixme {
 	($msg:expr) => ( println!("FIXME: {}", $msg);)
 }
@@ -15,6 +16,7 @@ macro_rules! fixme {
 // FIXME: Implement export in log directory based on system used
 // FIXME: Allow end-user to customize the message
 // FIXME: Contribute in log to outsource maintainance on them
+#[macro_export]
 macro_rules! error {
 	($msg:expr) => ( println!("ERROR: {}", $msg);)
 }
@@ -24,22 +26,26 @@ macro_rules! error {
 // FIXME: Allow end-user to customize the message
 // FIXME: Contribute in log to outsource maintainance on them
 // FIXME: Output only if debug level 2 and higger is used
+#[macro_export]
 macro_rules! trace {
 	($msg:expr) => ( println!("TRACE: {}", $msg);)
 }
 
 // Macro to handle info messages
-/// FIXME: Implement export in log directory based on system used
-/// FIXME: Outsource parts of the code in log crate?
-/// FIXME: Allow end-user to customize the message
+// FIXME: Implement export in log directory based on system used
+// FIXME: Outsource parts of the code in log crate?
+// FIXME: Allow end-user to customize the message
+#[macro_export]
 macro_rules! info {
 	($msg:expr) => ( println!("INFO: {}", $msg);)
 }
 
 // Macro to overwrite default `unimplemented!();` to be more user-friendly
 // FIXME: Determine error code for unimplemented
-macro_rules! unimplemented {
-	($msg:expr) => (
-		die!(126; "UNIMPLEMENTED: {}", $msg);
-	)
-}
+// FIXME: Cargo complains about us overwriting unimplemented()
+// #[macro_export]
+// macro_rules! unimplemented {
+// 	($msg:expr) => (
+// 		die!(126; "UNIMPLEMENTED: {}", $msg);
+// 	)
+// }

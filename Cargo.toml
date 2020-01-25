@@ -1,7 +1,7 @@
 # Reference https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [package]
-name = "RXT0112"
+name = "zernif"
 description = "FIXME: description needed"
 keywords = ["package-manager"]
 version = "0.0.0"

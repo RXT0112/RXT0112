@@ -1,18 +1,21 @@
 // Created by Jacob Hrbek <kreyren@rixotstudio.cz> under GPL-3 license (https://www.gnu.org/licenses/gpl-3.0.en.html) in 2020
 
+// THIS IS TEMPORARY FILE -> Expecting to outsource all commains in `src/bin`
+
 // Source lib.rs
 // FIXME-QA: Is this the best way to do this?
-use RXT0112::*;
+use zernif::fixme;
 
 fn main() {
-	die!(1; "ping");
 	fixme!("Add method to handle translations");
 	fixme!("Allow changing name based on config file");
 	fixme!("Verify that this works on POSIX");
 
 	// Capture arguments (https://docs.rs/clap/2.33.0/clap/)
-  // FIXME-BENCHMARK: Benchmark other option like structOpt (https://docs.rs/structopt/0.3.7/structopt/#subcommands)
+	// FIXME-BENCHMARK: Benchmark other option like structOpt (https://docs.rs/structopt/0.3.7/structopt/#subcommands)
 	// FIXME-TEST: Add test to make sure that clap works the way we want it
+	use clap::{Arg, App, SubCommand};
+
 	let matches = App::new("RXT0112")
 		.version("INIT_PHASE_VERSION") // Replace with valid versioning
 		.author("Jacob Hrbek <kreyren@rixotstudio.cz>")
@@ -56,7 +59,7 @@ fn main() {
 		// FIXME-TEST: Make a test to ensure that features are not escaping sandbox
 		// FIXME: Translate in rustlang from english
 		fixme!("Create a new directory in tmpdir/name-of-project");
-		emkdir("/var/tmp/RXT0112");
+		//emkdir("$TEMPDIR/RXT0112");
 		fixme!("Create sandboxed environment for testing of features");
 		unimplemented!("Development method is not yet supported");
 	}
