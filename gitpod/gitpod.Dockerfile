@@ -10,7 +10,7 @@ RUN apt upgrade -y
 RUN apt dist-upgrade -y
 
 # Install linting dependencies
-RUN apt install -y shellcheck firefox
+RUN apt install -y shellcheck firefox tree
 
 # Remove apt sources to clean up space
 RUN rm -rf /var/lib/apt/lists/*
