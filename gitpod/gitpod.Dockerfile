@@ -12,6 +12,10 @@ RUN apt dist-upgrade -y
 # Install linting dependencies
 RUN apt install -y shellcheck firefox tree xclip
 
+# Install mindmap dependencies
+RUN wget https://www.edrawsoft.com/archives/mindmaster-7-amd64.deb -O /tmp/mindmaster.deb
+RUN apt install -y /tmp/mindmaster.deb
+
 # Add custom functions
 RUN if ! grep -qF 'ix()' /etc/bash.bashrc; then printf '%s\n' \
 	'# Custom' \
