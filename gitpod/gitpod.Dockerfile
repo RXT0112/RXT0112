@@ -14,6 +14,8 @@ RUN apt install -y shellcheck firefox tree xclip
 
 # Install mindmap dependencies
 RUN wget https://www.edrawsoft.com/archives/mindmaster-7-amd64.deb -O /tmp/mindmaster.deb
+## Mindmaster needs libsmime3.so which is provided by libnss3
+RUN apt install -y libnss3
 RUN apt install -y /tmp/mindmaster.deb
 
 # Add custom functions
