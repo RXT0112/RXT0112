@@ -1,3 +1,3 @@
-This directory is used for various subcommands used by zernif
+non-standard directory used for various subcommands used by zernit
 
-Note that this is non-standard directory which defines these subcommands as modules
+These are modules being used as subcommands from which `main.rs` points to

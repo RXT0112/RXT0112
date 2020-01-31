@@ -4,5 +4,9 @@ This is stub file used for various informations about the source that cannot be 
 
 **FIXME:** Add Flow chart
 
+**FIXME:** Add Dependency flow chart
+
+**FIXME:** Add Mindmap
+
 ### References
 Rust source hierarchy - https://doc.rust-lang.org/cargo/reference/manifest.html#the-project-layout

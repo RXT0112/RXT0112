@@ -16,3 +16,5 @@ clap = "2.33.0"
 log = "0.4.8"
 # FIXME: Replace with latest once development is in gold
 die = "0.2.0"
+# Used for repository management as alternative to 'make'
+cargo-make = "0.26.2"

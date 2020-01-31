@@ -1,0 +1,1 @@
+Standard directory recognized by cargo for alternative binaries to `main.rs`
