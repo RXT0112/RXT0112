@@ -13,12 +13,7 @@ RUN apt dist-upgrade -y
 RUN apt install -y shellcheck firefox tree xclip
 
 # Install mindmap dependencies
-RUN wget https://www.edrawsoft.com/archives/mindmaster-7-amd64.deb -O /tmp/mindmaster.deb
-## Requires libsmime3.so provided by libnss3
-RUN apt install -y libnss3
-## Requires libEGL.so.1 provided by libegl1
-RUN apt install -y libegl1
-RUN apt install -y /tmp/mindmaster.deb
+RUN apt install -y umbrello
 
 # Add custom functions
 RUN if ! grep -qF 'ix()' /etc/bash.bashrc; then printf '%s\n' \
