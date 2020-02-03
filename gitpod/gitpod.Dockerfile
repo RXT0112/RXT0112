@@ -1,7 +1,5 @@
 FROM gitpod/workspace-full-vnc:latest
 
-USER gitpod
-
 ARG DEBIAN_FRONTEND=noninteractive
 
 # Update apt repositories
