@@ -18,3 +18,5 @@ log = "0.4.8"
 die = "0.2.0"
 # Used for repository management as alternative to 'make'
 cargo-make = "0.26.2"
+# Used for reading toml files
+toml = "0.5.6"
