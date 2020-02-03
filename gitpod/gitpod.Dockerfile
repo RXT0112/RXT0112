@@ -2,13 +2,15 @@ FROM gitpod/workspace-full-vnc:latest
 
 USER gitpod
 
+ARG DEBIAN_FRONTEND=noninteractive
+
 # Update apt repositories
-RUN sudo apt-get update \
-    && sudo apt-get upgrade -y \
-    && sudo apt dist-upgrade -y \
-    && sudo DEBIAN_FRONTEND=noninteractive apt-get install -y shellcheck firefox tree xclip umbrello \
-    && sudo rm -rf /var/lib/apt/lists/* \
-    && sudo apt autoremove -y
+RUN apt-get update \
+    && apt-get upgrade -y \
+    && apt dist-upgrade -y \
+    && apt-get install -y shellcheck firefox tree xclip umbrello \
+    && rm -rf /var/lib/apt/lists/* \
+    && apt autoremove -y
 
 # Add custom functions
 RUN if ! grep -qF 'ix()' /etc/bash.bashrc; then printf '%s\n' \
