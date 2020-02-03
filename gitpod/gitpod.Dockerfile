@@ -1,8 +1,9 @@
 FROM gitpod/workspace-full-vnc:latest
 
+# To avoid bricked workspaces (https://github.com/gitpod-io/gitpod/issues/1171)
 ARG DEBIAN_FRONTEND=noninteractive
 
-# Update apt repositories
+# APT management (https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#apt-get)
 RUN apt-get update \
     && apt-get upgrade -y \
     && apt dist-upgrade -y \
