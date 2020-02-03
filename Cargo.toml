@@ -1,7 +1,7 @@
 # Reference https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [package]
-name = "zernif"
+name = "zernit"
 description = "FIXME: description needed"
 keywords = ["system-manager"]
 version = "0.0.0"

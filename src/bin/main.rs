@@ -1,10 +1,21 @@
 // Created by Jacob Hrbek <kreyren@rixotstudio.cz> under GPL-3 license (https://www.gnu.org/licenses/gpl-3.0.en.html) in 2020
 
-// THIS IS TEMPORARY FILE -> Expecting to outsource all commains in `src/bin`
+/*
+	File used as bankend to parse arguments and options into subcommands
 
-// Source lib.rs
+	SYNOPSIS: command OPTION [SUBCOMS]
+
+	OPTIONS:
+		-G, --gui      Open Graphical User Interface
+
+	SUBCOMS (Subcommands):
+		resolve        resolve package on the system	
+*/
+
+// Sourcing
 // FIXME-QA: Is this the best way to do this?
-use zernif::fixme;
+// FIXME: Source the crate based on the name in Cargo.toml
+extern crate zernit;
 
 fn main() {
 	fixme!("Add method to handle translations");
@@ -66,7 +77,7 @@ fn main() {
 
 	// Manage subcommands
 	// NOTICE: Do not add else statement to catch unexpecteds since this is handled by clap
-	// FIXME: Convert this statement in case which would seem like better implementation
+  // FIXME: Convert this on 'for loop' looking for available subcommands to avoid hardcoding
 	if let Some(_matches) = matches.subcommand_matches("resolve") {
 		zernif::resolve;
 	} else if let Some(_matches) = matches.subcommand_matches("list") {
@@ -75,7 +86,7 @@ fn main() {
 	} else if let Some(_matches) = matches.subcommand_matches("deploy") {
 		// ABSTRACT: This is expected to be the installation method for the end-users to get OS with (WIP-NAME)
 		fixme!("Deploy on target");
-			fixme!("Deploy based on ENV variable");
+			fixme!("Deploy based on ENV variable -> ROOT='somepath' exports packages in somepath treating it as root");
 			fixme!("Deploy based on config file");
 			fixme!("Allow selection of file system hierarchy from CLI args");
 			fixme!("Deploy kernel based on CLI args");
