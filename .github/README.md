@@ -2,7 +2,7 @@
 
 fixme: Source the header in different markdown file to make GitHub README different from GitLab
 
-fixme: Change the name based on repository used
+fixme: Change the name based on repository used.
 
 # RXT0112 (WIP name)
 
