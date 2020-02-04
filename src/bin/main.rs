@@ -15,7 +15,7 @@
 // Sourcing
 // FIXME-QA: Is this the best way to do this?
 // FIXME: Source the crate based on the name in Cargo.toml
-extern crate zernit;
+use zernit::fixme;
 
 fn main() {
 	fixme!("Add method to handle translations");
@@ -79,7 +79,7 @@ fn main() {
 	// NOTICE: Do not add else statement to catch unexpecteds since this is handled by clap
   // FIXME: Convert this on 'for loop' looking for available subcommands to avoid hardcoding
 	if let Some(_matches) = matches.subcommand_matches("resolve") {
-		zernif::resolve;
+		//zernit::subcoms::resolve;
 	} else if let Some(_matches) = matches.subcommand_matches("list") {
 		fixme!("Output installed packages");
 		unimplemented!("Listing is not yet implemented");
@@ -92,7 +92,7 @@ fn main() {
 			fixme!("Deploy kernel based on CLI args");
 			fixme!("Deploy toolchain based on CLI args");
 			fixme!("Deploy features");
-				fixme!("Expected feature: Kreyrock");
+				fixme!("Expected feature: Kreyrock (bedrock)");
 				fixme!("Expected feature: winehq for unix");
 		unimplemented!("Listing is not yet implemented");
 	} else if let Some(_matches) = matches.subcommand_matches("deploy") {

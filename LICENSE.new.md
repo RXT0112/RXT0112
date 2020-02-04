@@ -1,18 +1,5 @@
 This license is now voided until finished into a production to replace current license by which it's meant to be announced the change by the original creator of this project (github.com/kreyren)
 
----
-
-# RXT GENERAL LICENSE (RXT-G0)
-Version 0, 20 January 2020
-
-Copyright (C) 2020 [RiXotStudio](http://rixotstudio.cz)
-
-Everyone is permitted to copy and distribute verbatim copies of this license
-document, but changing it is not allowed.
-
-## Preamble
-FIXME: Preamble
-
 Expecting
 - Paid for commercial use (small fee maybe depending on the amount of employees) unless said person is actively contributing to the repository (free-of-charge)
 - Do not allow keeping the source code closed
@@ -22,3 +9,27 @@ Expecting
 - Paid for non-contributing users?
   - Since non-contributing users are basically investment (usually with low return value) of our resources and to encourage contribution in docummentation, etc..?
 
+---
+
+# RXT GENERAL ZERNIT LICENSE (RXT0112-LICENSE)
+Version 0, 20 January 2020
+
+Copyright (C) 2020 [RiXotStudio](http://rixotstudio.cz)
+
+<!-- FIXME: Rephrase -->
+None is allowed to distribute copies of this license without explicit permission granted by this license.
+
+<!-- FIXME: Render preamble in the middle of the documment -->
+## Preamble
+This license is made to protect the intellectual property and direct workflow of project codenamed as **RXT0112** also known as **Zernit** where this license is developed based on [GPL-3 license](https://www.gnu.org/licenses/gpl-3.0.en.html) and [Free Software Foundation](https://www.fsf.org) philosophy.
+
+This license is community maintained where only the authorised personel further clarified below are allowd to make changes.
+
+## TERMINOLOGY
+
+authorised person = ...
+
+Original Creator (OC) == Jacob Hrbek <kreyren@rixotstudio.cz>
+
+## Forks
+To avoid segmentation of this project this permission denies 

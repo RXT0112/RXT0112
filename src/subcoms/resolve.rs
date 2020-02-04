@@ -1,4 +1,4 @@
-use zernif::fixme;
+use zernit::*;
 
 fn main() {
 	// Current approach: Download source to ... ?
