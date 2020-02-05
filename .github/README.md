@@ -15,6 +15,6 @@ fixme: Add prety button<br>
 https://codesandbox.io/s/github/RXT0112/RXT0112
 
 ## ABSTRACT
-Package manager capable of source and binary export with tracking in `world` file and options.
+Package manager capable of source and binary import/export with tracking in `world` file and options.
 
 Developed with GUI in mind
