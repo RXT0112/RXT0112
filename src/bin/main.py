@@ -1,1 +1,1 @@
-print("FIXME: Translate zernit in python")
+print("FIXME: Translate zernit in python - resovle parsed arguments in cli and invoke appropriate function in '$repodir/src/subcoms'")
