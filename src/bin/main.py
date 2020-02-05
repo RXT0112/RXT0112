@@ -19,6 +19,7 @@ OPTIONS:
 SUBCOMS (Subcommands):
 	resolve        resolve package on the system
 """, "green")
+
     else:
         cprint("Incorrect Argument! Type -h to view basic usage.", "red")
 
