@@ -1,5 +1,6 @@
 #include <stdio.h>
 
 int main() {
-    printf("%s\n", "ping");
+	printf("FIXME: %s\n", "Translate zernit into C lang");
+	return 1;
 }

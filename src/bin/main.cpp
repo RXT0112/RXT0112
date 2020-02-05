@@ -1,9 +1,8 @@
-    #include <iostream>
+#include <iostream>
 
-    using namespace std;
+using namespace std;
 
-    int main() 
-    {
-        cout << "ping";
-        return 0;
-    }
+int main() {
+	cout << "FIXME: Translate zernit into a C++++";
+	return 1;
+}

@@ -1,1 +1,1 @@
-print("ping")
+print("FIXME: Translate zernit in python")
