@@ -24,11 +24,5 @@
 - regExp: ".*\\LICENSE*+$"
   labels: ["license"]
 
-- regExp: "^(pom\\.xml|package\\.json|build\\.gradle)$"
 - regExp: "^(.*\\Cargo.toml)$"
   labels: ["dependencies"]
-
-
-
-- regExp: ".*\\.(zip|jar|war|ear)+$"
-  labels: ["artifact", "invalid"]
