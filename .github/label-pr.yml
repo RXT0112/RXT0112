@@ -21,8 +21,8 @@
   labels: ["brainfuck"]
 
 # Repo specific
-- regExp: ".*\\LICENSE*+$"
-  labels: ["license"]
+#- regExp: ".*\\LICENSE*+$"
+#  labels: ["license"]
 
 - regExp: "^(.*\\Cargo.toml)$"
   labels: ["dependencies"]
