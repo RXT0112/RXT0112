@@ -1,20 +1,20 @@
-# This workflow will triage pull requests and apply a label based on the
-# paths that are modified in the pull request.
-#
-# To use this workflow, you will need to set up a .github/labeler.yml
-# file with configuration.  For more information, see:
-# https://github.com/actions/labeler/blob/master/README.md
-
+# Workflow to associate labels automatically
 name: Labeler
 
+# Trigger the workflow on pull request events
 on: [pull_request]
 
 jobs:
   label:
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
 
     steps:
-    - uses: actions/labeler@v2
-      with:
-        repo-token: "${{ secrets.GITHUB_TOKEN }}"
+      # We need to checkout the repository to access the configured file (.github/label-pr.yml)
+      - uses: actions/checkout@v2
+      - name: Labeler
+        uses: docker://decathlon/pull-request-labeler-action:2.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Here we can override the path for the action configuration. If none is provided, default one is `.github/label-pr.yml`
+          CONFIG_PATH: ${{ secrets.GITHUB_WORKSPACE }}/.github/label-pr.yml
