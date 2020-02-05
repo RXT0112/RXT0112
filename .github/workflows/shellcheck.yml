@@ -1,0 +1,11 @@
+name: Shell/Bash lint
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:    
+    - uses: actions/checkout@v2
+    - name: Shell Linter
+      uses: azohra/shell-linter@v0.2.0

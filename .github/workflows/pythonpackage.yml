@@ -1,6 +1,6 @@
 name: Python package
 
-on: [pull_request, push]
+on: [push]
 
 jobs:
   build:
