@@ -14,7 +14,7 @@ all:
 
 # FIXME: Build in '$repodir/build/build-rustlang' instead of '$repodir/target' for multilang support
 build-rustlang:
-	@ cargo build
+	@ cargo build --verbose
 
 build-gc:
 	@ # Make a build directory
@@ -22,7 +22,9 @@ build-gc:
 	@ [ ! -d build/target-gc ] && { mkdir build/build-gc || exit 1 ;}
 
 	@ # Compilation
-	@ [ ! -f build/build-gc ] && { gc src/bin/main.c -o build/build-gc/gc-zernit || exit 1 ;}
+	@ ## gc is not available on github -> Using GCC
+	@ 
+	@ [ ! -f build/build-gc/gc-zernit ] && { gcc src/bin/main.c -o build/build-gc/gc-zernit || exit 1 ;}
 	@ printf '%s\n' "Compilation of target for gc finished"
 
 # FIXME: Replace 'exit 1' with helpful messages

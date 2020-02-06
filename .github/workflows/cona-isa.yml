@@ -1,15 +1,43 @@
-name: Python package
+name: ConaIsa
 
-on: [pull_request, push]
+on: [pull_request]
 
 jobs:
-  build:
-
+  rustlang:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: make build-rustlang
+    - name: tests
+      run: make check-rustlang
+  gc:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: make build-gc
+      run: make build-gc
+    - name: make check-gc
+      run: make check-gc
+  gcc:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: make build-gcc
+      run: make build-gcc
+    - name: make check-gcc
+      run: make check-gcc
+  shell:
+    runs-on: ubuntu-latest
+    steps:    
+    - uses: actions/checkout@v2
+    - name: shellcheck
+      uses: azohra/shell-linter@v0.2.0
+  python:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         python-version: [2.7, 3.5, 3.6, 3.7, 3.8]
-
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python ${{ matrix.python-version }}
