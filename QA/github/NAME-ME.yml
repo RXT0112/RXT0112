@@ -1,0 +1,51 @@
+name: NAME-ME
+
+on: [push, pull_request]
+
+# TODO
+## Change profile photo of this CI
+## Greet end-user submiting merge request that is not in blacklist (blacklist used for trusted devs) with message ensuring QA
+## Greet end-user submiting merge request with checklist
+## Adapt lable handling
+
+jobs:
+  build-ubuntu:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Install dependencies
+      # FIXME: Get libfuse3-dev for tests on etcfs.c
+      run: sudo apt-get install meson cppcheck clang gcc git ninja-build bison libtool autoconf pkg-config libcap-dev indent fakeroot uthash-dev gzip rsync autopoint shellcheck -y && sudo wget https://github.com/mvdan/sh/releases/download/v3.0.0-beta1/shfmt_v3.0.0-beta1_linux_amd64 -O /usr/bin/shfmt && sudo chmod +x /usr/bin/shfmt
+    - uses: actions/checkout@v1
+    #- name: Compile
+      # Disable signature for tests
+    #  run: CFLAGS="-O3 --pipe" make SKIPSIGN=true --jobs
+    - name: Lint
+      run: make check
+  build-macos:
+    runs-on: macos-latest
+    steps:
+      - name: Install dependencies
+        run: brew install shellcheck
+      - uses: actions/checkout@v1
+      - name: Lint
+        run: make check
+  build-freebsd:
+    runs-on: freebsd-latest
+    steps:
+      - name: Install dependencies
+        run: pkg install hs-ShellCheck
+      - uses: actions/checkout@v1
+      - name: Lint
+        run: make check
+  build-redox:
+    runs-on: redox-latest
+    steps:
+      - name: Install dependencies
+        run: printf '%s\n' "This is a gesture to redox developers to encourage development, once we are able to install required packages we will use them"
+      - name: Lint
+        run: make check
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - name: Lint
+        run: make check

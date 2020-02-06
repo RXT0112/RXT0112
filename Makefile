@@ -12,6 +12,10 @@ all:
 # All build targets are expected in 'build/build-LANG' where 'LANG' is the unique identifier of the language used
 # FIXME: Replace 'exit 1' with helpful messages
 
+build:
+	@ printf 'FIXME: %s\n' "Build all targets if executed"
+	@ exit 1
+
 # FIXME: Build in '$repodir/build/build-rustlang' instead of '$repodir/target' for multilang support
 build-rustlang:
 	@ cargo build --verbose
@@ -50,6 +54,10 @@ build-python:
 	@ exit 1
 
 ## CHECK/TESTS ##
+
+check:
+	@ printf 'FIXME: %s\n' "Check all targets if executed"
+	@ exit 1
 
 check-gc:
 	@ printf 'FIXME: %s\n' "Add tests for gc"
