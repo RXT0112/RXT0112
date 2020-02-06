@@ -1,0 +1,15 @@
+name: CPP GCC CI
+
+on: [pull_request, push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+    - name: make build-gcc
+      run: make build-gcc
+    - name: make check-gcc
+      run: make check-gcc

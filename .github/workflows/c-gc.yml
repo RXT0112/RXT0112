@@ -1,0 +1,15 @@
+name: c-lang gc CI
+
+on: [pull_request, push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+    - name: make build-gc
+      run: make build-gc
+    - name: make check-gc
+      run: make check-gc

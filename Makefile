@@ -10,10 +10,20 @@ all:
 
 ## BUILD ##
 # All build targets are expected in 'build/build-LANG' where 'LANG' is the unique identifier of the language used
+# FIXME: Replace 'exit 1' with helpful messages
 
 # FIXME: Build in '$repodir/build/build-rustlang' instead of '$repodir/target' for multilang support
 build-rustlang:
 	@ cargo build
+
+build-gc:
+	@ # Make a build directory
+	@ [ ! -d build ] && { mkdir build || exit 1 ;}
+	@ [ ! -d build/target-gc ] && { mkdir build/build-gc || exit 1 ;}
+
+	@ # Compilation
+	@ [ ! -f build/build-gc ] && { gc src/bin/main.c -o build/build-gc/gc-zernit || exit 1 ;}
+	@ printf '%s\n' "Compilation of target for gc finished"
 
 # FIXME: Replace 'exit 1' with helpful messages
 build-gcc:
@@ -22,7 +32,7 @@ build-gcc:
 	@ [ ! -d build/target-gcc ] && { mkdir build/build-gcc || exit 1 ;}
 
 	@ # Compilation
-	@ [ ! -f build/build-gcc ] && { gcc src/bin/main.c -o build/build-gcc/gcc-zernit || exit 1 ;}
+	@ [ ! -f build/build-gcc ] && { gc src/bin/main.c -o build/build-gcc/gcc-zernit || exit 1 ;}
 	@ printf '%s\n' "Compilation of target for gcc finished"
 
 build-clang:
@@ -35,6 +45,40 @@ build-brainfuck:
 
 build-python:
 	@ printf 'FIXME: %s\n' "translate zernit in python"
+	@ exit 1
+
+## CHECK/TESTS ##
+
+check-gc:
+	@ printf 'FIXME: %s\n' "Add tests for gc"
+	@ exit 1
+
+check-gcc:
+	@ printf 'FIXME: %s\n' "Add tests for gcc"
+	@ exit 1
+
+check-clang:
+	@ printf 'FIXME: %s\n' "Add tests for clang"
+	@ exit 1
+
+check-python:
+	@ printf 'FIXME: %s\n' "Add tests for python"
+	@ exit 1
+
+check-rustlang:
+	@ printf 'FIXME: %s\n' "Add tests for rustlang"
+	@ exit 1
+
+check-brainfuck:
+	@ printf 'FIXME: %s\n' "Add tests for brainfuck"
+	@ exit 1
+
+check-shell:
+	@ printf 'FIXME: %s\n' "Add tests for shell"
+	@ exit 1
+
+check-bash:
+	@ printf 'FIXME: %s\n' "Add tests for bash"
 	@ exit 1
 
 ## CLEAN ##
