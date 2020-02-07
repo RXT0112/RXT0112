@@ -20,9 +20,27 @@
 - regExp: ".*\\.br+$"
   labels: ["brainfuck"]
 
-# Repo specific
-#- regExp: ".*\\LICENSE*+$"
-#  labels: ["license"]
+- regExp: ".*\\.jar+$"
+  labels: ["java"]
 
-- regExp: "^(.*\\Cargo.toml)$"
+- regExp: ".*\\.v+$"
+  labels: ["vlang"]
+
+- regExp: ".*\\.cs+$"
+  labels: ["csharp"]
+
+- regExp: "tests\\.*+$"
+  labels: ["tests"]
+
+- regExp: "benches\\.*+$"
+  labels: ["benches"]
+
+- regExp: "LICENSE.md"
+  labels: ["license"]
+
+- regExp: "^(.*\\Cargo.toml\\requirements.txt)$"
   labels: ["dependencies"]
+
+# Repository specific
+- regExp: "docs\\.*+$"
+  labels: ["docs"]

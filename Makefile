@@ -27,7 +27,11 @@ build:
 build-rustlang:
 	@ cargo build --verbose
 
-build-gc:
+# FIXME: Add logic
+build-clang-c:
+	@ exit 1
+
+build-gcc-c:
 	@ # Make a build directory
 	@ [ ! -d build ] && { mkdir build || exit 1 ;}
 	@ [ ! -d build/target-gc ] && { mkdir build/build-gc || exit 1 ;}
@@ -39,16 +43,16 @@ build-gc:
 	@ printf '%s\n' "Compilation of target for gc finished"
 
 # FIXME: Replace 'exit 1' with helpful messages
-build-gcc:
+build-gcc-cpp:
 	@ # Make a build directory
 	@ [ ! -d build ] && { mkdir build || exit 1 ;}
 	@ [ ! -d build/target-gcc ] && { mkdir build/build-gcc || exit 1 ;}
 
 	@ # Compilation
-	@ [ ! -f build/build-gcc ] && { gc src/bin/main.c -o build/build-gcc/gcc-zernit || exit 1 ;}
+	@ [ ! -f build/build-gcc ] && { gcc src/bin/main.c -o build/build-gcc/gcc-zernit || exit 1 ;}
 	@ printf '%s\n' "Compilation of target for gcc finished"
 
-build-clang:
+build-clang-ccp:
 	@ printf 'FIXME: %s\n' "translate zernit in clang"
 	@ exit 1
 
@@ -70,15 +74,15 @@ check:
 	@ printf 'FIXME: %s\n' "Check all targets if executed"
 	@ exit 1
 
-check-gc:
+check-gcc-c:
 	@ printf 'FIXME: %s\n' "Add tests for gc"
 	@ exit 1
 
-check-gcc:
+check-clang-c:
 	@ printf 'FIXME: %s\n' "Add tests for gcc"
 	@ exit 1
 
-check-clang:
+check-gcc-ccp:
 	@ printf 'FIXME: %s\n' "Add tests for clang"
 	@ exit 1
 
@@ -105,6 +109,17 @@ check-bash:
 check-vlang:
 	@ printf 'FIXME: %s\n' "Add tests for vlang"
 	@ exit 1
+
+## BENCHES ##
+
+# FIXME: Run all benches if this is executed
+bench:
+	@ exit 1
+
+# FIXME: Run vendor and 
+bench-rustlang:
+	@ exit 1
+	@ cargo bench
 
 ## CLEAN ##
 

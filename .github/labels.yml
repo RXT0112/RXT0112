@@ -24,6 +24,14 @@
   color: ca0ef0
   description: "Relevant to dependencies"
 
+- name: tests
+  color: 8d0fd6
+  description: "Relevant to tests"
+
+- name: benches
+  color: cc1250
+  description: "Relevant to benchmarks"
+
 # Priority handling
 - name: P - SHTF
   color: ae00ff
@@ -77,3 +85,15 @@
 - name: CCP
   color: 009dff
   description: "Relevant to CCP"
+
+- name: vlang
+  color: 03cafc
+  description: "Relevant to vlang"
+
+- name: csharp
+  color: 08400a
+  description: "Relevant to csharp"
+
+- name: java
+  color: ad690a
+  description: "Relevant to java"
