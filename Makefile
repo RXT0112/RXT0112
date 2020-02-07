@@ -56,9 +56,9 @@ build-brainfuck:
 	@ printf 'FIXME: %s\n' "translate zernit in brainfuck"
 	@ exit 1
 
+# FIXME: requires python3.6+ and pip3
 build-python:
-	@ printf 'FIXME: %s\n' "translate zernit in python"
-	@ exit 1
+	@ pip3 install -r requirements.txt
 
 build-vlang:
 	@ printf 'FIXME: %s\n' "translate zernit in vlang"
