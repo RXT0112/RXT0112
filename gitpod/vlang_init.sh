@@ -135,11 +135,12 @@ else
 fi
 
 # Add gitpod user in vlang group
-if ! groups | grep -qF "$VLANG_GROUP" ; false ; then
+if ! groups | grep -qF "$VLANG_GROUP"; then
 	usermod -a -G "$VLANG_GROUP" gitpod || die 1 "Unable to transfer user 'gitpod' in user-group '$VLANG_GROUP'"
+	chmod 0775 "$VLANG_SOURCE" || die 1 "Unable to set ownership to '$VLANG_SOURCE"
 	edebug "User 'gitpod' has been added in user-group '$VLANG_GROUP'"
-elif true; then # HOTFIX
-  chown -R gitpod:gitpod "$VLANG_GROUP" || die 1 "Unable to set group ownership '$VLANG_GROUP'"
+elif false; then # HOTFIX
+	chown -R gitpod:gitpod "$VLANG_SOURCE" || die 1 "Unable to set group ownership '$VLANG_GROUP'"
 elif groups | grep -qF $VLANG_GROUP; then
 	edebug "User 'gitpod' is already in user-group '$VLANG_GROUP'"
 else
