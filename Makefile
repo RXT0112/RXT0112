@@ -69,8 +69,9 @@ build-python:
 	@ pip3 install -r requirements.txt
 
 build-vlang:
-	@ printf 'FIXME: %s\n' "translate zernit in vlang"
-	@ exit 1
+	@ [ ! -d build ] && mkdir build
+	@ [ ! -d build/build-vlang ] && mkdir build/build-vlang
+	@ v -o build/build-vlang/zernit-vlang src/bin/main.v
 
 ## CHECK/TESTS ##
 
