@@ -1,6 +1,6 @@
-use zernit::*;
+use zernit_logger::fixme;
 
-fn main() {
+pub fn resolve() {
 	// Current approach: Download source to ... ?
 	fixme!("Check if expected file hierarchy is present, if not prompt for init subcommand");
 	fixme!("Initiate sandbox");
@@ -12,5 +12,5 @@ fn main() {
 	fixme!("Install source");
 	fixme!("Add a method to customize the resolution by the end-user");
 	// FIXME: Outputs user-unfriendly message
-	unimplemented!("Resolving of packages is not yet implemented");
+	// unimplemented!("Resolving of packages is not yet implemented");
 }

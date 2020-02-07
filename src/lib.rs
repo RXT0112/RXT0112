@@ -3,7 +3,15 @@
 */
 
 // Use modules
-pub mod modules::rustlang;
+mod modules {
+  pub mod rustlang;
+}
 
 // Use subcommands
-pub mod subcoms;
+pub mod subcoms { 
+  pub mod resolve {
+      pub mod rustlang {
+        pub mod resolve;
+      }
+  }
+}

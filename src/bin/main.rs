@@ -80,7 +80,7 @@ fn main() {
 	// NOTICE: Do not add else statement to catch unexpecteds since this is handled by clap
   // FIXME: Convert this on 'for loop' looking for available subcommands to avoid hardcoding
 	if let Some(_matches) = matches.subcommand_matches("resolve") {
-		//zernit::subcoms::resolve;
+		zernit::subcoms::resolve::rustlang::resolve::resolve;
 	} else if let Some(_matches) = matches.subcommand_matches("list") {
 		fixme!("Output installed packages");
 		unimplemented!("Listing is not yet implemented");
