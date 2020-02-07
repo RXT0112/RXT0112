@@ -29,10 +29,10 @@
 - regExp: ".*\\.cs+$"
   labels: ["csharp"]
 
-- regExp: "tests\\.*+$"
+- regExp: "tests"
   labels: ["tests"]
 
-- regExp: "benches\\.*+$"
+- regExp: "benches"
   labels: ["benches"]
 
 - regExp: "LICENSE.md"
