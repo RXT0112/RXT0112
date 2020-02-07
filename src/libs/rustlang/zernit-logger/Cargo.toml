@@ -1,0 +1,10 @@
+# FIXME-METADATA: Add metadata
+
+[package]
+name = "zernit-logger"
+version = "0.0.0"
+authors = ["Kreyren <KostWarCZE@RiXotStudio.cz>"]
+edition = "2018"
+
+[dependencies]
+die = "0.2.0"

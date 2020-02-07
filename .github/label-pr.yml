@@ -1,0 +1,28 @@
+# Programming language specific
+- regExp: ".*\\.rs+$"
+  labels: ["rustlang"]
+
+- regExp: ".*\\.py+$"
+  labels: ["python"]
+
+- regExp: ".*\\.c+$"
+  labels: ["c-lang"]
+
+- regExp: ".*\\.cpp+$"
+  labels: ["CPP"]
+
+- regExp: ".*\\.sh+$"
+  labels: ["shell"]
+
+- regExp: ".*\\.bash+$"
+  labels: ["bash"]
+
+- regExp: ".*\\.br+$"
+  labels: ["brainfuck"]
+
+# Repo specific
+#- regExp: ".*\\LICENSE*+$"
+#  labels: ["license"]
+
+- regExp: "^(.*\\Cargo.toml)$"
+  labels: ["dependencies"]
