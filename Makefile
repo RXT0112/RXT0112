@@ -73,6 +73,11 @@ build-vlang:
 	@ [ ! -d build/build-vlang ] && mkdir build/build-vlang
 	@ v -o build/build-vlang/zernit-vlang src/bin/main.v
 
+build-golang:
+	@ [ ! -d build ] && mkdir build
+	@ [ ! -d build/build-golang ] && mkdir build/build-golang
+	@ go build -o build/build-golang/zernit-golang src/bin/main.go
+
 ## CHECK/TESTS ##
 
 check:
