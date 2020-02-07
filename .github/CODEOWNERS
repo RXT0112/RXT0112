@@ -7,6 +7,10 @@
 # Documentation maintainers
 /docs/   @RXT0112/documentators
 
+# Dependencies
+Cargo.toml   @dependabot-preview
+requirements.txt   @dependabot-preview
+
 # Legal team
 LICENSE.md   @kreyren
 
