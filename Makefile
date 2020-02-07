@@ -43,7 +43,7 @@ build-gcc-c:
 	@ printf '%s\n' "Compilation of target for gc finished"
 
 # FIXME: Replace 'exit 1' with helpful messages
-build-gcc-cpp:
+build-gcc-ccp:
 	@ # Make a build directory
 	@ [ ! -d build ] && { mkdir build || exit 1 ;}
 	@ [ ! -d build/target-gcc ] && { mkdir build/build-gcc || exit 1 ;}
