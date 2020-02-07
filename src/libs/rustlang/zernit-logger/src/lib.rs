@@ -1,5 +1,7 @@
 /*
-	FIXME-DOCS: Docummentation needed
+  This is a library used for logging of software actions
+
+  FIXME-DOCS: Add description
 */
 
 // Macro to handle fixme messages

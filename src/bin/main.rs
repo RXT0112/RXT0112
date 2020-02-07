@@ -15,7 +15,9 @@
 // Sourcing
 // FIXME-QA: Is this the best way to do this?
 // FIXME: Source the crate based on the name in Cargo.toml
-use zernit::fixme;
+use zernit_logger::fixme;
+// For argument management
+use clap::{Arg, App, SubCommand};
 
 fn main() {
 	fixme!("Add method to handle translations");
@@ -25,7 +27,6 @@ fn main() {
 	// Capture arguments (https://docs.rs/clap/2.33.0/clap/)
 	// FIXME-BENCHMARK: Benchmark other option like structOpt (https://docs.rs/structopt/0.3.7/structopt/#subcommands)
 	// FIXME-TEST: Add test to make sure that clap works the way we want it
-	use clap::{Arg, App, SubCommand};
 
 	let matches = App::new("RXT0112")
 		.version("INIT_PHASE_VERSION") // Replace with valid versioning

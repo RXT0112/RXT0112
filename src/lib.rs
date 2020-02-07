@@ -3,7 +3,7 @@
 */
 
 // Use modules
-pub mod modules;
+pub mod modules::rustlang;
 
 // Use subcommands
 pub mod subcoms;

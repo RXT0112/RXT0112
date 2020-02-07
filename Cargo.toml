@@ -12,11 +12,8 @@ edition = "2018"
 [dependencies]
 # FIXME: Replace with latest once development is in gold
 clap = "2.33.0"
-# FIXME: Replace with latest once development is in gold
-log = "0.4.8"
-# FIXME: Replace with latest once development is in gold
-die = "0.2.0"
 # Used for repository management as alternative to 'make'
 cargo-make = "0.26.2"
 # Used for reading toml files
 toml = "0.5.6"
+zernit-logger = { path = "src/libs/rustlang/zernit-logger" }
