@@ -111,18 +111,48 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Fetching dependencies..
+        run: |
+          # CACHEDIR check
+          [ ! -d "$HOME/.cache/" ] && mkdir "$HOME/.cache"
+          # Fetch vlang
+          [ ! -f "$HOME/.cache/vlang-0.1.24.zip" ] && wget https://github.com/vlang/v/releases/download/0.1.24/v_linux.zip -O "$HOME/.cache/vlang-0.1.24.zip"
+          # Extract
+          [ ! -x "/opt/vlang/v" ] && unzip "$HOME/.cache/vlang-0.1.24.zip" -d /opt/vlang
+          # Symlink
+          [ ! -h "/usr/bin/v" ] && ln -sf /usr/bin/v /opt/vlang/v
       - name: make build-vlang
         run: make build-vlang
   check-vlang:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Fetching dependencies..
+        run: |
+          # CACHEDIR check
+          [ ! -d "$HOME/.cache/" ] && mkdir "$HOME/.cache"
+          # Fetch vlang
+          [ ! -f "$HOME/.cache/vlang-0.1.24.zip" ] && wget https://github.com/vlang/v/releases/download/0.1.24/v_linux.zip -O "$HOME/.cache/vlang-0.1.24.zip"
+          # Extract
+          [ ! -x "/opt/vlang/v" ] && unzip "$HOME/.cache/vlang-0.1.24.zip" -d /opt/vlang
+          # Symlink
+          [ ! -h "/usr/bin/v" ] && ln -sf /usr/bin/v /opt/vlang/v
       - name: make check-vlang
         run: make check-vlang
   bench-vlang:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Fetching dependencies..
+        run: |
+          # CACHEDIR check
+          [ ! -d "$HOME/.cache/" ] && mkdir "$HOME/.cache"
+          # Fetch vlang
+          [ ! -f "$HOME/.cache/vlang-0.1.24.zip" ] && wget https://github.com/vlang/v/releases/download/0.1.24/v_linux.zip -O "$HOME/.cache/vlang-0.1.24.zip"
+          # Extract
+          [ ! -x /opt/vlang/v ] && unzip "$HOME/.cache/vlang-0.1.24.zip" -d /opt/vlang
+          # Symlink
+          [ ! -h "/usr/bin/v" ] && ln -sf /usr/bin/v /opt/vlang/v
       - name: make bench-vlang
         run: make bench-vlang
 
