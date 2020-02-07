@@ -121,7 +121,9 @@ jobs:
           [ ! -x "/opt/vlang/v" ] && unzip "$HOME/.cache/vlang-0.1.24.zip" -d /opt/vlang
           # Symlink
           [ ! -h "/usr/bin/v" ] && ln -sf /usr/bin/v /opt/vlang/v
+          echo hello
           ls -la /usr/bin/v
+          echo hmm
       - name: make build-vlang
         run: make build-vlang
   check-vlang:
