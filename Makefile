@@ -52,6 +52,10 @@ build-gcc-ccp:
 	@ [ ! -f build/build-gcc ] && { gcc src/bin/main.c -o build/build-gcc/gcc-zernit || exit 1 ;}
 	@ printf '%s\n' "Compilation of target for gcc finished"
 
+build-clang-c:
+	@ printf 'FIXME: %s\n' "translate zernit in clang"
+	@ exit 1
+
 build-clang-ccp:
 	@ printf 'FIXME: %s\n' "translate zernit in clang"
 	@ exit 1

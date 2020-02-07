@@ -13,9 +13,16 @@ RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
     && apt-get upgrade -y \
     && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - \
     && apt dist-upgrade -y \
-    && apt-get install -y shellcheck docker-ce docker-ce-cli containerd.io firefox tree xclip umbrello \
+    && apt-get install -y clang shellcheck docker-ce docker-ce-cli containerd.io firefox tree xclip umbrello \
     && rm -rf /var/lib/apt/lists/* \
     && apt autoremove -y
+
+### VLANG ###
+USER root
+ENV VLANG_VERSION="0.1.24"
+COPY vlang_init.sh /usr/bin/vlang_init
+RUN chmod +x /usr/bin/vlang_init
+RUN vlang_init || exit 1
 
 # Add custom functions
 RUN if ! grep -qF 'ix()' /etc/bash.bashrc; then printf '%s\n' \
