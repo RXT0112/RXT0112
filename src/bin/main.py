@@ -1,6 +1,12 @@
 import sys
 from termcolor import cprint
 
+"""
+  FIXME-DOCS: Add documentation
+
+  Made for Python 3.6 ~ Python 3.8.1
+  Requires pip for termcolor
+"""
 
 def cli_arg():
     if len(sys.argv) == 1:
