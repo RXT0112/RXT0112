@@ -8,6 +8,7 @@ mod modules {
 }
 
 // Use subcommands
+// FIXME: Define modules for commands in `src/subcoms/<COMMAND>/rustlang/<COMMAND>/<COMMAND>();`
 pub mod subcoms { 
   pub mod resolve {
       pub mod rustlang {
