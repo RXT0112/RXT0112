@@ -125,6 +125,7 @@ fi
 # Transfer ownership of VLANG_SOURCE to vlang user-group
 if [ "$(stat -c '%G' "$VLANG_SOURCE")" != vlang ]; then
 	chown -R root:vlang "$VLANG_SOURCE" || die 1 "Unable to transfer ownership of '$VLANG_SOURCE' directory to vlang user-group"
+  chmod g+rwx "$VLANG_SOURCE" || die 1 "Unable to group permission of '$VLANG_SOURCE'"
 	edebug "Permission to '$VLANG_SOURCE' directory has been transfered to vlang user-group"
 elif [ "$(stat -c '%G' "$VLANG_SOURCE")" = vlang ]; then
 	edebug "Directory '$VLANG_SOURCE' is already owned by 'vlang' user-group"
