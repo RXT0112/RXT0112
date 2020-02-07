@@ -29,7 +29,7 @@
 - regExp: ".*\\.cs+$"
   labels: ["csharp"]
 
-- regExp: "tests"
+- regExp: ".*tests.*"
   labels: ["tests"]
 
 - regExp: "benches"
@@ -42,5 +42,5 @@
   labels: ["dependencies"]
 
 # Repository specific
-- regExp: "docs"
+- regExp: ".*docs.*"
   labels: ["docs"]
