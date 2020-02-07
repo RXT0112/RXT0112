@@ -7,6 +7,8 @@ Initialization script made for gitpod to install vlang backend in gitpod
 
 This script is developed to be POSIX-compatible
 
+Use environment variable '$DEBUG' to output verbose info
+
 CONFIGURATION
 - $VLANG_SOURCE = Path used for extraction and keeping of vlang source files
 - $VLANG_VERSION = Expected vlang version (value 'latest' is supported through GitHub API)
@@ -24,14 +26,14 @@ CONFIGURATION
 
 # Simplified die for assertion
 die() {
-	DIE_PREFIX="FATAL:"
+	[ -z "$DIE_PREFIX" ] && DIE_PREFIX="FATAL:"
 	printf "$DIE_PREFIX %s\\n" "$2"
 	unset VLANG_SOURCE VLANG_VERSION DIE_PREFIX CACHEDIR VLANG_EXE
 	exit "$1"
 }
 
 edebug() {
-	DEBUG_PREFIX="DEBUG:"
+	[ -z "$DEBUG_PREFIX" ] && DEBUG_PREFIX="DEBUG:"
 	[ -n "$DEBUG" ] && printf "$DEBUG_PREFIX %s\\n" "$1"
 }
 
@@ -125,7 +127,6 @@ fi
 # Transfer ownership of VLANG_SOURCE to vlang user-group
 if [ "$(stat -c '%G' "$VLANG_SOURCE")" != vlang ]; then
 	chown -R root:vlang "$VLANG_SOURCE" || die 1 "Unable to transfer ownership of '$VLANG_SOURCE' directory to vlang user-group"
-  chmod g+rwx "$VLANG_SOURCE" || die 1 "Unable to group permission of '$VLANG_SOURCE'"
 	edebug "Permission to '$VLANG_SOURCE' directory has been transfered to vlang user-group"
 elif [ "$(stat -c '%G' "$VLANG_SOURCE")" = vlang ]; then
 	edebug "Directory '$VLANG_SOURCE' is already owned by 'vlang' user-group"
@@ -134,9 +135,11 @@ else
 fi
 
 # Add gitpod user in vlang group
-if ! groups | grep -qF "$VLANG_GROUP"; then
+if ! groups | grep -qF "$VLANG_GROUP" ; false ; then
 	usermod -a -G "$VLANG_GROUP" gitpod || die 1 "Unable to transfer user 'gitpod' in user-group '$VLANG_GROUP'"
 	edebug "User 'gitpod' has been added in user-group '$VLANG_GROUP'"
+elif true; then # HOTFIX
+  chown -R gitpod:gitpod "$VLANG_GROUP" || die 1 "Unable to set group ownership '$VLANG_GROUP'"
 elif groups | grep -qF $VLANG_GROUP; then
 	edebug "User 'gitpod' is already in user-group '$VLANG_GROUP'"
 else
