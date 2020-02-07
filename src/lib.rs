@@ -15,3 +15,24 @@ pub mod subcoms {
       }
   }
 }
+pub mod subcoms { 
+  pub mod remove {
+      pub mod rustlang {
+        pub mod remove;
+      }
+  }
+}
+pub mod subcoms { 
+  pub mod list {
+      pub mod rustlang {
+        pub mod list;
+      }
+  }
+}
+pub mod subcoms { 
+  pub mod deploy {
+      pub mod rustlang {
+        pub mod deploy;
+      }
+  }
+}

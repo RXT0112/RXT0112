@@ -79,39 +79,17 @@ fn main() {
 	// Manage subcommands
 	// NOTICE: Do not add else statement to catch unexpecteds since this is handled by clap
   // FIXME: Convert this on 'for loop' looking for available subcommands to avoid hardcoding
+	// FIXME-QA: Ugly?
 	if let Some(_matches) = matches.subcommand_matches("resolve") {
-		zernit::subcoms::resolve::rustlang::resolve::resolve;
+		zernit::subcoms::resolve::rustlang::resolve::resolve();
 	} else if let Some(_matches) = matches.subcommand_matches("list") {
-		fixme!("Output installed packages");
-		unimplemented!("Listing is not yet implemented");
+		zernit::subcoms::list::rustlang::list::list();
 	} else if let Some(_matches) = matches.subcommand_matches("deploy") {
-		// ABSTRACT: This is expected to be the installation method for the end-users to get OS with (WIP-NAME)
-		fixme!("Deploy on target");
-			fixme!("Deploy based on ENV variable -> ROOT='somepath' exports packages in somepath treating it as root");
-			fixme!("Deploy based on config file");
-			fixme!("Allow selection of file system hierarchy from CLI args");
-			fixme!("Deploy kernel based on CLI args");
-			fixme!("Deploy toolchain based on CLI args");
-			fixme!("Deploy features");
-				fixme!("Expected feature: Kreyrock (bedrock)");
-				fixme!("Expected feature: winehq for unix");
-		unimplemented!("Listing is not yet implemented");
-	} else if let Some(_matches) = matches.subcommand_matches("deploy") {
-		fixme!("Perform sanity-checks for hijacking");
-		fixme!("Hijack apt");
-		fixme!("Hijack pacman");
-		fixme!("Hijack portage");
-		fixme!("Hijack dnf");
-		fixme!("Hijack zypper");
-		fixme!("Hijack freebsd pckm");
-		fixme!("Hijack MacOS");
-		fixme!("Hijack Windows?");
-		fixme!("Die if untested system is parsed");
-		fixme!("Die if used on invalid directory (suggest deploy instead?)");
-		unimplemented!("Hijacking is not yet supported");
+		zernit::subcoms::deploy::rustlang::deploy::deploy();
+	} else if let Some(_matches) = matches.subcommand_matches("hijack") {
+		zernit::subcoms::hijack::rustlang::hijack::hijack();
 	} else if let Some(_matches) = matches.subcommand_matches("remove") {
-		fixme!("Remove package from specified root");
-		unimplemented!("Removal of packages from specified root is not yet supported");
+		zernit::subcoms::remove::rustlang::remove::remove();
 	}
 
 	fixme!("Returns 0 even when no argument was parsed -> Expecting Exit 2 with help message");
