@@ -53,6 +53,10 @@ build-python:
 	@ printf 'FIXME: %s\n' "translate zernit in python"
 	@ exit 1
 
+build-vlang:
+	@ printf 'FIXME: %s\n' "translate zernit in vlang"
+	@ exit 1
+
 ## CHECK/TESTS ##
 
 check:
@@ -89,6 +93,10 @@ check-shell:
 
 check-bash:
 	@ printf 'FIXME: %s\n' "Add tests for bash"
+	@ exit 1
+
+check-vlang:
+	@ printf 'FIXME: %s\n' "Add tests for vlang"
 	@ exit 1
 
 ## CLEAN ##
