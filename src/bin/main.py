@@ -8,6 +8,8 @@ from termcolor import cprint
   Requires pip for termcolor
 """
 
+# FIXME: Add logic to generate help message and handle arguments automatically
+
 def cli_arg():
     if len(sys.argv) == 1:
         cprint("No Arguments Were Passed. Type -h to view basic usage.", "red")

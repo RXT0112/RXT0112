@@ -16,12 +16,9 @@ all:
 vendor:
 	@ [ ! -d vendor ] && mkdir vendor
 	@ [ ! -d vendor/rustlang ] && mkdir vendor/rustlang
-	@ git clone https://github.com/clap-rs/clap.git vendor/rustlang/clap-rs
-	@ for file in vendor/rustlang/clap-rs/benches/*; do cp "$$file" benches/rustlang/claprs-$${file##vendor/rustlang/clap-rs/benches/} || exit 1; done
-
-build:
-	@ printf 'FIXME: %s\n' "Build all targets if executed"
-	@ exit 1
+	@ [ ! -d vendor/rustlang/clap-rs ] && git clone https://github.com/clap-rs/clap.git vendor/rustlang/clap-rs
+	@ for file in vendor/rustlang/clap-rs/benches/*; do cp "$$file" benches/rustlang/claprs-$${file##vendor/rustlang/clap-rs/benches/??_}; done
+build: build-rustlang build-clang-c build-gcc-c build-gcc-ccp build-clang-c build-clang-ccp build-brainfuck build-python build-vlang build-golang
 
 # FIXME: Build in '$repodir/build/build-rustlang' instead of '$repodir/target' for multilang support
 build-rustlang:
@@ -123,20 +120,18 @@ check-vlang:
 ## BENCHES ##
 
 # FIXME: Run all benches if this is executed
-bench:
-	@ exit 1
+bench: bench-rustlang
 
 # FIXME: Run vendor and 
-bench-rustlang:
-	@ exit 1
+bench-rustlang:	vendor
 	@ cargo bench
 
 ## CLEAN ##
 
-clean:
-	@ [ -d build ] && rm -r build
+clean: clean-vendor
+	@ [ -d build ] && rm -rf build
 	@ printf '%s\n' "Build directory has been cleaned"
 
 clean-vendor:
 	@ # FIXME: Output helpful message if directory doesn't exists
-	@ [ -d vendor ] && rm -r vendor
+	@ [ -d vendor ] && rm -rf vendor
