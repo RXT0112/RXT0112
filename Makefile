@@ -12,6 +12,13 @@ all:
 # All build targets are expected in 'build/build-LANG' where 'LANG' is the unique identifier of the language used
 # FIXME: Replace 'exit 1' with helpful messages
 
+# Fetch files from third parties
+vendor:
+	@ [ ! -d vendor ] && mkdir vendor
+	@ [ ! -d vendor/rustlang ] && mkdir vendor/rustlang
+	@ git clone https://github.com/clap-rs/clap.git vendor/rustlang/clap-rs
+	@ for file in vendor/rustlang/clap-rs/benches/*; do cp "$$file" benches/rustlang/claprs-$${file##vendor/rustlang/clap-rs/benches/} || exit 1; done
+
 build:
 	@ printf 'FIXME: %s\n' "Build all targets if executed"
 	@ exit 1
@@ -102,5 +109,9 @@ check-vlang:
 ## CLEAN ##
 
 clean:
-	@ [ -d build ] && { rm -r build || exit 1 ;}
+	@ [ -d build ] && rm -r build
 	@ printf '%s\n' "Build directory has been cleaned"
+
+clean-vendor:
+	@ # FIXME: Output helpful message if directory doesn't exists
+	@ [ -d vendor ] && rm -r vendor

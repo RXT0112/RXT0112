@@ -1,3 +1,7 @@
+/*
+	FIXME-DOCS: Add docs
+*/
+
 use zernit_logger::fixme;
 
 pub fn list() {

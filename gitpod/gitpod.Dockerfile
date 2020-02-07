@@ -4,12 +4,20 @@ FROM gitpod/workspace-full-vnc:latest
 ARG DEBIAN_FRONTEND=noninteractive
 
 # APT management (https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#apt-get)
-RUN apt-get update \
+RUN add-apt-repository \
+    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+    $(lsb_release -cs) \
+    stable" \
+    && apt-get update \
     && apt-get upgrade -y \
+    && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - \
     && apt dist-upgrade -y \
-    && apt-get install -y shellcheck firefox tree xclip umbrello \
+    && apt-get install -y shellcheck docker-ce docker-ce-cli containerd.io firefox tree xclip umbrello \
     && rm -rf /var/lib/apt/lists/* \
     && apt autoremove -y
+
+# Add docker
+RUN 
 
 # Add custom functions
 RUN if ! grep -qF 'ix()' /etc/bash.bashrc; then printf '%s\n' \
