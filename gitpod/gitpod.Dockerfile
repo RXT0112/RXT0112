@@ -19,8 +19,8 @@ RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
 ### VLANG ###
 USER root
-ENV VLANG_VERSION="latest"
-COPY gitpod/vlang_init2.sh /usr/bin/vlang_init
+ENV VLANG_VERSION="0.1.24"
+COPY gitpod/vlang_init3.sh /usr/bin/vlang_init
 RUN chmod +x /usr/bin/vlang_init
 RUN vlang_init || exit 1
 
