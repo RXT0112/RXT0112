@@ -71,7 +71,7 @@ build-python:
 build-vlang:
 	@ [ ! -d build ] && mkdir build
 	@ [ ! -d build/build-vlang ] && mkdir build/build-vlang
-	@ v -o build/build-vlang/zernit-vlang src/bin/main.v
+	@ /opt/vlang/v -o build/build-vlang/zernit-vlang src/bin/main.v
 
 build-golang:
 	@ [ ! -d build ] && mkdir build
