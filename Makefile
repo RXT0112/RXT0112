@@ -26,7 +26,7 @@ build-rustlang:
 
 # FIXME: Add logic
 build-clang-c:
-	@ exit 1
+	@ exit 78
 
 build-gcc-c:
 	@ # Make a build directory
