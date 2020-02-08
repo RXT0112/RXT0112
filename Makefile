@@ -26,7 +26,7 @@ build-rustlang:
 
 # FIXME: Add logic
 build-clang-c:
-	@ exit 78
+	@ exit "$NEUTRALCODE"
 
 build-gcc-c:
 	@ # Make a build directory
