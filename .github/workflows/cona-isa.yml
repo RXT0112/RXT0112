@@ -17,13 +17,19 @@ jobs:
       - name: building..
         run: make build-rustlang
   check-rustlang:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-18.04]
     steps:
       - uses: actions/checkout@v2
       - name: checking..
         run: make check-rustlang
   bench-rustlang:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-18.04]
     steps:
       - uses: actions/checkout@v2
       - name: running benchmarks..
@@ -31,19 +37,28 @@ jobs:
 
   # gcc-c
   build-gcc-c:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-18.04]
     steps:
       - uses: actions/checkout@v2
       - name: make build-gcc-c
         run: make build-gcc-c
   check-gcc-c:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-18.04]
     steps:
       - uses: actions/checkout@v2
       - name: make check-gcc-c
         run: make check-gcc-c
   bench-gcc-c:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-18.04]
     steps:
       - uses: actions/checkout@v2
       - name: make bench-gcc-c
@@ -51,19 +66,28 @@ jobs:
 
   # gcc-ccp
   build-gcc-cpp:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-18.04]
     steps:
       - uses: actions/checkout@v2
       - name: make build-gcc-ccp
         run: make build-gcc-ccp
   check-gcc-cpp:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-18.04]
     steps:
       - uses: actions/checkout@v2
       - name: make check-gcc-ccp
         run: make check-gcc-ccp
   bench-gcc-cpp:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-18.04]
     steps:
       - uses: actions/checkout@v2
       - name: make bench-gcc-ccp
@@ -71,19 +95,28 @@ jobs:
 
   # clang-c
   build-clang-c:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-18.04]
     steps:
       - uses: actions/checkout@v2
       - name: make build-clang-c
-        run: exit 78
+        run: make build-clang-c
   check-clang-c:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-18.04]
     steps:
       - uses: actions/checkout@v2
       - name: make check-clang-c
         run: make check-clang-c
   bench-clang-c:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-18.04]
     steps:
       - uses: actions/checkout@v2
       - name: make bench-clang-c
@@ -91,19 +124,28 @@ jobs:
 
   # clang-ccp
   build-clang-cpp:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-18.04]
     steps:
       - uses: actions/checkout@v2
       - name: make build-clang-ccp
         run: make build-clang-ccp
   check-clang-cpp:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-18.04]
     steps:
       - uses: actions/checkout@v2
       - name: make check-clang-ccp
         run: make check-clang-ccp
   bench-clang-cpp:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-18.04]
     steps:
       - uses: actions/checkout@v2
       - name: make bench-clang-ccp
@@ -111,7 +153,10 @@ jobs:
 
   # vlang
   build-vlang:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-18.04]
     steps:
       - uses: actions/checkout@v2
       - name: Fetching dependencies..
@@ -125,7 +170,10 @@ jobs:
       - name: make build-vlang
         run: make build-vlang
   check-vlang:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-18.04]
     steps:
       - uses: actions/checkout@v2
       - name: Fetching dependencies..
@@ -139,7 +187,10 @@ jobs:
       - name: make check-vlang
         run: make check-vlang
   bench-vlang:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-18.04]
     steps:
       - uses: actions/checkout@v2
       - name: Fetching dependencies..
@@ -155,19 +206,28 @@ jobs:
 
   # Golang
   build-golang:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-18.04]
     steps:
       - uses: actions/checkout@v2
       - name: make build-golang
         run: make build-golang
   check-golang:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-18.04]
     steps:
       - uses: actions/checkout@v2
       - name: make check-golang
         run: make check-golang
   bench-golang:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-18.04]
     steps:
       - uses: actions/checkout@v2
       - name: make bench-golang
@@ -175,7 +235,10 @@ jobs:
 
   # Shell
   check-shell:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-18.04]
     steps:    
       - uses: actions/checkout@v2
       - name: shellcheck
@@ -185,7 +248,10 @@ jobs:
 
   # Bash
   check-bash:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-18.04]
     steps:    
       - uses: actions/checkout@v2
       - name: shellcheck
@@ -195,7 +261,10 @@ jobs:
 
   # Python
   check-python:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-18.04]
     strategy:
       matrix:
         python-version: [2.7, 3.5, 3.6, 3.7, 3.8]
@@ -223,7 +292,10 @@ jobs:
 
   # Jekyll
   jekyll:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-18.04]
     steps:
     - uses: actions/checkout@v2
     - name: Build the site in the jekyll/builder container
