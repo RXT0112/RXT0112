@@ -1,6 +1,5 @@
 name: ConaIsa
 
-
 # Relevant to events - https://help.github.com/en/actions/automating-your-workflow-with-github-actions/events-that-trigger-workflows
 on: 
   pull_request:
@@ -75,7 +74,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: make build-gcc-ccp
-        run: make build-gcc-ccp
+        run: case $(git diff --name-only origin/master) in *.ccp) make build-gcc-ccp; esac
   check-gcc-cpp:
     runs-on: ${{ matrix.os }}
     strategy:
@@ -84,7 +83,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: make check-gcc-ccp
-        run: make check-gcc-ccp
+        run: case $(git diff --name-only origin/master) in *.ccp) make check-gcc-ccp; esac
   bench-gcc-cpp:
     runs-on: ${{ matrix.os }}
     strategy:
@@ -93,7 +92,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: make bench-gcc-ccp
-        run: make bench-gcc-ccp
+        run: case $(git diff --name-only origin/master) in *.ccp) make bench-gcc-ccp; esac
 
   # clang-c
   build-clang-c:
