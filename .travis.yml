@@ -110,7 +110,7 @@ matrix:
         COMPILER_C="gcc"
         COMPILER_CXX="g++"
         REPOSITORY="https://github.com/RXT0112/Zernit.git"
-        PACKAGES="rustc cargo git make pkg-config libssl-dev"
+        PACKAGES="rustc cargo build-essentials"
 
     - name: "Debian Sid with Clang"
       os: linux
@@ -123,7 +123,7 @@ matrix:
         COMPILER_C="clang"
         COMPILER_CXX="clang++"
         REPOSITORY="https://github.com/RXT0112/Zernit.git"
-        PACKAGES="rustc cargo git make pkg-config libssl-dev"
+        PACKAGES="rustc cargo build-essentials"
 
   # # FreeBSD
   #   # FreeBSD 12.0-RELEASE
@@ -159,6 +159,8 @@ matrix:
       osx_image: xcode11.2
       compiler: clang
       group: travis_latest
+      env:
+        TOOL="build"
 
     - name: "MacOS 10.14, xcode11.2 with gcc"
       os: osx
@@ -167,6 +169,8 @@ matrix:
       osx_image: xcode11.2
       compiler: gcc
       group: travis_latest
+      env:
+        TOOL="build"
 
     ## MacOS 10.14.4
     - name: "MacOS 10.14.4, xcode10.3 with clang"
@@ -176,6 +180,8 @@ matrix:
       osx_image: xcode10.3
       compiler: clang
       group: travis_latest
+      env:
+        TOOL="build"
 
     - name: "MacOS 10.14.4, xcode10.3 with gcc"
       os: osx
@@ -184,6 +190,8 @@ matrix:
       osx_image: xcode10.3
       compiler: gcc
       group: travis_latest
+      env:
+        TOOL="build"
 
     ## MacOS 10.13
     - name: "MacOS 10.13, xcode9.4 with clang"
@@ -193,6 +201,8 @@ matrix:
       osx_image: xcode9.4
       compiler: clang
       group: travis_latest
+      env:
+        TOOL="build"
 
     - name: "MacOS 10.13, xcode9.4 with gcc"
       os: osx
@@ -201,6 +211,8 @@ matrix:
       osx_image: xcode9.4
       compiler: gcc
       group: travis_latest
+      env:
+        TOOL="build"
 
   # Others
     # Default linux

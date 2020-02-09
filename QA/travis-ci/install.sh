@@ -27,7 +27,7 @@ if [ "$TRAVIS_OS_NAME" = linux ] && [ -z "$DOCKER" ] && [ -z "$QEMU" ]; then
 
 	# Install dependencies based on variant used
 	case "$VARIANT" in
-		ubuntu-19.10)
+		ubuntu-*|debian-*)
 			# Install dependencies
 			if [ -n "$PACKAGES" ]; then
 				sudo apt install -y "$PACKAGES" || die 1 "Unable to install following packages: '$PACKAGES'"
@@ -73,9 +73,16 @@ elif [ "$TRAVIS_OS_NAME" = linux ] && [ -n "$DOCKER" ] && [ -z "$QEMU" ]; then
 elif [ "$TRAVIS_OS_NAME" = osx ]; then
 	# Homebrew takes lots of time on runtime due to the cleanup used, this is a hotfix (https://travis-ci.community/t/macosx-brew-update-takes-too-much-time/6295)
 	HOMEBREW_NO_INSTALL_CLEANUP=1 brew update || die "Unable to update brew"
-    
+
 	info "Installing dependencies"
-	brew install shellcheck cppcheck shfmt || die "Unable to install dependencies on $TRAVIS_OS_NAME"
+
+	if [ -n "$PACKAGES" ]; then
+		brew install $PACKAGES || die "Unable to install dependencies on $TRAVIS_OS_NAME"
+	elif [ -z "$PACKAGES" ]; then
+		true
+	else
+		die 256 "Unexpected happend while installing packages on '$TRAVIS_OS_NAME'"
+	fi
 
 # FreeBSD via QEMU
 elif [ "$TRAVIS_OS_NAME" = "linux" ] && [ "$QEMU" = "FreeBSD" ]; then
