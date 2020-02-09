@@ -16,7 +16,7 @@ esac
 
 # Linux as-is
 if [ "$TRAVIS_OS_NAME" = linux ] && [ -z "$DOCKER" ] && [ -z "$QEMU" ]; then
-	make build-rustlang
+	make --directory="/travis/Zernit" build-rustlang
 
 # Linux via Docker
 elif [ "$TRAVIS_OS_NAME" = linux ] && [ -n "$DOCKER" ] && [ -z "$QEMU" ]; then
@@ -24,7 +24,7 @@ elif [ "$TRAVIS_OS_NAME" = linux ] && [ -n "$DOCKER" ] && [ -z "$QEMU" ]; then
 
 # MacOS X
 elif [ "$TRAVIS_OS_NAME" = osx ]; then
-	make --directory="/travis/Zernit" build-rustlang
+	make build-rustlang
 
 elif [ "$TRAVIS_OS_NAME" = "linux" ] && [ "$QEMU" = "FreeBSD" ]; then
 	ssh -p 8829 -oStrictHostKeyChecking=no -i "$HOME/.ssh/id_rsa" root@localhost \

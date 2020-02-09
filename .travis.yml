@@ -229,6 +229,12 @@ matrix:
       env:
         TOOL="check"
 
+    # Windows 
+    - name: "Windows build"
+      os: windows
+      env:
+        TOOL="build"
+
 before-install:
   - QA/travis-ci/before-install.sh
 
