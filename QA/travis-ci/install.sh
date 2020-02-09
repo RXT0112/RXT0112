@@ -13,11 +13,6 @@
 
 fixme "Travis - install.sh is disabling SC1117 as hotfix"
 
-# QA: Why US mirror?
-UBUNTU_MIRROR="us.archive.ubuntu.com"
-RETRY_MAXTRIALS=5
-RETRY_PAUSE=60
-
 # Linux as-is
 if [ "$TRAVIS_OS_NAME" = linux ] && [ -z "$DOCKER" ] && [ -z "$QEMU" ]; then
 
@@ -72,40 +67,6 @@ elif [ "$TRAVIS_OS_NAME" = linux ] && [ -n "$DOCKER" ] && [ -z "$QEMU" ]; then
 	info "Fetching repository for $VARIANT"
 
 	sudo docker exec "$CONTAINER" git clone "$REPOSITORY" || die 1 "Unable to fetch '$REPOSITORY'"
-
-    # Exherbo        
-	elif [ "$VARIANT" = exherbo ]; then
-        # Get paludis-config
-        sudo docker exec "$CONTAINER" [ -e /etc/paludis ] && rm -r /etc/paludis
-        sudo docker exec "$CONTAINER" git clone https://github.com/Kreyrock/paludis-config.git /etc/paludis
-
-        # Sync repositories
-        sudo docker exec "$CONTAINER" cave resolve
-
-        # Resolve required repositories
-        sudo docker exec "$CONTAINER" cave resolve -x1 repository/{alip,compnerd,virtualization,danyspin97,python,perl,hasufell} || die "Unable to resolve repositories for $TRAVIS_OS_NAME"
-
-        # Resolve required dependencies
-        if [ "$COMPILER_C" = gcc ]; then
-            info "Using GCC variant for $TRAVIS_OS_NAME"
-            sudo docker exec "$CONTAINER" cave resolve sys-devel/meson dev-util/cppcheck sys-devel/gcc sys-fs/fuse dev-scm/git sys-devel/ninja sys-devel/bison sys-devel/libtool sys-devel/autoconf dev-util/pkg-config dev-util/indent sys-apps/fakeroot app-arch/gzip net-misc/rsync sys-devel/autoconf dev-util/shellcheck -x || die "Unable to resolve all dependencies for $TRAVIS_OS_NAME"
-
-        elif [ "$COMPILER_C" = clang ]; then
-            info "Using Clang variant for $TRAVIS_OS_NAME"
-            sudo docker exec "$CONTAINER" cave resolve sys-devel/meson dev-util/cppcheck sys-devel/clang sys-fs/fuse dev-scm/git sys-devel/ninja sys-devel/bison sys-devel/libtool sys-devel/autoconf dev-util/pkg-config dev-util/indent sys-apps/fakeroot app-arch/gzip net-misc/rsync sys-devel/autoconf dev-util/shellcheck -x || die "Unable to resolve all dependencies for $TRAVIS_OS_NAME"
-
-        else
-            die "Unexpected COMPILER_C has been parsed in exherbo variant - '$COMPILER_C'"
-
-        fi
-
-        # Remove build instructions to save space
-        sudo docker exec "$CONTAINER" [ -e /var/db/paludis ] && rm -r var/db/paludis
-
-    else
-        die "Unexpected variant has been parsed in install.sh - '$VARIANT'"
-
-    fi
 
 # MacOS X
 elif [ "$TRAVIS_OS_NAME" = osx ]; then
