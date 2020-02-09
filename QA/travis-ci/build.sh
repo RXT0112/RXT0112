@@ -8,6 +8,12 @@
 # shellcheck source=QA/travis-ci/get-container.sh
 . "QA/travis-ci/get-container.sh"
 
+# Skip build if not set up
+case "$TOOL" in
+  *build*) true ;;
+  *) die 0 "Skipping build as instructed"
+esac
+
 # Linux as-is
 if [ "$TRAVIS_OS_NAME" = linux ] && [ -z "$DOCKER" ] && [ -z "$QEMU" ]; then
 	make build-rustlang
