@@ -60,7 +60,7 @@ elif [ "$TRAVIS_OS_NAME" = linux ] && [ -n "$DOCKER" ] && [ -z "$QEMU" ]; then
 			# Install dependencies
 			if [ -n "$PACKAGES" ]; then
 				docker exec "$CONTAINER" apt install -y "$PACKAGES" || die 1 "Unable to install following packages on '$CONTAINER': '$PACKAGES'"
-			elif [ -n "$PACKAGES" ]; then
+			elif [ -z "$PACKAGES" ]; then
 				true
 			else
 				die 256 "Resolving packages for '$CONTAINER'"
