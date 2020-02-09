@@ -34,71 +34,64 @@ matrix:
   #       TOOL="compile"
   #       COMPILER_C="clang"
   #       COMPILER_CXX="clang++"
-
-  # Ubuntu Linux
-    # Ubuntu 19.10 (Eoan Ermine) with GCC
-    - name: "Ubuntu 19.10 (Eoan Ermine) with GCC"
+  # 
+  # # Ubuntu Linux
+  #   # Ubuntu 19.10 (Eoan Ermine) with GCC
+  #   - name: "Ubuntu 19.10 (Eoan Ermine) with GCC"
+  #     os: linux
+  #     cache:
+  #       directories:
+  #         - /var/cache/apt/
+  #     dist: bionic
+  #     group: travis_latest
+  #     env:
+  #       DOCKER="ubuntu:eoan"
+  #       VARIANT="ubuntu-19.10"
+  #       TOOL="compile"
+  #       COMPILER_C="gcc"
+  #       COMPILER_CXX="g++"
+  #       REPOSITORY="https://github.com/RXT0112/Zernit.git"
+  #       PACKAGES="git "
+  #   # Ubuntu 19.10 (Eoan Ermine) with Clang
+  #   - name: "Ubuntu 19.10 (Eoan Ermine) with Clang"
+  #     os: linux
+  #     cache:
+  #       directories:
+  #         - /var/cache/apt/
+  #     dist: bionic
+  #     group: travis_latest
+  #     env:
+  #       DOCKER="ubuntu:eoan"
+  #       VARIANT="ubuntu-19.10"
+  #       TOOL="compile"
+  #       COMPILER_C="clang"
+  #       COMPILER_CXX="clang++"
+  #       REPOSITORY="https://github.com/RXT0112/Zernit.git"
+  #       PACKAGES="git"
+  # Debian Linux
+    # Debian Testing
+    - name: "Debian Testing with GCC"
       os: linux
-      cache:
-        directories:
-          - /var/cache/apt/
       dist: bionic
       group: travis_latest
       env:
-        DOCKER="ubuntu:eoan"
-        VARIANT="ubuntu-19.10"
+        DOCKER="debian:testing"
+        VARIANT="debian"
         TOOL="compile"
         COMPILER_C="gcc"
         COMPILER_CXX="g++"
         REPOSITORY="https://github.com/RXT0112/Zernit.git"
-        PACKAGES="git"
-    # Ubuntu 19.10 (Eoan Ermine) with Clang
-    - name: "Ubuntu 19.10 (Eoan Ermine) with Clang"
+    - name: "Debian Testing with Clang"
       os: linux
-      cache:
-        directories:
-          - /var/cache/apt/
       dist: bionic
       group: travis_latest
       env:
-        DOCKER="ubuntu:eoan"
-        VARIANT="ubuntu-19.10"
+        DOCKER="debian:testing"
+        VARIANT="debian"
         TOOL="compile"
         COMPILER_C="clang"
         COMPILER_CXX="clang++"
         REPOSITORY="https://github.com/RXT0112/Zernit.git"
-        PACKAGES="git"
-  # # Debian Linux
-  #   # Debian Testing
-  #   - name: "Debian Testing with GCC"
-  #     os: linux
-  #     dist: bionic
-  #     group: travis_latest
-  #     env:
-  #       DOCKER="debian:testing"
-  #       VARIANT="debian"
-  #       TOOL="compile"
-  #       COMPILER_C="gcc"
-  #       COMPILER_CXX="g++"
-
-  #   - name: "Debian Testing with Clang"
-  #     os: linux
-  #     dist: bionic
-  #     group: travis_latest
-  #     env:
-  #       DOCKER="debian:testing"
-  #       VARIANT="debian"
-  #       TOOL="compile"
-  #       COMPILER_C="clang"
-  #       COMPILER_CXX="clang++"
-  #   # - name: "Debian Testing packaging with pbuilder"
-  #   #   os: linux
-  #   #   dist: bionic
-  #   #   group: travis_latest
-  #   #   env:
-  #   #     DOCKER="debian:testing"
-  #   #     VARIANT="debian"
-  #   #     TOOL="pbuilder"
 
   #   # Debian Sid
   #   - name: "Debian Sid with GCC"
@@ -225,6 +218,6 @@ install:
   - QA/travis-ci/install.sh
 
 script:
-  - make build
+  - make build-rustlang
   # We already have logic for linting so there is no need to use 'make check'
-  - QA/tests/HELL/hell.sh
+  #- QA/tests/HELL/hell.sh

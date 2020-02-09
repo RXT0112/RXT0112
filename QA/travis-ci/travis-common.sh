@@ -6,7 +6,7 @@ die() {
 }
 # Simplified QA handling
 fixme() {
-	printf 'FIXME: %s/n' "$1"
+	printf 'FIXME: %s\n' "$1"
 }
 # Simplified info messages
 info() {

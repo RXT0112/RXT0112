@@ -48,7 +48,7 @@ elif [ "$TRAVIS_OS_NAME" = linux ] && [ -n "$DOCKER" ] && [ -z "$QEMU" ]; then
 	fixme "Fix duplicates of repository update"
 
 	case "$VARIANT" in
-		ubuntu-19.10)
+		ubuntu-*|debian-*)
 			# Update repositories
 			docker exec "$CONTAINER" apt update || die 1 "Unable to update repositories on '$VARIANT' using DOCKER '$DOCKER'"
 
