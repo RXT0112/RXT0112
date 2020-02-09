@@ -24,7 +24,7 @@ elif [ "$TRAVIS_OS_NAME" = linux ] && [ -n "$DOCKER" ] && [ -z "$QEMU" ]; then
 
 # MacOS X
 elif [ "$TRAVIS_OS_NAME" = osx ]; then
-	make --directory="/Users/travis/build/Kreyrock/Kreyrock" check
+	make --directory="/travis/Zernit" build-rustlang
 
 elif [ "$TRAVIS_OS_NAME" = "linux" ] && [ "$QEMU" = "FreeBSD" ]; then
 	ssh -p 8829 -oStrictHostKeyChecking=no -i "$HOME/.ssh/id_rsa" root@localhost \
