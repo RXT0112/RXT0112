@@ -220,4 +220,4 @@ install:
   - QA/travis-ci/install.sh
 
 script:
-  - QA/travis-ci/tests.sh
+  - QA/travis-ci/test.sh
