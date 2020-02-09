@@ -220,6 +220,4 @@ install:
   - QA/travis-ci/install.sh
 
 script:
-  - make build-rustlang
-  # We already have logic for linting so there is no need to use 'make check'
-  #- QA/tests/HELL/hell.sh
+  - QA/travis-ci/tests.sh
