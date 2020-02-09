@@ -13,7 +13,7 @@ RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
     && apt-get upgrade -y \
     && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - \
     && apt dist-upgrade -y \
-    && apt-get install -y clang shellcheck docker-ce docker-ce-cli containerd.io firefox tree xclip umbrello \
+    && apt-get install -y clang shellcheck docker-ce docker-ce-cli containerd.io firefox tree xclip umbrello gnuplot \
     && rm -rf /var/lib/apt/lists/* \
     && apt autoremove -y
 
