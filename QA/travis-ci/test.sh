@@ -10,11 +10,11 @@
 
 # Linux as-is
 if [ "$TRAVIS_OS_NAME" = linux ] && [ -z "$DOCKER" ] && [ -z "$QEMU" ]; then
-	make check-rustlang
+	make build-rustlang
 
 # Linux via Docker
 elif [ "$TRAVIS_OS_NAME" = linux ] && [ -n "$DOCKER" ] && [ -z "$QEMU" ]; then
-	sudo docker exec "$CONTAINER" make --directory="/travis/Zernit" check-rustlang
+	sudo docker exec "$CONTAINER" make --directory="/travis/Zernit" build-rustlang
 
 # MacOS X
 elif [ "$TRAVIS_OS_NAME" = osx ]; then
