@@ -76,22 +76,24 @@ matrix:
       group: travis_latest
       env:
         DOCKER="debian:testing"
-        VARIANT="debian"
+        VARIANT="debian-testing"
         TOOL="compile"
         COMPILER_C="gcc"
         COMPILER_CXX="g++"
         REPOSITORY="https://github.com/RXT0112/Zernit.git"
+        PACKAGES="cargo"
     - name: "Debian Testing with Clang"
       os: linux
       dist: bionic
       group: travis_latest
       env:
         DOCKER="debian:testing"
-        VARIANT="debian"
+        VARIANT="debian-testing"
         TOOL="compile"
         COMPILER_C="clang"
         COMPILER_CXX="clang++"
         REPOSITORY="https://github.com/RXT0112/Zernit.git"
+        PACKAGES="cargo"
 
   #   # Debian Sid
   #   - name: "Debian Sid with GCC"
