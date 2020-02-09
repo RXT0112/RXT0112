@@ -81,7 +81,7 @@ matrix:
         COMPILER_C="gcc"
         COMPILER_CXX="g++"
         REPOSITORY="https://github.com/RXT0112/Zernit.git"
-        PACKAGES="rustc cargo git"
+        PACKAGES="rustc cargo git make"
     - name: "Debian Testing with Clang"
       os: linux
       dist: bionic
@@ -93,7 +93,7 @@ matrix:
         COMPILER_C="clang"
         COMPILER_CXX="clang++"
         REPOSITORY="https://github.com/RXT0112/Zernit.git"
-        PACKAGES="rustc cargo git"
+        PACKAGES="rustc cargo git make"
 
   #   # Debian Sid
   #   - name: "Debian Sid with GCC"
