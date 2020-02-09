@@ -16,7 +16,7 @@ matrix:
     - name: "Exherbo Linux with GCC"
       os: linux
       dist: bionic
-      group: travis_latest
+      group: exherbo
       cache:
         directories:
           - /var/db/paludis
@@ -31,7 +31,7 @@ matrix:
     - name: "Exherbo Linux with Clang"
       os: linux
       dist: bionic
-      group: travis_latest
+      group: exherbo
       cache:
         directories:
           - /var/db/paludis
@@ -58,7 +58,7 @@ matrix:
         COMPILER_C="gcc"
         COMPILER_CXX="g++"
         REPOSITORY="https://github.com/RXT0112/Zernit.git"
-        PACKAGES="git build-essential make"
+        PACKAGES="git build-essential make cargo rustc"
 
     # Ubuntu 19.10 (Eoan Ermine) with Clang
     - name: "Ubuntu 19.10 (Eoan Ermine) with Clang"
@@ -75,7 +75,7 @@ matrix:
         COMPILER_C="clang"
         COMPILER_CXX="clang++"
         REPOSITORY="https://github.com/RXT0112/Zernit.git"
-        PACKAGES="git build-essential make"
+        PACKAGES="git build-essential make cargo rustc"
 
   # Debian Linux
     # Debian Testing
@@ -104,32 +104,32 @@ matrix:
         REPOSITORY="https://github.com/RXT0112/Zernit.git"
         PACKAGES="rustc cargo git make pkg-config libssl-dev"
 
-    # Debian Sid
-    - name: "Debian Sid with GCC"
-      os: linux
-      dist: bionic
-      group: travis_latest
-      env:
-        DOCKER="debian:sid"
-        VARIANT="debian"
-        TOOL="build"
-        COMPILER_C="gcc"
-        COMPILER_CXX="g++"
-        REPOSITORY="https://github.com/RXT0112/Zernit.git"
-        PACKAGES="rustc cargo build-essentials make"
+    # # Debian Sid
+    # - name: "Debian Sid with GCC"
+    #   os: linux
+    #   dist: bionic
+    #   group: travis_latest
+    #   env:
+    #     DOCKER="debian:sid"
+    #     VARIANT="debian"
+    #     TOOL="build"
+    #     COMPILER_C="gcc"
+    #     COMPILER_CXX="g++"
+    #     REPOSITORY="https://github.com/RXT0112/Zernit.git"
+    #     PACKAGES="rustc cargo build-essentials make"
 
-    - name: "Debian Sid with Clang"
-      os: linux
-      dist: bionic
-      group: travis_latest
-      env:
-        DOCKER="debian:sid"
-        VARIANT="debian"
-        TOOL="build"
-        COMPILER_C="clang"
-        COMPILER_CXX="clang++"
-        REPOSITORY="https://github.com/RXT0112/Zernit.git"
-        PACKAGES="rustc cargo build-essentials make"
+    # - name: "Debian Sid with Clang"
+    #   os: linux
+    #   dist: bionic
+    #   group: travis_latest
+    #   env:
+    #     DOCKER="debian:sid"
+    #     VARIANT="debian"
+    #     TOOL="build"
+    #     COMPILER_C="clang"
+    #     COMPILER_CXX="clang++"
+    #     REPOSITORY="https://github.com/RXT0112/Zernit.git"
+    #     PACKAGES="rustc cargo build-essentials make"
 
   # # FreeBSD
   #   # FreeBSD 12.0-RELEASE
