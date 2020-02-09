@@ -53,7 +53,7 @@ matrix:
         COMPILER_C="gcc"
         COMPILER_CXX="g++"
         REPOSITORY="https://github.com/RXT0112/Zernit.git"
-        PACKAGES="git "
+        PACKAGES="git build-essential"
     # Ubuntu 19.10 (Eoan Ermine) with Clang
     - name: "Ubuntu 19.10 (Eoan Ermine) with Clang"
       os: linux
@@ -69,7 +69,7 @@ matrix:
         COMPILER_C="clang"
         COMPILER_CXX="clang++"
         REPOSITORY="https://github.com/RXT0112/Zernit.git"
-        PACKAGES="git"
+        PACKAGES="git build-essential"
 
   # Debian Linux
     # Debian Testing
@@ -218,5 +218,5 @@ install:
   - QA/travis-ci/install.sh
 
 script:
-  #- QA/travis-ci/test.sh
+  - QA/travis-ci/test.sh
   - QA/travis-ci/build.sh

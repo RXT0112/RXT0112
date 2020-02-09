@@ -8,6 +8,11 @@
 # shellcheck source=QA/travis-ci/get-container.sh
 . "QA/travis-ci/get-container.sh"
 
+case "$TOOL" in
+  *check*) true ;;
+  *) die 0 "Skipping tests as instructed"
+esac
+
 # Linux as-is
 if [ "$TRAVIS_OS_NAME" = linux ] && [ -z "$DOCKER" ] && [ -z "$QEMU" ]; then
 	make test-rustlang
