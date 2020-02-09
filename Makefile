@@ -18,7 +18,7 @@ vendor:
 	@ [ ! -d vendor/rustlang ] && mkdir vendor/rustlang
 	@ [ ! -d vendor/rustlang/clap-rs ] && git clone https://github.com/clap-rs/clap.git vendor/rustlang/clap-rs
 	@ for file in vendor/rustlang/clap-rs/benches/*; do cp "$$file" benches/rustlang/claprs-$${file##vendor/rustlang/clap-rs/benches/??_}; done
-build: build-rustlang build-clang-c build-gcc-c build-gcc-ccp build-clang-c build-clang-ccp build-brainfuck build-python build-vlang build-golang
+build: build-rustlang build-clang-c build-gcc-c build-gcc-ccp build-clang-ccp build-brainfuck build-python build-vlang build-golang
 
 # FIXME: Build in '$repodir/build/build-rustlang' instead of '$repodir/target' for multilang support
 build-rustlang:
@@ -48,10 +48,6 @@ build-gcc-ccp:
 	@ # Compilation
 	@ [ ! -f build/build-gcc ] && { gcc src/bin/main.c -o build/build-gcc/gcc-zernit || exit 1 ;}
 	@ printf '%s\n' "Compilation of target for gcc finished"
-
-build-clang-c:
-	@ printf 'FIXME: %s\n' "translate zernit in clang"
-	@ exit 1
 
 build-clang-ccp:
 	@ printf 'FIXME: %s\n' "translate zernit in clang"
@@ -128,10 +124,13 @@ bench-rustlang:	vendor
 
 ## CLEAN ##
 
-clean: clean-vendor
+clean: clean-vendor clean-benches
 	@ [ -d build ] && rm -rf build
 	@ printf '%s\n' "Build directory has been cleaned"
 
 clean-vendor:
 	@ # FIXME: Output helpful message if directory doesn't exists
 	@ [ -d vendor ] && rm -rf vendor
+
+clean-benches:
+	@ for file in benches/rustlang/claprs-*; do rm "$$file"; done

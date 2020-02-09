@@ -16,4 +16,13 @@ clap = "2.33.0"
 cargo-make = "0.27.0"
 # Used for reading toml files
 toml = "0.5.6"
+# Custom logging solution
 zernit-logger = { path = "src/libs/rustlang/zernit-logger" }
+
+[dev-dependencies]
+# Used for benchmarking
+criterion = "0.3.1"
+
+[[bench]]
+name = "example_bench"
+harness = false
