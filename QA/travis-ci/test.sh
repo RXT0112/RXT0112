@@ -3,18 +3,18 @@
 # Distributed under the terms of the GNU General Public License v3 (https://www.gnu.org/licenses/gpl-3.0.en.html) or later
 
 # shellcheck source=QA/travis-ci/travis-common.sh
-. "$(dirname "$0")/travis-common.sh"
+. "QA/travis-ci/travis-common.sh"
 
 # shellcheck source=QA/travis-ci/get-container.sh
-. "$(dirname "$0")/get-container.sh"
+. "QA/travis-ci/get-container.sh"
 
 # Linux as-is
 if [ "$TRAVIS_OS_NAME" = linux ] && [ -z "$DOCKER" ] && [ -z "$QEMU" ]; then
-	make check
+	make check-rustlang
 
 # Linux via Docker
 elif [ "$TRAVIS_OS_NAME" = linux ] && [ -n "$DOCKER" ] && [ -z "$QEMU" ]; then
-	sudo docker exec "$CONTAINER" make --directory="/travis/Kreyrock" check
+	sudo docker exec "$CONTAINER" make --directory="/travis/Zernit" check-rustlang
 
 # MacOS X
 elif [ "$TRAVIS_OS_NAME" = osx ]; then

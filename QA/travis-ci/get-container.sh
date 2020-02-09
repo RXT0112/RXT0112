@@ -5,7 +5,7 @@
 # 		Copyright (C) 2018-2019 by Thomas Dreibholz <dreibh@iem.uni-due.de> as GPLv3 or any other GPL at your option
 
 # shellcheck source=QA/travis-ci/travis-common.sh
-. "$(dirname "$0")/travis-common.sh"
+. "QA/travis-ci/travis-common.sh"
 
 if [ -n "$DOCKER" ]; then
 
@@ -18,7 +18,8 @@ if [ -n "$DOCKER" ]; then
 	fi
 
 	# Get name of package
-	PACKAGE="Kreyrock"
+	fixme "Output package name based on repository name"
+	PACKAGE="Zernit"
 
 	# Set container name
 	CONTAINER=$(printf '%s\n' "$PACKAGE-$DOCKER-$TOOL" | sed -e "s/:/_/g")
@@ -27,7 +28,9 @@ if [ -n "$DOCKER" ]; then
 	fi
 	export CONTAINER
 
-else
+elif [ -z "$DOCKER" ]; then
 	info "Docker is not used"
-	unset CONTAINER
+
+else
+	die 256 "Unexpected happend while processing DOCKER variable"
 fi

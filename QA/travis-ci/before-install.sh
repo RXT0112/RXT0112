@@ -9,7 +9,7 @@
 . "QA/travis-ci/travis-common.sh"
 
 # shellcheck source=QA/travis-ci/get-container.sh
-. "$(dirname "$0")/get-container.sh"
+. "QA/travis-ci/get-container.sh"
 
 fixme "Travis - before-install.sh disables SC1117 as hotfix"
 
