@@ -1,5 +1,11 @@
 use criterion::{black_box, criterion_group, criterion_main, Criterion};
 
+/*
+  This is base benchmark made for consistency
+
+  FIXME-BENCH: Make cargo to recognize `benches/rustlang` path instead of `benches/`
+*/
+
 fn fibonacci(n: u64) -> u64 {
     match n {
         0 => 1,

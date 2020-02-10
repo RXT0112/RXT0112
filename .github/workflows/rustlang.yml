@@ -6,55 +6,71 @@ on:
   pull_request:
     types: [synchronize, opened, reopened, ready_for_review]
     paths:
-    - '**.rs'
+    - - "${{ secrets.GITHUB_WORKSPACE }}/*.\\.rs"
 
 jobs:
   # Kernel specific builds
-  build-rustlang:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [macos-latest, windows-latest]
+  ubuntu-build:
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: building..
-        run: make build-rustlang
+      - name: Building..
+        run: cargo build
+  macos-build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Building..
+        run: cargo build
+  windows-build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Building..
+        run: cargo build
 
   # Docker builds
-  build-rustlang-debian:
+  debian-build:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - uses: docker://debian/testing:latest
-      - uses: actions/checkout@v2
-      - name: building..
-        run: make build-rustlang
-
-  build-rustlang-fedora:
+      - name: Building..
+        run: cargo build
+  fedora-build:
     runs-on: ubuntu-latest
     steps:
-      - uses: docker://fedora/latest:latest
       - uses: actions/checkout@v2
-      - name: building..
-        run: make build-rustlang
+      - uses: docker://fedora/latest:latest
+      - name: Building..
+        run: cargo build
+  archlinux-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: docker://archlinux/latest:latest
+      - name: Building..
+        run: cargo build
+  gentoo-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: docker://gentoo/stage3-amd64:latest
+      - name: Building..
+        run: cargo build
 
   # Run tests
-  check-rustlang:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [macos-latest, windows-latest, ubuntu-latest]
+  check:
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: running tests..
-        run: make check-rustlang
+      - name: Testing..
+        run: cargo test
 
   # Benchmarks
-  bench-rustlang:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [macos-latest, windows-latest, ubuntu-latest]
+  bench:
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: running benchmarks..
-        run: make bench-rustlang
+      - name: Benchmarking..
+        run: cargo bench
