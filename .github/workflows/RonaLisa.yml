@@ -7,7 +7,7 @@ on:
     branches: [master]
     types: [synchronize, opened, reopened, ready_for_review]
     paths:
-    - '**.rs'
+    - '**.rssass'
 
 jobs:
   build-rustlang:
