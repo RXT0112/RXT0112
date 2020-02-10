@@ -7,7 +7,7 @@ on:
     branches: [master]
     types: [synchronize, opened, reopened, ready_for_review]
     paths:
-    - '**.rssass'
+    - '**.rs'
 
 jobs:
   build-rustlang:
@@ -16,6 +16,16 @@ jobs:
       matrix:
         os: [macos-latest, windows-latest, ubuntu-18.04]
     steps:
+      - uses: actions/checkout@v2
+      - name: building..
+        run: make build-rustlang
+  build-rustlang-debian:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-18.04]
+    steps:
+      - uses: docker://debian/testing:latest
       - uses: actions/checkout@v2
       - name: building..
         run: make build-rustlang
