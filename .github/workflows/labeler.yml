@@ -1,12 +1,15 @@
 # Workflow to associate labels automatically
 name: labeler
 
-# Trigger the workflow on pull request events
-on: [pull_request]
+# Trigger if push 
+on:
+  push:
+    paths:
+    - '${{ secrets.GITHUB_WORKSPACE }}/.github/label-pr.yml'
 
 jobs:
   label:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
       # We need to checkout the repository to access the configured file (.github/label-pr.yml)
       - uses: actions/checkout@v2

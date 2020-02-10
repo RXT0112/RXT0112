@@ -1,16 +1,16 @@
 # Workflow for CPP
-name: ConaPizza
+name: ConaIsa
 
 # Relevant to events - https://help.github.com/en/actions/automating-your-workflow-with-github-actions/events-that-trigger-workflows
 on: 
   pull_request:
     types: [synchronize, opened, reopened, ready_for_review]
     paths:
-    - '**.c'
+    - '${{ secrets.GITHUB_WORKSPACE }}/**.c'
 
 jobs:
   # Linting
-  lint-c:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -19,7 +19,7 @@ jobs:
       - name: Linting..
         run: for file in $(git --no-pager diff --name-only origin/master | grep -o ".*\.c") ;do cppcheck "$file";done
   # Kernel specific builds
-  build-gcc-c:
+  gcc-build:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -28,7 +28,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: building..
         run: make build-gcc-c
-  build-clang-c:
+  clang-build:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:

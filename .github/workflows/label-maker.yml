@@ -1,18 +1,14 @@
-name: label-maker
+name: ConaIsa
 
-on:
-  schedule:
-  - cron: "*/30 * * * *"
+# Relevant to events - https://help.github.com/en/actions/automating-your-workflow-with-github-actions/events-that-trigger-workflows
+on: push
 
 jobs:
   labeler:
     runs-on: ubuntu-latest
     steps:
-      -
-        name: Checkout
-        uses: actions/checkout@v1
-      -
-        name: Run Labeler
+      - uses: actions/checkout@v1
+      - name: Assigning labels
         if: success()
         uses: crazy-max/ghaction-github-labeler@v1
         with:

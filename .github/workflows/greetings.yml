@@ -1,4 +1,4 @@
-name: Greetings
+name: ConaIsa
 
 on: [pull_request, issues]
 
