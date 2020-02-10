@@ -34,7 +34,7 @@ jobs:
     steps:
       - uses: docker://fedora/latest:latest
       - uses: actions/checkout@v2
-      - name: building..
+      - name: Building..
         run: make build-rustlang
 
   # Run tests
@@ -45,7 +45,7 @@ jobs:
         os: [macos-latest, windows-latest, ubuntu-latest]
     steps:
       - uses: actions/checkout@v2
-      - name: running tests..
+      - name: Running tests..
         run: make check-rustlang
 
   # Benchmarks
@@ -56,5 +56,5 @@ jobs:
         os: [macos-latest, windows-latest, ubuntu-latest]
     steps:
       - uses: actions/checkout@v2
-      - name: running benchmarks..
+      - name: Running benchmarks..
         run: make bench-rustlang
