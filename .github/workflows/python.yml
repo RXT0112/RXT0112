@@ -36,7 +36,7 @@ jobs:
     - name: Test with pytest
       run: |
         pip install pytest
-        for file in $(git --no-pager diff --name-only origin/master | grep -oP "^\w+\.py") ;do pytest "$file";done
+        for file in $(git --no-pager diff --name-only origin/master | grep -o ".*\.py") ;do pytest "$file";done
   # Kernel specific builds
   build-python:
     runs-on: ${{ matrix.os }}

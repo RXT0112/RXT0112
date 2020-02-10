@@ -1,0 +1,60 @@
+# Workflow for Rustlang
+name: RonaLisa
+
+# Relevant to events - https://help.github.com/en/actions/automating-your-workflow-with-github-actions/events-that-trigger-workflows
+on: 
+  pull_request:
+    types: [synchronize, opened, reopened, ready_for_review]
+    paths:
+    - '**.rs'
+
+jobs:
+  # Kernel specific builds
+  build-rustlang:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest]
+    steps:
+      - uses: actions/checkout@v2
+      - name: building..
+        run: make build-rustlang
+
+  # Docker builds
+  build-rustlang-debian:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: docker://debian/testing:latest
+      - uses: actions/checkout@v2
+      - name: building..
+        run: make build-rustlang
+
+  build-rustlang-fedora:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: docker://fedora/latest:latest
+      - uses: actions/checkout@v2
+      - name: building..
+        run: make build-rustlang
+
+  # Run tests
+  check-rustlang:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-latest]
+    steps:
+      - uses: actions/checkout@v2
+      - name: running tests..
+        run: make check-rustlang
+
+  # Benchmarks
+  bench-rustlang:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-latest]
+    steps:
+      - uses: actions/checkout@v2
+      - name: running benchmarks..
+        run: make bench-rustlang
