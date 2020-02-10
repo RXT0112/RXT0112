@@ -1,0 +1,39 @@
+# Workflow for rustlang
+name: RonaLisa (Rustlang)
+
+# Relevant to events - https://help.github.com/en/actions/automating-your-workflow-with-github-actions/events-that-trigger-workflows
+on: 
+  pull_request:
+    branches: [master]
+    types: [synchronize, opened, reopened, ready_for_review]
+    paths:
+    - '**.rs'
+
+jobs:
+  build-rustlang:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-18.04]
+    steps:
+      - uses: actions/checkout@v2
+      - name: building..
+        run: make build-rustlang
+  check-rustlang:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-18.04]
+    steps:
+      - uses: actions/checkout@v2
+      - name: running tests..
+        run: make check-rustlang
+  bench-rustlang:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-18.04]
+    steps:
+      - uses: actions/checkout@v2
+      - name: running benchmarks..
+        run: make bench-rustlang

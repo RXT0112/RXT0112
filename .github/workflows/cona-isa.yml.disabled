@@ -16,6 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: building..
+        if: success()
         run: make build-rustlang
   check-rustlang:
     runs-on: ${{ matrix.os }}
