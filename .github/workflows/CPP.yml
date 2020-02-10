@@ -1,5 +1,5 @@
 # Workflow for CPP
-name: ConaIsa
+name: CPP
 
 # Relevant to events - https://help.github.com/en/actions/automating-your-workflow-with-github-actions/events-that-trigger-workflows
 on: 

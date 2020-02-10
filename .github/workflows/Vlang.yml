@@ -1,5 +1,5 @@
 # Workflow for vlang
-name: ConaIsa
+name: vlang
 
 # Relevant to events - https://help.github.com/en/actions/automating-your-workflow-with-github-actions/events-that-trigger-workflows
 on: 
