@@ -3,6 +3,8 @@
 // FIXME: Does not build on clang
 // FIXME-QA: Outputs warnings
 
+// TEST - remove this comment
+
 int main(int argc, char ** argv[]) {
 	if(argc < 2) {
 		// FIXME: Add better help message
