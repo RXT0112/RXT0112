@@ -1,46 +1,46 @@
 # Programming language specific
-- regExp: ".*\\.rs+$"
+- regExp: '.*\.rs'
   labels: ["rustlang"]
 
-- regExp: ".*\\.py+$"
+- regExp: '.*\\.py'
   labels: ["python"]
 
-- regExp: ".*\\.c+$"
+- regExp: '.*\.c'
   labels: ["c-lang"]
 
-- regExp: ".*\\.cpp+$"
+- regExp: '.*\.cpp'
   labels: ["CPP"]
 
-- regExp: ".*\\.sh+$"
+- regExp: '.*\.sh'
   labels: ["shell"]
 
-- regExp: ".*\\.bash+$"
+- regExp: '.*\.bash'
   labels: ["bash"]
 
-- regExp: ".*\\.br+$"
+- regExp: '.*\.br'
   labels: ["brainfuck"]
 
-- regExp: ".*\\.jar+$"
+- regExp: '.*\.jar'
   labels: ["java"]
 
-- regExp: ".*\\.v+$"
+- regExp: '.*\.v'
   labels: ["vlang"]
 
-- regExp: ".*\\.cs+$"
+- regExp: '.*\.cs'
   labels: ["csharp"]
 
-- regExp: ".*tests.*"
+- regExp: '^/tests/.*'
   labels: ["tests"]
 
-- regExp: "benches"
+- regExp: '^/benches/.*'
   labels: ["benches"]
 
-- regExp: "LICENSE.md"
+- regExp: '^LICENSE\.md'
   labels: ["license"]
 
-- regExp: "^(.*\\Cargo.toml\\requirements.txt)$"
+- regExp: '^(Cargo\.toml|requirements\.txt)'
   labels: ["dependencies"]
 
 # Repository specific
-- regExp: ".*docs.*"
+- regExp: '^/docs/.*'
   labels: ["docs"]

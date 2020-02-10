@@ -1,12 +1,12 @@
 #include <stdio.h>
+#include <string.h>
 
 // FIXME: Does not build on clang
-// FIXME-QA: Outputs warnings
+// FIXME-TEST: Adapt valgrind
 
-int main(int argc, char ** argv[]) {
+int main(int argc, char **argv) {
 	if(argc < 2) {
-		// FIXME: Add better help message
-		// FIXME: Source from po depending on language used
+		// FIXME: Source better help message from po depending on language used
 		printf("%s\n", "Argument(s) required, use -h for display help");
 		return 2;
 	} else if(strcmp(argv[1], "-h") == 0) {
