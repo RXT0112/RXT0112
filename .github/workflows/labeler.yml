@@ -1,5 +1,5 @@
 # Workflow to associate labels automatically
-name: labeler
+name: ConaIsa
 
 # Trigger if push 
 on:
