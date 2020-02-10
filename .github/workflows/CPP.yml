@@ -1,0 +1,110 @@
+# Workflow for CPP
+name: Cona2xPizza
+
+# Relevant to events - https://help.github.com/en/actions/automating-your-workflow-with-github-actions/events-that-trigger-workflows
+on: 
+  pull_request:
+    types: [synchronize, opened, reopened, ready_for_review]
+    paths:
+    - '**.cpp'
+
+jobs:
+  # Linting
+  lint-cpp:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Installing dependencies..
+        run: if ! apt list --installed | grep -qP ".*cppcheck.*"; then apt install -y cppcheck; fi
+      - name: Linting..
+        run: for file in $(git --no-pager diff --name-only origin/master | grep -oP "^\w+\.cpp") ;do cppcheck "$file";done
+  # Kernel specific builds
+  build-gcc-cpp:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest]
+    steps:
+      - uses: actions/checkout@v2
+      - name: building..
+        run: make build-gcc-cpp
+  build-clang-cpp:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest]
+    steps:
+      - uses: actions/checkout@v2
+      - name: building..
+        run: make build-clang-cpp
+
+  # Docker builds
+  build-gcc-cpp-debian:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: docker://debian/testing:latest
+      - uses: actions/checkout@v2
+      - name: building..
+        run: make build-gcc-cpp
+  build-clang-cpp-debian:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: docker://debian/testing:latest
+      - uses: actions/checkout@v2
+      - name: building..
+        run: make build-clang-cpp
+
+  build-gcc-cpp-fedora:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: docker://fedora/latest:latest
+      - uses: actions/checkout@v2
+      - name: building..
+        run: make build-gcc-cpp
+  build-clang-cpp-fedora:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: docker://fedora/latest:latest
+      - uses: actions/checkout@v2
+      - name: building..
+        run: make build-clang-cpp
+
+  # Run tests
+  check-gcc-cpp:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-latest]
+    steps:
+      - uses: actions/checkout@v2
+      - name: running tests..
+        run: make check-gcc-cpp
+  check-clang-cpp:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-latest]
+    steps:
+      - uses: actions/checkout@v2
+      - name: running tests..
+        run: make check-clang-cpp
+
+  # Benchmarks
+  bench-gcc-cpp:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-latest]
+    steps:
+      - uses: actions/checkout@v2
+      - name: running benchmarks..
+        run: make bench-gcc-cpp
+  bench-clang-cpp:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-latest]
+    steps:
+      - uses: actions/checkout@v2
+      - name: running benchmarks..
+        run: make bench-clang-cpp

@@ -18,7 +18,7 @@ vendor:
 	@ [ ! -d vendor/rustlang ] && mkdir vendor/rustlang
 	@ [ ! -d vendor/rustlang/clap-rs ] && git clone https://github.com/clap-rs/clap.git vendor/rustlang/clap-rs
 	@ for file in vendor/rustlang/clap-rs/benches/*; do cp "$$file" benches/rustlang/claprs-$${file##vendor/rustlang/clap-rs/benches/??_}; done
-build: build-rustlang build-clang-c build-gcc-c build-gcc-ccp build-clang-ccp build-brainfuck build-python build-vlang build-golang
+build: build-rustlang build-clang-c build-gcc-c build-gcc-ccp build-clang build-brainfuck build-python build-vlang build-golang
 
 # FIXME: Build in '$repodir/build/build-rustlang' instead of '$repodir/target' for multilang support
 build-rustlang:

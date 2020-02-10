@@ -1,35 +1,44 @@
-# Workflow for rustlang
-name: RonaLisa (Rustlang)
+# Workflow for vlang
+name: VonaLisa
 
 # Relevant to events - https://help.github.com/en/actions/automating-your-workflow-with-github-actions/events-that-trigger-workflows
 on: 
   pull_request:
-    branches: [master]
     types: [synchronize, opened, reopened, ready_for_review]
     paths:
-    - '**.rs'
+    - '**.v'
 
 jobs:
-  build-rustlang:
+  # Kernel specific builds
+  build-vlang:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-latest, windows-latest, ubuntu-latest]
+        os: [macos-latest, windows-latest]
     steps:
       - uses: actions/checkout@v2
       - name: building..
-        run: make build-rustlang
-  build-rustlang-debian:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
+        run: make build-vlang
+
+  # Docker builds
+  build-vlang-debian:
+    runs-on: ubuntu-latest
     steps:
       - uses: docker://debian/testing:latest
       - uses: actions/checkout@v2
       - name: building..
-        run: make build-rustlang
-  check-rustlang:
+        run: make build-vlang
+
+  build-vlang-fedora:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: docker://fedora/latest:latest
+      - uses: actions/checkout@v2
+      - name: building..
+        run: make build-vlang
+
+  # Run tests
+  check-vlang:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -37,8 +46,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: running tests..
-        run: make check-rustlang
-  bench-rustlang:
+        run: make check-vlang
+
+  # Benchmarks
+  bench-vlang:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -46,4 +57,4 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: running benchmarks..
-        run: make bench-rustlang
+        run: make bench-vlang
