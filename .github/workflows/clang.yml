@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Installing dependencies..
-        run: if ! apt list --installed | grep -qP ".*cppcheck.*"; then apt install -y cppcheck; fi
+        run: if ! apt list --installed | grep -qP ".*cppcheck.*"; then sudo apt install -y cppcheck; fi
       - name: Linting..
         run: for file in $(git --no-pager diff --name-only origin/master | grep -o ".*\.c") ;do cppcheck "$file";done
   ## Valgrind test on gcc
