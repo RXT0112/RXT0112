@@ -12,13 +12,8 @@ all:
 # All build targets are expected in 'build/build-LANG' where 'LANG' is the unique identifier of the language used
 # FIXME: Replace 'exit 1' with helpful messages
 
-# Fetch files from third parties
-vendor:
-	@ [ ! -d vendor ] && mkdir vendor
-	@ [ ! -d vendor/rustlang ] && mkdir vendor/rustlang
-	@ [ ! -d vendor/rustlang/clap-rs ] && git clone https://github.com/clap-rs/clap.git vendor/rustlang/clap-rs
-	@ for file in vendor/rustlang/clap-rs/benches/*; do cp "$$file" benches/rustlang/claprs-$${file##vendor/rustlang/clap-rs/benches/??_}; done
 build: build-rustlang build-clang-c build-gcc-c build-gcc-ccp build-clang build-brainfuck build-python build-vlang build-golang
+	@ printf 'WARN: %s\n' "You are abould to build all targets on multilang project"
 
 # FIXME: Build in '$repodir/build/build-rustlang' instead of '$repodir/target' for multilang support
 build-rustlang:
@@ -26,18 +21,22 @@ build-rustlang:
 
 # FIXME: Add logic
 build-clang-c:
-	@ exit 1
+	@ # Make a build directory
+	@ [ ! -d build ] && { mkdir build || exit 1 ;} || exit 0
+	@ [ ! -d build/build-clang-c ] && { mkdir build/build-clang-c || exit 1 ;} || exit 0
+
+	@ # Compilation
+	@ [ ! -f build/build-clang-c/zernit-clang-c ] && { clang src/bin/main.c -o build/build-clang-c/zernit-clang-c || exit 1 ;} || exit 0
+	@ printf '%s\n' "Compilation of target for clang-c finished"
 
 build-gcc-c:
 	@ # Make a build directory
-	@ [ ! -d build ] && { mkdir build || exit 1 ;}
-	@ [ ! -d build/target-gc ] && { mkdir build/build-gc || exit 1 ;}
+	@ [ ! -d build ] && { mkdir build || exit 1 ;} || exit 0
+	@ [ ! -d build/target-gcc-c ] && { mkdir build/build-gcc-c || exit 1 ;} || exit 0
 
 	@ # Compilation
-	@ ## gc is not available on github -> Using GCC
-	@ 
-	@ [ ! -f build/build-gc/gc-zernit ] && { gcc src/bin/main.c -o build/build-gc/gc-zernit || exit 1 ;}
-	@ printf '%s\n' "Compilation of target for gc finished"
+	@ [ ! -f build/build-gcc-c/zernit-gcc-c ] && { gcc src/bin/main.c -o build/build-gcc-c/zernit-gcc-c || exit 1 ;} || exit 0
+	@ printf '%s\n' "Compilation of target for gcc-c finished"
 
 # FIXME: Replace 'exit 1' with helpful messages
 build-gcc-ccp:
@@ -119,18 +118,15 @@ check-vlang:
 bench: bench-rustlang
 
 # FIXME: Run vendor and 
-bench-rustlang:	vendor
+bench-rustlang:
 	@ cargo bench
 
 ## CLEAN ##
 
 clean: clean-vendor clean-benches
-	@ [ -d build ] && rm -rf build
+	@ [ -d build ] && { rm -rf build || exit 1 ;} || exit 0
 	@ printf '%s\n' "Build directory has been cleaned"
 
 clean-vendor:
 	@ # FIXME: Output helpful message if directory doesn't exists
-	@ [ -d vendor ] && rm -rf vendor
-
-clean-benches:
-	@ for file in benches/rustlang/claprs-*; do rm "$$file"; done
+	@ [ -d vendor ] && { rm -rf vendor || exit 1 ;} || exit 0
