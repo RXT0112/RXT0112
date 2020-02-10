@@ -15,26 +15,27 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Installing dependencies..
-        run: if ! apt list --installed | grep -qP ".*cppcheck.*"; then sudo apt install -y cppcheck; fi
+        run: if ! apt-list --installed cppcheck | grep -q ".*cppcheck.*"; then sudo apt install -y cppcheck; fi
       - name: Linting..
-        run: for file in $(git --no-pager diff --name-only origin/master | grep -o ".*\.c") ;do cppcheck "$file";done
+        run: for file in $(git --no-pager diff --name-only origin/master | grep -o ".*\.c"); do cppcheck "$file";done
   ## Valgrind test on gcc
   valgrind-gcc:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Installing dependencies..
-        run: if ! apt list --installed | grep -qP ".*valgrind.*"; then apt install -y valgrind; fi
+        run: if ! apt list --installed | grep -q ".*valgrind.*"; then sudo apt install -y valgrind; fi
       - name: Linting..
         run: |
           make build-gcc-c
-          valgrind --leak-check build/build-gcc-c/zernit-gcc-c
+          valgrind --leak-check=yes build/build-gcc-c/zernit-gcc-c
+  ## Valgrind on clang
   valgrind-clang:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Installing dependencies..
-        run: if ! apt list --installed | grep -qP ".*valgrind.*"; then apt install -y valgrind; fi
+        run: if ! apt list --installed | grep -qP ".*valgrind.*"; then sudo apt install -y valgrind; fi
       - name: Linting..
         run: |
           make build-clang-c
