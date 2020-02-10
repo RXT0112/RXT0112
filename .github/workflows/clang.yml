@@ -28,7 +28,7 @@ jobs:
       - name: Linting..
         run: |
           make build-gcc-c
-          valgrind --leak-check=yes build/build-gcc-c/zernit-gcc-c
+          valgrind --leak-check=yes build/build-gcc-c/zernit-gcc-c -h -unexpected
   ## Valgrind on clang
   valgrind-clang:
     runs-on: ubuntu-latest
@@ -39,7 +39,7 @@ jobs:
       - name: Linting..
         run: |
           make build-clang-c
-          valgrind --leak-check build/build-clang-c/zernit-clang-c
+          valgrind --leak-check build/build-clang-c/zernit-clang-c -h -unexpected
   # Kernel specific builds
   gcc-build:
     runs-on: ${{ matrix.os }}
