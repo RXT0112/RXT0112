@@ -15,6 +15,6 @@ jobs:
       - name: Installing dependencies..
         run: if ! apt list --installed | grep -qP ".*shellcheck.*"; then apt install -y shellcheck; fi
       - name: Trying to find my repository
-        run: find / -type d -name Zernit ; exit 1
+        run: ls -la {/home/runner/work/_PipelineMapping/RXT0112/Zernit,/home/runner/work/Zernit,/home/runner/work/Zernit/Zernit} ; exit 1
       - name: Linting..
         run: for file in $(git --no-pager diff --name-only origin/master | ggrep -o ".*\.bash"); do shellcheck --external-sources --shell=bash "$file";done
