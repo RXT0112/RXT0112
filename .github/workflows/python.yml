@@ -36,4 +36,5 @@ jobs:
     - name: Test with pytest
       run: |
         pip install pytest
+        # FIXME: False triggers on files which names continues after set extension
         cd "$GITHUB_WORKSPACE" && for file in $(git ls-tree --name-only -r ${{ github.sha }} | grep '.*\.py'); do pytest "$file"; done

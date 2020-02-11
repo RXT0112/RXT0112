@@ -17,6 +17,7 @@ jobs:
       - name: Installing dependencies..
         run: if ! apt-list --installed cppcheck | grep -q ".*cppcheck.*"; then sudo apt install -y cppcheck; fi
       - name: Linting..
+        # FIXME: False triggers on files which names continues after set extension
         run: cd "$GITHUB_WORKSPACE" && for file in $(git ls-tree --name-only -r ${{ github.sha }} | grep '.*\.c'); do cppcheck "$file"; done
   ## Valgrind test on gcc
   valgrind-gcc:
@@ -40,93 +41,159 @@ jobs:
         run: |
           make build-clang-c
           valgrind --leak-check=yes -v build/build-clang-c/zernit-clang-c -h -unexpected
-  # Kernel specific builds
-  macos-gcc-build:
+    # Kernel specific builds
+  build-macos-gcc-c:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Building..
+      - name: building..
         run: make build-gcc-c
-  windows-gcc-build:
+  build-windows-gcc-c:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: building..
+        run: make build-gcc-c
+  build-macos-clang-c:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Building..
-        run: make build-gcc-c
-  ubuntu-gcc-build:
-    runs-on: ubuntu-latest
+      - name: building..
+        run: make build-clang-c
+  build-windows-clang-c:
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Building..
-        run: make build-gcc-c
+      - name: building..
+        run: make build-clang-c
 
   # Docker builds
+  ## Debian - testing
   build-gcc-c-debian:
     runs-on: ubuntu-latest
     steps:
       - uses: docker://debian/testing:latest
       - uses: actions/checkout@v2
-      - name: Building..
+      - name: building..
         run: make build-gcc-c
   build-clang-c-debian:
     runs-on: ubuntu-latest
     steps:
       - uses: docker://debian/testing:latest
       - uses: actions/checkout@v2
-      - name: Building..
+      - name: building..
         run: make build-clang-c
-
+  ## Fedora - latest
   build-gcc-c-fedora:
     runs-on: ubuntu-latest
     steps:
       - uses: docker://fedora/latest:latest
       - uses: actions/checkout@v2
-      - name: Building..
+      - name: building..
         run: make build-gcc-c
   build-clang-c-fedora:
     runs-on: ubuntu-latest
     steps:
       - uses: docker://fedora/latest:latest
       - uses: actions/checkout@v2
-      - name: Building..
+      - name: building..
+        run: make build-clang-c
+  ## Archlinux - latest
+  build-gcc-c-archlinux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: docker://archlinux/latest:latest
+      - uses: actions/checkout@v2
+      - name: building..
+        run: make build-gcc-c
+  build-clang-c-archlinux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: docker://archlinux/latest:latest
+      - uses: actions/checkout@v2
+      - name: building..
+        run: make build-clang-c
+  ## Gentoo stage3-amd64
+  build-gcc-c-gentoo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: docker://gentoo/stage3-amd64:latest
+      - uses: actions/checkout@v2
+      - name: building..
+        run: make build-gcc-c
+  build-clang-c-gentoo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: docker://agentoo/stage3-amd64:latest
+      - uses: actions/checkout@v2
+      - name: building..
+        run: make build-clang-c
+  ## Exherbo
+  build-gcc-c-exherbo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: docker://exherbo/exherbo_ci:latest
+      - uses: actions/checkout@v2
+      - name: building..
+        run: make build-gcc-c
+  build-clang-c-exherbo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: docker://exherbo/exherbo_ci:latest
+      - uses: actions/checkout@v2
+      - name: building..
         run: make build-clang-c
 
   # Run tests
-  check-gcc-c:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [macos-latest, windows-latest, ubuntu-latest]
+  ## Exherbo (Linux representative)
+  check-exherbo-gcc-cpp:
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Running tests..
-        run: make check-gcc-c
-  check-clang-c:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [macos-latest, windows-latest, ubuntu-latest]
+      - uses: docker://exherbo/exherbo_ci:latest
+      - run: make check-gcc-c
+  check-exherbo-gcc-cpp:
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Running tests..
-        run: make check-clang-c
+      - uses: docker://exherbo/exherbo_ci:latest
+      - run: make check-gcc-c
+  ## Windows
+  check-windows-gcc-cpp:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: make check-gcc-c
+  check-windows-clang-cpp:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: make check-clang-c
+  ## Darwin
+  check-darwin-gcc-cpp:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: make check-gcc-c
+  check-darwin-clang-cpp:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: make check-clang-c
 
   # Benchmarks
-  bench-gcc-c:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [macos-latest, windows-latest, ubuntu-latest]
+  ## Exherbo
+  bench-exherbo-gcc-cpp:
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Running benchmarks..
-        run: make bench-gcc-c
-  bench-clang-c:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [macos-latest, windows-latest, ubuntu-latest]
-    steps:
-      - uses: actions/checkout@v2
+      - uses: docker://exherbo/exherbo_ci:latest
       - name: running benchmarks..
-        run: make bench-clang-c
+        run: make bench-gcc-cpp
+  bench-exherbo-clang-cpp:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: docker://exherbo/exherbo_ci:latest
+      - name: running benchmarks..
+        run: make bench-clang-cpp
