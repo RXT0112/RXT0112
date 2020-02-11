@@ -1,6 +1,6 @@
 ---
 name: Bug report
-about: For bug reports
+about: if Something is not working as expected
 title: 'bug:'
 labels: 'bug'
 assignees: '@Zernit/bugwranglers'

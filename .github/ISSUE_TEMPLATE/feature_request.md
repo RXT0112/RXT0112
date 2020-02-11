@@ -1,6 +1,6 @@
 ---
 name: Feature request
-about: Request feature
+about: For feature proposals
 title: 'REQUEST:'
 labels: 'feature-request'
 assignees: '@Zernit/bugwranglers'
