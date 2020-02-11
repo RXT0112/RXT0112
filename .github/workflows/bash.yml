@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Output changed files hopefully
-        run: git --git-dir="$GITHUB_WORKSPACE/.git" ls-tree --name-only -r ${{ github.sha }} ; exit 1
+        run: cd "$GITHUB_WORKSPACE" && git ls-tree --name-only -r ${{ github.sha }} ; exit 1
       - name: Installing dependencies..
         run: if ! apt list --installed 2>/dev/null | grep -q ".*shellcheck.*"; then apt install -y shellcheck; fi
       - name: Linting..
