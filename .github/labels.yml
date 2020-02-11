@@ -4,6 +4,10 @@
   color: d73a4a
   description: "Something isn't working"
 
+- name: feature-request
+  color: 03fc5a
+  description: "Feature requests"
+
 - name: docs
   color: 0075ca
   description: "Improvements or additions to documentation"

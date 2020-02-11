@@ -1,0 +1,18 @@
+# Workflow for CPP
+name: Jekyll
+
+# Relevant to events - https://help.github.com/en/actions/automating-your-workflow-with-github-actions/events-that-trigger-workflows
+on: 
+  pull_request:
+    types: [synchronize, opened, reopened, ready_for_review]
+    paths:
+    - 'docs/**'
+
+jobs:
+  jekyll:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build Jekyll
+      run: |
+            { cd docs || printf 'FATAL: %s\n' "Unable to change directory in docs" && exit 1 ;} && jekyll build

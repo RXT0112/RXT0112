@@ -71,6 +71,8 @@ Project is expected to have stable economy to sustain bug bounties, it's activit
 - Project is expected to be paid for commercial use
 - Project considers paid license for non-contributing members assuming it being implemented in a way that would motivate end-users from being help-vampires without sacrificing four freedoms
 - Support provided by the project is expected to be always free.
+  - It was discussed that offering priority based on end-user's support of the project could be prioritized
+    - i.e person who donates with money have priority over regular person and person who actively contributes in the source code would have priority over those who donate (possible to reduce help-vampires)
 - Project accepts donations
 - Project accepts sponsorships
 - Project is designed to be for sale for X amount of time inspired by OpenSUSE's approach where original creator would stay in charge to avoid new owner from changing it's components.
@@ -79,13 +81,11 @@ Project is expected to have stable economy to sustain bug bounties, it's activit
 ## Solutions
 
 ### Code-quality
-Currently project has 248 tests set up with expectation on 811 that are going to trigger based on files edited to help with project maintainance.
+Currently project has around 248 tests set up with expectation on 811 that are going to trigger based on files edited to help with project maintainance.
 
 Project has set up hierarchy for reviewers that are expected to review merge requests before being merged (sourced from original creator's community for a kick-start)
 
-mensioned mentoring project and method to handle contribution forks
-
-### 
+mensioned mentoring project and method to handle contribution forks 
 
 ### Other plans
 
