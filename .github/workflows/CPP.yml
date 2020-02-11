@@ -101,7 +101,7 @@ jobs:
   build-clang-cpp-gentoo:
     runs-on: ubuntu-latest
     steps:
-      - uses: docker://agentoo/stage3-amd64:latest
+      - uses: docker://gentoo/stage3-amd64:latest
       - uses: actions/checkout@v2
       - name: building..
         run: make build-clang-cpp

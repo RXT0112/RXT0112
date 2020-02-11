@@ -10,14 +10,43 @@ on:
 
 jobs:
   # Kernel specific builds
-  build-vlang:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [macos-latest, windows-latest]
+  build-ubuntu-vlang:
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: building..
+      - name: Install dependencies
+        run: |
+          if ! command -v v >/dev/null; then
+            wget https://github.com/vlang/v/releases/latest/download/v_linux.zip -O "$HOME/.cache/vlang.zip"
+            [ ! -d /opt/vlang ] && mkdir /opt/vlang
+            [ ! -f /opt/vlang/v ] && unzip "$HOME/.cache/vlang.zip" -d /opt/vlang/v
+            [ ! -x /usr/bin/v ] && ln -sf /usr/bin/v /opt/vlang/v
+          fi
+      - name: Building..
+        run: make build-vlang
+  build-darwin-vlang:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: |
+          if ! command -v v >/dev/null; then
+            wget https://github.com/vlang/v/releases/latest/download/v_linux.zip -O "$HOME/.cache/vlang.zip"
+            [ ! -d /opt/vlang ] && mkdir /opt/vlang
+            [ ! -f /opt/vlang/v ] && unzip "$HOME/.cache/vlang.zip" -d /opt/vlang/v
+            [ ! -x /usr/bin/v ] && ln -sf /usr/bin/v /opt/vlang/v
+          fi
+      - name: Building..
+        run: make build-vlang
+  build-windows-vlang:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: |
+          ECHO fixme
+          EXIT
+      - name: Building..
         run: make build-vlang
 
   # Docker builds
