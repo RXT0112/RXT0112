@@ -130,12 +130,12 @@ jobs:
       - uses: actions/checkout@v2
       - uses: docker://exherbo/exherbo_ci:latest
       - run: make check-gcc-cpp
-  check-exherbo-gcc-cpp:
+  check-exherbo-clang-cpp:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: docker://exherbo/exherbo_ci:latest
-      - run: make check-gcc-cpp
+      - run: make check-clang-cpp
   ## Windows
   check-windows-gcc-cpp:
     runs-on: windows-latest
