@@ -12,9 +12,8 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: Installing dependencies..
-        run: if ! apt list --installed | grep -qP ".*shellcheck.*"; then apt install -y shellcheck; fi
-      - name: Trying to find my repository
-        run: ls -la {/home/runner/work/_PipelineMapping/RXT0112/Zernit,/home/runner/work/Zernit,/home/runner/work/Zernit/Zernit} ; exit 1
+        run: if ! apt list --installed 2>/dev/null | grep -q ".*shellcheck.*"; then apt install -y shellcheck; fi
       - name: Linting..
-        run: for file in $(git --no-pager diff --name-only origin/master | ggrep -o ".*\.bash"); do shellcheck --external-sources --shell=bash "$file";done
+        run: for file in $(git --git-dir="$GITHUB_WORKSPACE/.git" --no-pager diff --name-only origin/master | ggrep -o ".*\.bash"); do shellcheck --external-sources --shell=bash "$file";done
