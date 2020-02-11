@@ -17,8 +17,7 @@ jobs:
       - name: Installing dependencies..
         run: if ! apt-list --installed cppcheck | grep -q ".*cppcheck.*"; then sudo apt install -y cppcheck; fi
       - name: Linting..
-        # FIXME: False triggers on files which names continues after set extension
-        run: cd "$GITHUB_WORKSPACE" && for file in $(git ls-tree --name-only -r ${{ github.sha }} | grep '.*\.c'); do cppcheck "$file"; done
+        run: cd "$GITHUB_WORKSPACE" && for file in $(git ls-tree --name-only -r ${{ github.sha }} | grep '\.c$'); do cppcheck "$file"; done
   ## Valgrind test on gcc
   valgrind-gcc:
     runs-on: ubuntu-latest
@@ -29,6 +28,8 @@ jobs:
       - name: Linting..
         run: |
           make build-gcc-c
+          # NOTICE: This requires to input the arguments invidually
+          # FIXME: Use regex to gather arguments
           valgrind --leak-check=yes -v build/build-gcc-c/zernit-gcc-c -h -unexpected
   ## Valgrind on clang
   valgrind-clang:
@@ -40,6 +41,8 @@ jobs:
       - name: Linting..
         run: |
           make build-clang-c
+          # NOTICE: This requires to input the arguments invidually
+          # FIXME: Use regex to gather arguments
           valgrind --leak-check=yes -v build/build-clang-c/zernit-clang-c -h -unexpected
     # Kernel specific builds
   build-macos-gcc-c:
