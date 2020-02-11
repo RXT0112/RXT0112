@@ -58,7 +58,7 @@ jobs:
         pip install pytest
         # FIXME: False triggers on files which names continues after set extension
         cd "$GITHUB_WORKSPACE" && for file in $(git ls-tree --name-only -r ${{ github.sha }} | grep '\.py$'); do pytest "$file"; done
-  lint-macos-python-3_5:
+  lint-window-python-3_5:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v2
@@ -132,7 +132,7 @@ jobs:
         pip install pytest
         # FIXME: False triggers on files which names continues after set extension
         cd "$GITHUB_WORKSPACE" && for file in $(git ls-tree --name-only -r ${{ github.sha }} | grep '\.py$'); do pytest "$file"; done
-  lint-macos-python-3_6:
+  lint-window-python-3_6:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v2
@@ -206,7 +206,7 @@ jobs:
         pip install pytest
         # FIXME: False triggers on files which names continues after set extension
         cd "$GITHUB_WORKSPACE" && for file in $(git ls-tree --name-only -r ${{ github.sha }} | grep '\.py$'); do pytest "$file"; done
-  lint-macos-python-3_7:
+  lint-windows-python-3_7:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v2
@@ -280,7 +280,7 @@ jobs:
         pip install pytest
         # FIXME: False triggers on files which names continues after set extension
         cd "$GITHUB_WORKSPACE" && for file in $(git ls-tree --name-only -r ${{ github.sha }} | grep '\.py$'); do pytest "$file"; done
-  lint-macos-python-3_8:
+  lint-windows-python-3_8:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v2

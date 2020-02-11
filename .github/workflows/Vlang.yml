@@ -19,6 +19,7 @@ jobs:
           if ! command -v v >/dev/null; then
             wget https://github.com/vlang/v/releases/latest/download/v_linux.zip -O "$HOME/.cache/vlang.zip"
             [ ! -d /opt/vlang ] && mkdir /opt/vlang
+            [ ! -d "$HOME/.cache/" ] && mkdir "$HOME/.cache/"
             [ ! -f /opt/vlang/v ] && unzip "$HOME/.cache/vlang.zip" -d /opt/vlang/v
             [ ! -x /usr/bin/v ] && ln -sf /usr/bin/v /opt/vlang/v
           fi
@@ -33,6 +34,7 @@ jobs:
           if ! command -v v >/dev/null; then
             wget https://github.com/vlang/v/releases/latest/download/v_linux.zip -O "$HOME/.cache/vlang.zip"
             [ ! -d /opt/vlang ] && mkdir /opt/vlang
+            [ ! -d "$HOME/.cache/" ] && mkdir "$HOME/.cache/"
             [ ! -f /opt/vlang/v ] && unzip "$HOME/.cache/vlang.zip" -d /opt/vlang/v
             [ ! -x /usr/bin/v ] && ln -sf /usr/bin/v /opt/vlang/v
           fi
