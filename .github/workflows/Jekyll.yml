@@ -13,6 +13,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Build Jekyll
+    - name: Building..
       run: |
-            { cd docs || printf 'FATAL: %s\n' "Unable to change directory in docs" && exit 1 ;} && jekyll build
+            cd docs && jekyll build

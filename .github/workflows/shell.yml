@@ -17,4 +17,8 @@ jobs:
         run: if ! apt list --installed | grep -qP ".*shellcheck.*"; then apt install -y shellcheck; fi
       - name: Linting..
         # FIXME: False triggers on files which names continues after `.sh` i.e `something.sh.something`
-        run: cd "$GITHUB_WORKSPACE" && for file in $(git ls-tree --name-only -r ${{ github.sha }} | grep '\.sh$'); do shellcheck --external-sources --shell=sh "$file";done
+        run: |
+          cd "$GITHUB_WORKSPACE" && for file in $(git ls-tree --name-only -r ${{ github.sha }} | grep '\.sh$'); do
+            printf 'linting shell file %s' "$file"
+            shellcheck --external-sources --shell=sh "$file"
+          done
