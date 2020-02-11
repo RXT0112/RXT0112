@@ -16,4 +16,4 @@ jobs:
       - name: Installing dependencies..
         run: if ! apt list --installed | grep -qP ".*shellcheck.*"; then apt install -y shellcheck; fi
       - name: Linting..
-        run: for file in $(git --no-pager diff --name-only origin/master | grep -o ".*\.sh") ;do shellcheck --external-sources --shell=sh "$file";done
+        run: cd "$GITHUB_WORKSPACE" && for file in $(git ls-tree --name-only -r ${{ github.sha }} | grep '.*\.sh'); do shellcheck --external-sources --shell=sh "$file";done

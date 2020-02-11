@@ -17,7 +17,7 @@ jobs:
       - name: Installing dependencies..
         run: if ! apt list --installed | grep -qP ".*cppcheck.*"; then apt install -y cppcheck; fi
       - name: Linting..
-        run: for file in $(git --no-pager diff --name-only origin/master | grep -o ".*\.cpp") ;do cppcheck "$file";done
+        run: cd "$GITHUB_WORKSPACE" && for file in $(git ls-tree --name-only -r ${{ github.sha }} | grep '.*\.cpp'); do cppcheck "$file"; done
   # Kernel specific builds
   build-gcc-cpp:
     runs-on: ${{ matrix.os }}
