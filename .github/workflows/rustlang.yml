@@ -44,6 +44,13 @@ jobs:
       - uses: docker://fedora:latest
       - name: Building..
         run: cargo build
+  fedora-next-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: docker://fedora:rawhide
+      - name: Building..
+        run: cargo build
   archlinux-build:
     runs-on: ubuntu-latest
     steps:
