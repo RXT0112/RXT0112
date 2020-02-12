@@ -38,6 +38,9 @@
 - regExp: '^LICENSE\.md'
   labels: ["license"]
 
+- regExp: '.*\.md'
+  labels: ["markdown"]
+
 - regExp: '^(Cargo\.toml|requirements\.txt)'
   labels: ["dependencies"]
 

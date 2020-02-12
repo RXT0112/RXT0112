@@ -101,3 +101,7 @@
 - name: java
   color: ad690a
   description: "Relevant to java"
+
+- name: markdown
+  color: 454545
+  description: "Relevant to markdown"
