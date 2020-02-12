@@ -5,7 +5,7 @@ name: ConaIsa
 on:
   push:
     paths:
-    - '${{ secrets.GITHUB_WORKSPACE }}/.github/label-pr.yml'
+    - '**/label-pr.yml'
 
 jobs:
   label:
