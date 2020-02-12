@@ -13,6 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: Fix file permission
+      run: sudo chown -R "$USER:$USER" /var/lib/gems/2.5.0 
     - name: Building..
       run: |
             gem install jekyll
