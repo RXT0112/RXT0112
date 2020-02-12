@@ -34,7 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: docker://debian/testing:latest
+      - uses: docker://debian:testing
       - name: Building..
         run: cargo build
   fedora-build:
