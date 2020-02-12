@@ -1,5 +1,31 @@
 # This file handles labels on GitHub
 
+# Priority handling
+- name: P - SHTF
+  color: ae00ff
+  description: "Stop whatever you are doing and focus on this"
+
+- name: P - Very High
+  color: ff2f00
+  description: "FIXME"
+
+- name: P - High
+  color: 910f00
+  description: "FIXME"
+
+- name: P - Med
+  color: ffd000
+  description: "FIXME"
+
+- name: P - Low
+  color: b3ff00
+  description: "FIXME"
+
+- name: P - Very Low
+  color: 73ff00
+  description: "FIXME"
+
+# MISC
 - name: bug
   color: d73a4a
   description: "Something isn't working"
@@ -35,31 +61,6 @@
 - name: benches
   color: cc1250
   description: "Relevant to benchmarks"
-
-# Priority handling
-- name: P - SHTF
-  color: ae00ff
-  description: "Stop whatever you are doing and focus on this"
-
-- name: P - Very High
-  color: ff2f00
-  description: "FIXME"
-
-- name: P - High
-  color: 910f00
-  description: "FIXME"
-
-- name: P - Med
-  color: ffd000
-  description: "FIXME"
-
-- name: P - Low
-  color: b3ff00
-  description: "FIXME"
-
-- name: P - Very Low
-  color: 73ff00
-  description: "FIXME"
 
 # Programming language specific
 - name: python
