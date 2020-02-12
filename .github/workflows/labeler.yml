@@ -4,8 +4,6 @@ name: Label management
 on: 
   pull_request:
     types: [synchronize, opened, reopened, ready_for_review]
-    paths:
-    - '*.label-pr\.yml$'
 
 jobs:
   label:
