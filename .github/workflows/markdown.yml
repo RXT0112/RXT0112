@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Installing dependencies..
-        run: if ! command -v markdownlint; then npm install -g markdownlint-cli; fi
+        run: if ! command -v markdownlint; then sudo npm install -g markdownlint-cli; fi
       - name: Linting..
         run: |
           cd "$GITHUB_WORKSPACE" && for file in $(git ls-tree --name-only -r ${{ github.sha }} | grep '\.md$'); do
