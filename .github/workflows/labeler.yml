@@ -5,7 +5,7 @@ name: Label management
 on:
   push:
     paths:
-    - '**label-pr.yml'
+    - '**label-pr\.yml'
 
 jobs:
   label:
