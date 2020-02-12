@@ -2,10 +2,10 @@
 name: Label management
 
 # Trigger if push 
-on:
-  push:
-    paths:
-    - '.*label-pr\.yml$'
+on: [pull_request]
+#  push:
+#    paths:
+#    - '.*label-pr\.yml$'
 
 jobs:
   label:
