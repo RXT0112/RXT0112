@@ -13,9 +13,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Fix file permission
-      run: sudo chown -R "$USER:$USER" /var/lib/gems/2.5.0 
+    
+    - name: Get dependencies (FIXME-UPSTREAM)
+      run: sudo gem install jekyll
+
     - name: Building..
-      run: |
-            gem install jekyll
-            cd docs && jekyll build
+      # FIXME: Avoid using `cd`
+      run: cd docs && jekyll build
