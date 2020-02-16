@@ -3,7 +3,7 @@ category: About
 title: 'Four freedoms compliance'
 layout: nil
 ---
-.
+
 Disclaimer: This is still part of ongoing effort to make this repository FSF approved while allow for sustainable business plan assuming this repository being expected to be used for commercial use.
 Content provided in this post is subject to change and contributions are welcommed where we are welcomming challenges about these decisions and requests to adapt license for your workflow.
 
