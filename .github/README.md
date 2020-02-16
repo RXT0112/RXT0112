@@ -4,9 +4,9 @@ fixme: Source the header in different markdown file to make GitHub README differ
 
 fixme: Change the name based on repository used.
 
-# RXT0112 (WIP name)
+# Zernit (RXT0112)
 
-Package manager for unix and windows written in rustlang
+System manager of WIP_NAME designed to work cross-platform and using multiple programming languages depending on which one provides the most efficiency per required runtime.
 
 fixme: Change the URL based on the website used<br>
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/RXT0112/RXT0112)
@@ -14,7 +14,3 @@ fixme: Change the URL based on the website used<br>
 fixme: Add prety button<br>
 https://codesandbox.io/s/github/RXT0112/RXT0112
 
-## ABSTRACT
-Package manager capable of source and binary import/export with tracking in `world` file and options.
-
-Developed with GUI in mind
