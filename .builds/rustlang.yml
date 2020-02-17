@@ -7,6 +7,7 @@ packages:
   - wayland
   - libxkbcommon
   - cairo
+  - cargo
   - pango
   - gdk-pixbuf2
   - pixman
