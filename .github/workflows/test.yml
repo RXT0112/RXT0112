@@ -6,6 +6,8 @@ jobs:
     name: A job to say hello
     steps:
         uses: actions/checkout@v2
+      - name: check zernitdir
+        run: ls -la /home/runner/work/Zernit/Zernit/
       - name: Hello world action step
         uses: .github/custom-actions/sourcehut-layer
         id: hello
