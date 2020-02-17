@@ -20,3 +20,7 @@ tasks:
       cd Zernit
       if git --no-pager diff --name-only origin/master | grep -q ".*.rs$"; then cargo build; fi
       complete-build
+  - bench: |
+      cd Zernit
+      if git --no-pager diff --name-only origin/master | grep -q ".*.rs$"; then cargo bench; fi
+      complete-build
