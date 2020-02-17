@@ -14,16 +14,15 @@ RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
     && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - \
     && apt dist-upgrade -y \
     && apt-get install -y clang valgrind shellcheck docker-ce docker-ce-cli containerd.io firefox tree xclip umbrello gnuplot fish zsh \
-    && sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" \
-    && git clone --depth=1 https://github.com/Bash-it/bash-it.git /usr/src/bash-it \
-    && /usr/src/bash-it/install.sh \
     && rm -rf /var/lib/apt/lists/* \
     && apt autoremove -y
 
-# FIXME:     && curl -L https://get.oh-my.fish | fish \
-
-## Check ownership
-RUN chown -R gitpod:gitpod /home/gitpod
+## User config
+USER gitpod
+RUN curl -L https://get.oh-my.fish | fish \
+  && sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" \
+  && git clone --depth=1 https://github.com/Bash-it/bash-it.git /usr/src/bash-it \
+  && /usr/src/bash-it/install.sh
 
 ### VLANG ###
 USER root
