@@ -16,5 +16,6 @@ sources:
   - https://github.com/RXT0112/Zernit
 tasks:
   - build: |
-      cd Zernit || exit 1
+      cd Zernit
       if git --no-pager diff --name-only origin/master | grep -q ".*.rs$"; then cargo build; fi
+      complete-build
