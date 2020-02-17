@@ -5,6 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     name: A job to say hello
     steps:
+      - name: What the fuck
         uses: actions/checkout@v2
       - name: check zernitdir
         run: ls -la /home/runner/work/Zernit/Zernit/
