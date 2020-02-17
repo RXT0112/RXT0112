@@ -18,11 +18,11 @@ RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
     && apt autoremove -y
 
 ## User config
-USER gitpod
-RUN curl -L https://get.oh-my.fish | fish \
-  && sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" \
-  && git clone --depth=1 https://github.com/Bash-it/bash-it.git /usr/src/bash-it \
-  && /usr/src/bash-it/install.sh
+# USER gitpod
+# RUN curl -L https://get.oh-my.fish | fish \
+#   && sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" \
+#   && git clone --depth=1 https://github.com/Bash-it/bash-it.git /usr/src/bash-it \
+#   && /usr/src/bash-it/install.sh
 
 ### VLANG ###
 USER root
