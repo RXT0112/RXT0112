@@ -28,6 +28,7 @@ fn main() {
 	// FIXME-BENCHMARK: Benchmark other option like structOpt (https://docs.rs/structopt/0.3.7/structopt/#subcommands)
 	// FIXME-TEST: Add test to make sure that clap works the way we want it
 
+	// FIXME: Define arguments based on their presence in src/subcoms/rustlang/<SUBCOMMAND> -- https://github.com/RXT0112/Zernit/issues/54
 	let matches = App::new("RXT0112")
 		.version("INIT_PHASE_VERSION") // Replace with valid versioning
 		.author("Jacob Hrbek <kreyren@rixotstudio.cz>")
@@ -35,6 +36,11 @@ fn main() {
 		.arg(Arg::with_name("gui")
 			.short("G")
 			.long("gui")
+			.multiple(true)
+			.help("Opens up a Graphical User Interface frontend"))
+		.arg(Arg::with_name("noninteractive")
+			.short("I")
+			.long("noninteractive")
 			.multiple(true)
 			.help("Opens up a Graphical User Interface frontend"))
 		.arg(Arg::with_name("dev")
