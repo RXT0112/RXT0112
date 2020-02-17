@@ -15,7 +15,7 @@ RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
     && apt dist-upgrade -y \
     && apt-get install -y clang valgrind shellcheck docker-ce docker-ce-cli containerd.io firefox tree xclip umbrello gnuplot fish zsh \
     && sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" \
-    && curl -L https://get.oh-my.fish | fish \
+    && curl -L https://get.oh-my.fish | fish --noninteractive \
     && git clone --depth=1 https://github.com/Bash-it/bash-it.git /usr/src/bash-it \
     && /usr/src/bash-it/.bash_it \
     && rm -rf /var/lib/apt/lists/* \
