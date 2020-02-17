@@ -8,7 +8,9 @@ jobs:
       - name: What the fuck
         uses: actions/checkout@v2
       - name: check zernitdir
-        run: ls -la /home/runner/work/Zernit/Zernit/
+        run: |
+          ls -la /home/runner/work/Zernit/Zernit/
+          ls -la /home/runner/work/Zernit/Zernit/.github/custom-actions/sourcehut-layer
       - name: Hello world action step
         uses: ${{ github.workspace }}/.github/custom-actions/sourcehut-layer
         id: hello
