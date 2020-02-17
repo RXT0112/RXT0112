@@ -22,6 +22,9 @@ RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
 # FIXME:     && curl -L https://get.oh-my.fish | fish \
 
+## Check ownership
+RUN chown -R gitpod:gitpod /home/gitpod
+
 ### VLANG ###
 USER root
 ENV VLANG_VERSION="0.1.24"
