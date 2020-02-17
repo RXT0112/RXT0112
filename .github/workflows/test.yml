@@ -10,7 +10,7 @@ jobs:
       - name: check zernitdir
         run: ls -la /home/runner/work/Zernit/Zernit/
       - name: Hello world action step
-        uses: .github/custom-actions/sourcehut-layer
+        uses: ./.github/custom-actions/sourcehut-layer
         id: hello
         with:
           who-to-greet: 'Mona the Octocat'
