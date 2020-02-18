@@ -1,9 +1,15 @@
 {
-  "editor.wordWrap": "on",
-  // To show invisibles
-  "editor.renderWhitespace": "all",
-  "editor.tabSize": 2,
-  "editor.tabCompletion": "on",
-  // To get rid of annoying emoji in Cargo.toml
+	"editor.wordWrap": "on",
+	// To show invisibles
+	"editor.renderWhitespace": "all",
+	"editor.tabSize": 2,
+	"editor.tabCompletion": "on",
+  "setup.dontask": true,
+  // rustlang
   "crates.upToDateDecorator": "",
+  "rust.wait_to_build": 0,
+  // FIXME: Expand nproc command here
+  // NOTICE: Gitpod is currently (130220) limited on 8 threads
+  "rust.jobs": 8,
+  "rust.build_on_save": true,
 }
