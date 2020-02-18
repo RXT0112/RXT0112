@@ -1,3 +1,5 @@
+# FIXME: Hook https://man.sr.ht/builds.sr.ht/api.md so that we can use sourcehub in GitHub action
+
 name: 'Hello World'
 description: 'Greet someone and record the time'
 inputs:
