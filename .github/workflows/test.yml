@@ -4,7 +4,7 @@ jobs:
   hello_world_job:
     runs-on: ubuntu-latest
     steps:
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
       - name: Hello world action step
         uses: ./.github/custom-actions/sourcehub-layer
         id: hello
