@@ -7,6 +7,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: wtf
+        run: ls -la /home/runner/work/Zernit/Zernit/.github/custom-actions2/sourcehut-layer
       - name: Hello world action step
         uses: ./.github/custom-actions2/sourcehut-layer
         id: hello
