@@ -8,9 +8,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: wtf
-        run: ls -la /home/runner/work/Zernit/Zernit/.github/custom-actions/sourcehut-layer
+        run: ls -la /home/runner/work/Zernit/Zernit/.github/custom-actions/sourcehub-layer
       - name: Hello world action step
-        uses: ./.github/custom-actions/sourcehut-layer
+        uses: ./.github/custom-actions/sourcehub-layer
         id: hello
         with:
           who-to-greet: 'Mona the Octocat'
