@@ -10,7 +10,7 @@ Expecting
 -->
 
 # RXT ZERNIT LICENSE (RXT0112-LICENSE)
-Version 18022020140143, 20 January 2020
+Version 18022020173356, 20 January 2020
 
 Copyright (C) 2020 [RiXotStudio](http://rixotstudio.cz)<br/>
 Copyright (C) 2019 [Jacob Hrbek](mailto:kreyren@rixotstudio.cz)
@@ -96,6 +96,10 @@ For the license to grant expected permission you are required to inform the proj
 ### Your agreenment
 You are not required to accept this License, since you have not signed it. However, nothing else grants you permission to modify, use or distribute the Program or its derivative works. These actions are prohibited by law if you do not accept this License. Therefore, by using, modifying or distributing the intellectual property of project RXT0112 (or any work based on the Program), you indicate your acceptance of this License to do so, and in all of its terms and conditions.
 
+### Nimmy condition
+<!-- This condition is namely used for testing. -->
+The forked repositories are not allowed to be renamed on "Nimmy".
+
 ### Source code handling
 You are expected to keep the source-code open and accesible to all contributors, maintainers and general public. We do not grant you the permission to make the source code private.
 
@@ -159,3 +163,6 @@ We do not grant you a permission to use our intellectual property as a part of a
 This program is provided without any warranty unless required by law in which case the party which requires said implementation of law in this license is required to inform the project for said laws to be implemented in this license so that the the program can be used legally in their area as stated in conditions above.
 
 Warranty can also be specified based on invidual contract or agreenment with party that requires it.
+
+## Additional notices
+The license has following syntax `Version 18022020173356, 20 January 2020` where the 20th January 2020 is the date where the license has been created.
