@@ -10,12 +10,14 @@ Expecting
 -->
 
 # RXT ZERNIT LICENSE (RXT0112-LICENSE)
-Version 18061016022020, 20 January 2020
+Version 18022020140143, 20 January 2020
 
 Copyright (C) 2020 [RiXotStudio](http://rixotstudio.cz)<br/>
 Copyright (C) 2019 [Jacob Hrbek](mailto:kreyren@rixotstudio.cz)
 
 Redistribution of this license is not allowed unless explicitly stated in the license itself assuming provided conditions met.
+
+FIXME: This license needs method to handle indexing where A. -> 1A. -> 1. indexing is preffered
 
 <center><h4>Preamble</h4></center>
 
@@ -26,7 +28,7 @@ These authorized personel can be also clarified in file located in `.github/CODE
 
 This file is written in markdown syntax further explained on hyperlink https://en.wikipedia.org/wiki/Markdown.
 
-## 0. TERMINOLOGY
+## TERMINOLOGY
 This section is dedicated to provide explanation of used terms in this file.
 
 You are encouraged to contribute in case required explanation of used terms is missing or is not sufficient.
@@ -84,7 +86,7 @@ In short this is merge request which is being worked on before it can be submitt
 ### Forks
 Forks are repository manager's features that allows anyone to make a copy of a repository in their specified profile.
 
-## 1. CONDITIONS
+## CONDITIONS
 
 ### Conflicts with local laws
 This license explicitly does not allow any use of RXT0112's intellectual property in a scenario where license implementation conflicts with local laws in the area of use of said intellectual property.
@@ -93,6 +95,9 @@ For the license to grant expected permission you are required to inform the proj
 
 ### Your agreenment
 You are not required to accept this License, since you have not signed it. However, nothing else grants you permission to modify, use or distribute the Program or its derivative works. These actions are prohibited by law if you do not accept this License. Therefore, by using, modifying or distributing the intellectual property of project RXT0112 (or any work based on the Program), you indicate your acceptance of this License to do so, and in all of its terms and conditions.
+
+### Source code handling
+You are expected to keep the source-code open and accesible to all contributors, maintainers and general public. We do not grant you the permission to make the source code private.
 
 ### Contributions
 Everyone is allowed to fork this repository as long as the source code stays public with the intention to provide a contribution to the original repository.
@@ -125,7 +130,7 @@ Example of syntax used for versioning:
 
 **18061016022020** meaning **16th February of the year 2020 at 18 hours, 6 minutes and 10 seconds**
 
-## 2. Your permission
+## Your permission
 These permissions are granted as part of our ongoing effort to comply with Free Software Foundation's philosophy, it's as of 17/02/20 is not perfect based on majority of FSF members discussed in https://forum.members.fsf.org/t/help-me-with-gpl-3-inspired-license-designed-for-commercial-use-and-to-avoid-segmentation/1953/59 and we encourage contribution and challenges if you have a better solution since it's in our best interest to provide best possible environment for further development and end-user satisfaction.
 
 ### Use of intellectual property for personal use
@@ -149,7 +154,7 @@ White hat hackers are also welcomed by the project and their work is highly appr
 ### Usage in weapons
 We do not grant you a permission to use our intellectual property as a part of a mechanism that is designed to cause a harm to a living organism.
 
-## 3. Warranty
+## Warranty
 
 This program is provided without any warranty unless required by law in which case the party which requires said implementation of law in this license is required to inform the project for said laws to be implemented in this license so that the the program can be used legally in their area as stated in conditions above.
 

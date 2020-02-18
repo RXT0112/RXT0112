@@ -12,4 +12,5 @@
   // NOTICE: Gitpod is currently (130220) limited on 8 threads
   "rust.jobs": 8,
   "rust.build_on_save": true,
+  "rust.target_dir": "build/rustlang",
 }
