@@ -1,1 +1,0 @@
-Action designed to be used for sourcehut to allow use on github
