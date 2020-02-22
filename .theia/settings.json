@@ -10,7 +10,10 @@
   "rust.wait_to_build": 0,
   // FIXME: Expand nproc command here
   // NOTICE: Gitpod is currently (130220) limited on 8 threads
+  // FIXME: We are unable to shot datatype helpers (https://github.com/gitpod-io/gitpod/issues/1200)
   "rust.jobs": 8,
   "rust.build_on_save": true,
   "rust.target_dir": "build/rustlang",
+  "rust-analyzer.displayInlayHints": true,
+  "rust-analyzer.highlightingOn": true,
 }
