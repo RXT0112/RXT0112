@@ -20,3 +20,17 @@ RUN useradd \
 	--shell /bin/bash \
 	--password gitpod \
 	gitpod || exit 1
+
+# Install dependencies
+RUN apt update \
+  && apt upgrade -y \
+  && apt dist-upgrade -y \
+  && apt install -y rustc \
+  && apt autoremove -y \
+  && rm -rf /var/lib/apt/lists/*
+
+# Add custom functions
+RUN if ! grep -qF 'ix()' /etc/bash.bashrc; then printf '%s\n' \
+	'# Custom' \
+	"ix() { curl -F 'f:1=<-' ix.io 2>/dev/null ;}" \
+	>> /etc/bash.bashrc; fi
