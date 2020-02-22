@@ -5,6 +5,9 @@ FROM debian:latest
 # To avoid bricked workspaces (https://github.com/gitpod-io/gitpod/issues/1171)
 ARG DEBIAN_FRONTEND=noninteractive
 
+# Customize PS1 to be more usable
+ARG PS1="[ \t : \w : EXIT \$? ]\n\u@gitpod \\$ \[$(tput sgr0)\]"
+
 USER root
 
 ENV LANG=en_US.UTF-8
