@@ -3,7 +3,7 @@ name: Question
 about: In case you need upstream help
 title: 'Q:'
 labels: 'question'
-assignees: '@Zernit/bugwranglers'
+assignees: '@Zernit/helpers'
 
 ---
 
