@@ -29,6 +29,10 @@
 - name: bug
   color: d73a4a
   description: "Something isn't working"
+  
+ - name: question
+  color: 7300ff
+  description: "For questions"
 
 - name: feature-request
   color: 03fc5a
