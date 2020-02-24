@@ -1,6 +1,22 @@
 image:
   file: gitpod/debian.Dockerfile
 
+
+# FIXME: Change gitpod user on GITPOD_GIT_USER_NAME env value
+tasks:
+  # Does not accept Quotation without '|' ?
+  - init: |
+      printf 'FIXME: %s\n' "Get rid of me"
+    command: |
+      printf 'FIXME: %s\n' "This is a hotfix for https://github.com/gitpod-io/gitpod/issues/1252 manipulating PS1 env var"
+      # FIXME: The color of second line does not transfer to the environment unless Ctrl+C is pressed
+      export PS1="\033[1m\e[38;5;201m[ \t : \w : EXIT \$? ]\033[0m\e[38;5;011m\n\u@gitpod \\$ \[$(tput sgr0)\]"
+      #           ^^^^^^^ - bolt
+      #                  ^^^^^^^^^^^^ - Purple color
+      #                                                    ^^^^^^ - remove bolt
+      #                                                           ^^^^^^^^^^^ - Gold color
+      clear
+
 vscode:
   extensions:
     - kalitaalexey.vscode-rust@0.4.2:iw09QffwKU6Xcxr7C2zalA==

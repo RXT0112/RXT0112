@@ -1,5 +1,0 @@
-trustedRegistries:
-  - docker.io
-  - debian
-  - gitpod
-  - hadolint
