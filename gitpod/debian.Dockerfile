@@ -25,6 +25,7 @@ RUN apt-get update \
   && apt-get install -y rustc cargo pkg-config \
   && : "Install hadolint if not available in downstream" \
   && if ! apt-cache search hadolint | grep -qP "^hadolint -.*"; then { if ! command -v wget >/dev/null; then apt-get install -y wget; fi ;} && wget https://github.com/hadolint/hadolint/releases/download/v1.17.5/hadolint-Linux-x86_64 -O /usr/bin/hadolint && { [ ! -x /usr/bin/hadolint ] && chmod +x /usr/bin/hadolint ;}; elif apt-cache search hadolint | grep -qP "^hadolint -.*"; then apt-get install -y hadolint; fi \
+  && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh \
   && apt-get autoremove -y \
   && rm -rf /var/lib/apt/lists/*
 
