@@ -2,13 +2,12 @@ FROM debian:latest
 
 # FIXME: Outputs `gitpod@ws-ce281d58-997b-44b8-9107-3f2da7feede3:/workspace/gitpod-tests1$` in terminal
 # FIXME: Add hadolint executable
+# FIXME: We can use /bin/sh instead of /bin/bash to get minor optimization
 
 # To avoid bricked workspaces (https://github.com/gitpod-io/gitpod/issues/1171)
 ARG DEBIAN_FRONTEND=noninteractive
 
 USER root
-
-SHELL ["/bin/sh"]
 
 ENV LANG=en_US.UTF-8
 ENV LC_ALL=C
