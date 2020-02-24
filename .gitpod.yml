@@ -1,5 +1,5 @@
 image:
-  file: gitpod/gitpod.Dockerfile
+  file: gitpod/debian.Dockerfile
 
 vscode:
   extensions:
@@ -13,3 +13,5 @@ vscode:
     - krosf.vscode-valgrind@0.0.1:YTn5lOY8OnPKJYDqJPr/Sg==
     - matklad.rust-analyzer@0.1.20200217:zozmBmOg1N91pRISIsYXBg==
     - exiasr.hadolint@0.3.0:/FkAW3eTb+z9O7VZAyAa0w==
+    - DavidAnson.vscode-markdownlint@0.34.0:l4DL7iPpo7DdhfUHIUtcuQ==
+    - yzhang.markdown-all-in-one@2.7.0:5+DmuGcePw8L9PtfgOAAHg==
