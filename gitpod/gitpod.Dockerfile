@@ -1,5 +1,7 @@
 FROM gitpod/workspace-full-vnc:latest
 
+# FIXME: Add hadolint executable
+
 # To avoid bricked workspaces (https://github.com/gitpod-io/gitpod/issues/1171)
 ARG DEBIAN_FRONTEND=noninteractive
 
@@ -13,6 +15,8 @@ RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
     && apt-get upgrade -y \
     && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - \
     && apt dist-upgrade -y \
+    && : "Install hadolint if not available in downstream" \
+    && if ! apt-cache search hadolint | grep -qP "^hadolint -.*"; then { if command -v wget >/dev/null; then apt install -y wget; fi ;} && wget https://github.com/hadolint/hadolint/releases/download/v1.17.5/hadolint-Linux-x86_64 -O /usr/bin/hadolint && { [ ! -x hadolint ] && chmod +x /usr/bin/hadolint ;}; elif apt-cache search hadolint | grep -qP "^hadolint -.*"; then apt install -y hadolint; fi \
     && apt-get install -y clang valgrind shellcheck docker-ce docker-ce-cli containerd.io firefox tree xclip umbrello gnuplot fish zsh dia \
     && rm -rf /var/lib/apt/lists/* \
     && apt autoremove -y

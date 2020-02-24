@@ -1,6 +1,8 @@
 FROM debian:latest
 
 # FIXME: Outputs `gitpod@ws-ce281d58-997b-44b8-9107-3f2da7feede3:/workspace/gitpod-tests1$` in terminal
+# FIXME: Add hadolint executable
+
 
 # To avoid bricked workspaces (https://github.com/gitpod-io/gitpod/issues/1171)
 ARG DEBIAN_FRONTEND=noninteractive
@@ -25,7 +27,9 @@ RUN useradd \
 RUN apt update \
   && apt upgrade -y \
   && apt dist-upgrade -y \
-  && apt install -y rustc \
+  && apt install -y rustc cargo \
+  && : "Install hadolint if not available in downstream" \
+  && if ! apt-cache search hadolint | grep -qP "^hadolint -.*"; then { if command -v wget >/dev/null; then apt install -y wget; fi ;} && wget https://github.com/hadolint/hadolint/releases/download/v1.17.5/hadolint-Linux-x86_64 -O /usr/bin/hadolint && { [ ! -x hadolint ] && chmod +x /usr/bin/hadolint ;}; elif apt-cache search hadolint | grep -qP "^hadolint -.*"; then apt install -y hadolint; fi \
   && apt autoremove -y \
   && rm -rf /var/lib/apt/lists/*
 
