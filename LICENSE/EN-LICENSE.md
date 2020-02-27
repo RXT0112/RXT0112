@@ -10,8 +10,9 @@ Expecting
 -->
 
 # RXT ZERNIT LICENSE (RXT0112-LICENSE)
-Version 18022020173356, 20 January 2020
+Version 27022020055510CET, 20 January 2020
 
+<!-- FIXME: This requires further clarification so that RiXotStudio members in different projects woudn't have the ownership of Zernit in such a way that would allow them to handle the changes in the license and allowed additional redistribution -->
 Copyright (C) 2020 [RiXotStudio](http://rixotstudio.cz)<br/>
 Copyright (C) 2019 [Jacob Hrbek](mailto:kreyren@rixotstudio.cz)
 
