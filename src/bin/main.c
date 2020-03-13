@@ -1,8 +1,10 @@
 #include <stdio.h>
 #include <string.h>
 
-// FIXME: Does not build on clang
-// FIXME-TEST: Adapt valgrind
+// NOTICE: Changes in this file require CI adaptation
+
+// FIXME-TEST: Add tests
+//FIXME-BENCH: Add benchmark
 
 int main(int argc, char **argv) {
 	if(argc < 2) {
