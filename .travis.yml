@@ -1,0 +1,247 @@
+# Copyright 2019 Jacob Hrbek <kreyren@rixotstudio.cz>
+# Distributed under the terms of the GNU General Public License v3 (https://www.gnu.org/licenses/gpl-3.0.en.html) or later
+# FIXME-LINT(18032020): Outputs wrong highlights in gitpod
+# Based in part upon 'travis.yml' from rsplib	(https://raw.githubusercontent.com/dreibh/rsplib/master/.travis.yml), which is:
+# 		Copyright (C) 2018-2019 by Thomas Dreibholz <dreibh@iem.uni-due.de> as GPLv3 or any other GPL at your option
+
+sudo: required
+
+# Use matrix to run tests on different environments
+matrix:
+  include:
+
+  ## BUILD ##
+  
+  # Exherbo Linux
+    # Exherbo with GCC
+    - name: "Exherbo Linux with GCC"
+      os: linux
+      dist: bionic
+      group: exherbo
+      cache:
+        directories:
+          - /var/db/paludis
+      env:
+        DOCKER="exherbo_ci:latest"
+        VARIANT="exherbo"
+        TOOL="build"
+        COMPILER_C="gcc"
+        COMPILER_CXX="g++"
+
+    # Exherbo with Clang
+    - name: "Exherbo Linux with Clang"
+      os: linux
+      dist: bionic
+      group: exherbo
+      cache:
+        directories:
+          - /var/db/paludis
+      env:
+        DOCKER="exherbo_ci:latest"
+        VARIANT="exherbo"
+        TOOL="build"
+        COMPILER_C="clang"
+        COMPILER_CXX="clang++"
+
+  # Ubuntu Linux
+    # Ubuntu 19.10 (Eoan Ermine) with GCC
+    - name: "Ubuntu 19.10 (Eoan Ermine) with GCC"
+      os: linux
+      cache:
+        directories:
+          - /var/cache/apt/
+      dist: bionic
+      group: travis_latest
+      env:
+        DOCKER="ubuntu:eoan"
+        VARIANT="ubuntu-19.10"
+        TOOL="build"
+        COMPILER_C="gcc"
+        COMPILER_CXX="g++"
+        REPOSITORY="https://github.com/RXT0112/Zernit.git"
+        PACKAGES="git make cargo rustc"
+
+    # Ubuntu 19.10 (Eoan Ermine) with Clang
+    - name: "Ubuntu 19.10 (Eoan Ermine) with Clang"
+      os: linux
+      cache:
+        directories:
+          - /var/cache/apt/
+      dist: bionic
+      group: travis_latest
+      env:
+        DOCKER="ubuntu:eoan"
+        VARIANT="ubuntu-19.10"
+        TOOL="build"
+        COMPILER_C="clang"
+        COMPILER_CXX="clang++"
+        REPOSITORY="https://github.com/RXT0112/Zernit.git"
+        PACKAGES="git make cargo rustc"
+
+  # Debian Linux
+    # Debian Testing
+    - name: "Debian Testing with GCC"
+      os: linux
+      dist: bionic
+      group: travis_latest
+      env:
+        DOCKER="debian:testing"
+        VARIANT="debian-testing"
+        TOOL="build"
+        COMPILER_C="gcc"
+        COMPILER_CXX="g++"
+        REPOSITORY="https://github.com/RXT0112/Zernit.git"
+        PACKAGES="rustc cargo git make pkg-config libssl-dev"
+    - name: "Debian Testing with Clang"
+      os: linux
+      dist: bionic
+      group: travis_latest
+      env:
+        DOCKER="debian:testing"
+        VARIANT="debian-testing"
+        TOOL="build"
+        COMPILER_C="clang"
+        COMPILER_CXX="clang++"
+        REPOSITORY="https://github.com/RXT0112/Zernit.git"
+        PACKAGES="rustc cargo git make pkg-config libssl-dev"
+
+    # # Debian Sid
+    # - name: "Debian Sid with GCC"
+    #   os: linux
+    #   dist: bionic
+    #   group: travis_latest
+    #   env:
+    #     DOCKER="debian:sid"
+    #     VARIANT="debian"
+    #     TOOL="build"
+    #     COMPILER_C="gcc"
+    #     COMPILER_CXX="g++"
+    #     REPOSITORY="https://github.com/RXT0112/Zernit.git"
+    #     PACKAGES="rustc cargo build-essentials make"
+
+    # - name: "Debian Sid with Clang"
+    #   os: linux
+    #   dist: bionic
+    #   group: travis_latest
+    #   env:
+    #     DOCKER="debian:sid"
+    #     VARIANT="debian"
+    #     TOOL="build"
+    #     COMPILER_C="clang"
+    #     COMPILER_CXX="clang++"
+    #     REPOSITORY="https://github.com/RXT0112/Zernit.git"
+    #     PACKAGES="rustc cargo build-essentials make"
+
+  # # FreeBSD
+  #   # FreeBSD 12.0-RELEASE
+  #   - name: "FreeBSD 12.0-RELEASE with Clang"
+  #     os: linux
+  #     dist: bionic
+  #     group: travis_latest
+  #     env:
+  #       QEMU="FreeBSD"
+  #       VARIANT="12.0-RELEASE"
+  #       TOOL="build"
+  #       COMPILER_C="clang"
+  #       COMPILER_CXX="clang++"
+
+  #   - name: "FreeBSD 12.0-RELEASE with GCC"
+  #     os: linux
+  #     dist: bionic
+  #     group: travis_latest
+  #     env:
+  #       QEMU="FreeBSD"
+  #       VARIANT="12.0-RELEASE"
+  #       TOOL="build"
+  #       COMPILER_C="gcc"
+  #       COMPILER_CXX="g++"
+
+  # FIXME: MacOS needs refactor of C programs to be compatible (https://travis-ci.org/Kreyrock/Kreyrock/jobs/620509927?utm_medium=notification&utm_source=github_status)
+  # MacOS X
+    ## MacOS 10.14
+    - name: "MacOS 10.14, xcode11.2 with clang"
+      os: osx
+      cache:
+        - /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/Formula
+      osx_image: xcode11.2
+      compiler: clang
+      group: travis_latest
+      env:
+        TOOL="build"
+
+    - name: "MacOS 10.14, xcode11.2 with gcc"
+      os: osx
+      cache:
+        - /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/Formula
+      osx_image: xcode11.2
+      compiler: gcc
+      group: travis_latest
+      env:
+        TOOL="build"
+
+    ## MacOS 10.14.4
+    - name: "MacOS 10.14.4, xcode10.3 with clang"
+      os: osx
+      cache:
+        - /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/Formula
+      osx_image: xcode10.3
+      compiler: clang
+      group: travis_latest
+      env:
+        TOOL="build"
+
+    - name: "MacOS 10.14.4, xcode10.3 with gcc"
+      os: osx
+      cache:
+        - /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/Formula
+      osx_image: xcode10.3
+      compiler: gcc
+      group: travis_latest
+      env:
+        TOOL="build"
+
+    ## MacOS 10.13
+    - name: "MacOS 10.13, xcode9.4 with clang"
+      os: osx
+      cache:
+        - /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/Formula
+      osx_image: xcode9.4
+      compiler: clang
+      group: travis_latest
+      env:
+        TOOL="build"
+
+    - name: "MacOS 10.13, xcode9.4 with gcc"
+      os: osx
+      cache:
+        - /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/Formula
+      osx_image: xcode9.4
+      compiler: gcc
+      group: travis_latest
+      env:
+        TOOL="build"
+
+  # Others
+    # Default linux
+    - name: "Linux, default check"
+      os: linux
+      dist: bionic
+      group: travis_latest
+      env:
+        TOOL="check"
+
+    # Windows 
+    # - name: "Windows build"
+    #   os: windows
+    #   env:
+    #     TOOL="build"
+
+before-install:
+  - QA/travis-ci/before-install.sh
+
+install:
+  - QA/travis-ci/install.sh
+
+script:
+  - QA/travis-ci/test.sh
+  - QA/travis-ci/build.sh

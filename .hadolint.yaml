@@ -1,0 +1,12 @@
+ignored:
+  - DL3007 # Usage of latest version is expected
+  - DL3008 # Pinning specific version on apt is not sane
+  - DL3015 # We don't mind recommended packages
+  - DL4001 # Allow usage of curl and wget
+  - DL4006 # False-trigger on /bin/sh usage?
+
+trustedRegistries:
+  - docker.io
+  - debian
+  - gitpod
+  - hadolint

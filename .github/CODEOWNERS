@@ -1,0 +1,49 @@
+# Reference to configuration - https://github.blog/2017-07-06-introducing-code-owners/
+# Relevant https://help.github.com/en/github/creating-cloning-and-archiving-repositories/about-code-owners
+
+# This file is used to set permission per team or user to allow auto-merging
+
+# Maintainers
+*   @kreyren @RXT0112/maintainers
+
+# Documentation maintainers
+/docs/   @RXT0112/documentators
+
+# Dependencies
+Cargo.toml   @dependabot-preview
+requirements.txt   @dependabot-preview
+
+# Legal team
+LICENSE.md   @kreyren
+
+# Rustlang maintainers
+*.rs    @RXT0112/rustlang
+Cargo.toml   @RXT0112/rustlang
+
+# Python maintainers
+*.py    @RXT0112/python
+requirements.txt   @RXT0112/python
+
+# Vlang maintainers
+*.v     @RXT0112/vlang
+
+# Clang maintainers
+*.c     @RXT0112/clang
+
+# CPP maintainers
+*.cpp   @RXT0112/cpp
+
+# Shell maintainers
+*.sh    @RXT0112/shell
+
+# Bash maintainers
+*.bash  @RXT0112/bash
+
+# Brainfuck maintainers
+*.br    @RXT0112/brainfuck
+
+# java maintainers
+*.jar   @RXT0112/java
+
+# csharp maintainers
+*.cs    @RXT0112/csharp

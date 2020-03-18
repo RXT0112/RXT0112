@@ -1,0 +1,33 @@
+image:
+  file: gitpod/debian.Dockerfile
+
+
+# FIXME: Change gitpod user on GITPOD_GIT_USER_NAME env value
+tasks:
+  # Does not accept Quotation without '|' ?
+  - init: |
+      printf 'FIXME: %s\n' "Get rid of me"
+    command: |
+      printf 'FIXME: %s\n' "This is a hotfix for https://github.com/gitpod-io/gitpod/issues/1252 manipulating PS1 env var"
+      # FIXME: The color of second line does not transfer to the environment unless Ctrl+C is pressed
+      export PS1="\033[1m\e[38;5;201m[ \t : \w : EXIT \$? ]\033[0m\e[38;5;011m\n\u@gitpod \\$ \[$(tput sgr0)\]"
+      #           ^^^^^^^ - bolt
+      #                  ^^^^^^^^^^^^ - Purple color
+      #                                                    ^^^^^^ - remove bolt
+      #                                                           ^^^^^^^^^^^ - Gold color
+      clear
+
+vscode:
+  extensions:
+    - kalitaalexey.vscode-rust@0.4.2:iw09QffwKU6Xcxr7C2zalA==
+    - Swellaby.vscode-rust-test-adapter@0.11.0:Xg+YeZZQiVpVUsIkH+uiiw==
+    - bungcip.better-toml@0.3.2:3QfgGxxYtGHfJKQU7H0nEw==
+    - hbenl.vscode-test-explorer@2.15.0:koqDUMWDPJzELp/hdS/lWw==
+    - belfz.search-crates-io@1.2.1:kSLnyrOhXtYPjQpKnMr4eQ==
+    - serayuzgur.crates@0.4.7:HMkoguLcXp9M3ud7ac3eIw==
+    - timonwong.shellcheck@0.9.0:hsU/Rd39aqPYowTqL+DbXg==
+    - krosf.vscode-valgrind@0.0.1:YTn5lOY8OnPKJYDqJPr/Sg==
+    - matklad.rust-analyzer@0.1.20200217:zozmBmOg1N91pRISIsYXBg==
+    - exiasr.hadolint@0.3.0:/FkAW3eTb+z9O7VZAyAa0w==
+    - DavidAnson.vscode-markdownlint@0.34.0:l4DL7iPpo7DdhfUHIUtcuQ==
+    - yzhang.markdown-all-in-one@2.7.0:5+DmuGcePw8L9PtfgOAAHg==

@@ -1,0 +1,31 @@
+# Workflow for CPP
+name: Jekyll Publish
+
+# Relevant to events - https://help.github.com/en/actions/automating-your-workflow-with-github-actions/events-that-trigger-workflows
+on:
+  push:
+    branches:
+      - master
+      - init-new
+    paths:
+    - 'docs/_posts/**'
+
+jobs:
+  jekyll:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Get dependencies (FIXME-UPSTREAM)
+      run: sudo gem install jekyll
+
+    - name: Building..
+      # FIXME: Avoid using `cd`
+      run: cd docs && jekyll build
+
+    - name: Deploying..
+      env: 
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_REPOSITORY: ${{ secrets.GITHUB_REPOSITORY }}
+        GITHUB_ACTOR: ${{ secrets.GITHUB_ACTOR }}
+      uses: BryanSchuetz/jekyll-deploy-gh-pages@master

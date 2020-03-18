@@ -1,0 +1,91 @@
+# Workflow for vlang
+name: vlang
+
+# Relevant to events - https://help.github.com/en/actions/automating-your-workflow-with-github-actions/events-that-trigger-workflows
+on: 
+  pull_request:
+    types: [synchronize, opened, reopened, ready_for_review]
+    paths:
+    - '**.v'
+
+jobs:
+  # Kernel specific builds
+  build-ubuntu-vlang:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: |
+          if ! command -v v >/dev/null; then
+            wget https://github.com/vlang/v/releases/latest/download/v_linux.zip -O "$HOME/.cache/vlang.zip"
+            [ ! -d /opt/vlang ] && mkdir /opt/vlang
+            [ ! -d "$HOME/.cache/" ] && mkdir "$HOME/.cache/"
+            [ ! -f /opt/vlang/v ] && unzip "$HOME/.cache/vlang.zip" -d /opt/vlang/v
+            [ ! -x /usr/bin/v ] && ln -sf /usr/bin/v /opt/vlang/v
+          fi
+      - name: Building..
+        run: make build-vlang
+  build-darwin-vlang:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: |
+          if ! command -v v >/dev/null; then
+            wget https://github.com/vlang/v/releases/latest/download/v_linux.zip -O "$HOME/.cache/vlang.zip"
+            [ ! -d /opt/vlang ] && mkdir /opt/vlang
+            [ ! -d "$HOME/.cache/" ] && mkdir "$HOME/.cache/"
+            [ ! -f /opt/vlang/v ] && unzip "$HOME/.cache/vlang.zip" -d /opt/vlang/v
+            [ ! -x /usr/bin/v ] && ln -sf /usr/bin/v /opt/vlang/v
+          fi
+      - name: Building..
+        run: make build-vlang
+  build-windows-vlang:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: |
+          ECHO fixme
+          EXIT
+      - name: Building..
+        run: make build-vlang
+
+  # Docker builds
+  build-vlang-debian:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: docker://debian/testing:latest
+      - uses: actions/checkout@v2
+      - name: building..
+        run: make build-vlang
+
+  build-vlang-fedora:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: docker://fedora/latest:latest
+      - uses: actions/checkout@v2
+      - name: building..
+        run: make build-vlang
+
+  # Run tests
+  check-vlang:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-18.04]
+    steps:
+      - uses: actions/checkout@v2
+      - name: running tests..
+        run: make check-vlang
+
+  # Benchmarks
+  bench-vlang:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-18.04]
+    steps:
+      - uses: actions/checkout@v2
+      - name: running benchmarks..
+        run: make bench-vlang

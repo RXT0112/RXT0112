@@ -1,0 +1,10 @@
+# Disable blank issues
+blank_issues_enabled: false
+
+contact_links:
+  - name: IRC
+    url: https://webchat.freenode.net/#zernit
+    about: For simple questions and brainstorming
+  - name: Discord
+    url: https://discord.gg/5V4psY
+    about: Community maintained support in Zernit section

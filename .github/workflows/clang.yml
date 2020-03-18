@@ -1,0 +1,208 @@
+# Workflow for CPP
+name: C
+
+# Relevant to events - https://help.github.com/en/actions/automating-your-workflow-with-github-actions/events-that-trigger-workflows
+on: 
+  pull_request:
+    types: [synchronize, opened, reopened, ready_for_review]
+    paths:
+    - '**.c'
+
+jobs:
+  # Linting
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Installing dependencies..
+        run: if ! apt-list --installed cppcheck | grep -q ".*cppcheck.*"; then sudo apt install -y cppcheck; fi
+      - name: Linting..
+        run: cd "$GITHUB_WORKSPACE" && for file in $(git ls-tree --name-only -r ${{ github.sha }} | grep '\.c$'); do cppcheck "$file"; done
+  ## Valgrind test on gcc
+  valgrind-gcc:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Installing dependencies..
+        run: if ! apt list --installed | grep -q ".*valgrind.*"; then sudo apt install -y valgrind; fi
+      - name: Linting..
+        run: |
+          make build-gcc-c
+          # NOTICE: This requires to input the arguments invidually
+          # FIXME: Use regex to gather arguments
+          valgrind --leak-check=full -v build/build-gcc-c/zernit-gcc-c -h -unexpected
+  ## Valgrind on clang
+  valgrind-clang:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Installing dependencies..
+        run: if ! apt list --installed | grep -qP ".*valgrind.*"; then sudo apt install -y valgrind; fi
+      - name: Linting..
+        run: |
+          make build-clang-c
+          # NOTICE: This requires to input the arguments invidually
+          # FIXME: Use regex to gather arguments
+          valgrind --leak-check=full -v build/build-clang-c/zernit-clang-c -h -unexpected
+    # Kernel specific builds
+  build-macos-gcc-c:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: building..
+        run: make build-gcc-c
+  build-windows-gcc-c:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: building..
+        run: make build-gcc-c
+  build-macos-clang-c:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Building..
+        run: make build-clang-c
+  build-windows-clang-c:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Downloading dependencies..
+        run: Invoke-WebRequest -OutFile LLVM-3.7.0-win64.exe https://releases.llvm.org/3.7.0/LLVM-3.7.0-win64.exe
+      - name: Install dependencies..
+        run: |
+          echo FIXME_INSTALL_CLANG
+          EXIT
+      - name: Building..
+        run: make build-clang-c
+
+  # Docker builds
+  ## Debian - testing
+  build-gcc-c-debian:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: docker://debian/testing:latest
+      - uses: actions/checkout@v2
+      - name: building..
+        run: make build-gcc-c
+  build-clang-c-debian:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: docker://debian/testing:latest
+      - uses: actions/checkout@v2
+      - name: building..
+        run: make build-clang-c
+  ## Fedora - latest
+  build-gcc-c-fedora:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: docker://fedora/latest:latest
+      - uses: actions/checkout@v2
+      - name: building..
+        run: make build-gcc-c
+  build-clang-c-fedora:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: docker://fedora/latest:latest
+      - uses: actions/checkout@v2
+      - name: building..
+        run: make build-clang-c
+  ## Archlinux - latest
+  build-gcc-c-archlinux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: docker://archlinux/latest:latest
+      - uses: actions/checkout@v2
+      - name: building..
+        run: make build-gcc-c
+  build-clang-c-archlinux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: docker://archlinux/latest:latest
+      - uses: actions/checkout@v2
+      - name: building..
+        run: make build-clang-c
+  ## Gentoo stage3-amd64
+  build-gcc-c-gentoo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: docker://gentoo/stage3-amd64:latest
+      - uses: actions/checkout@v2
+      - name: building..
+        run: make build-gcc-c
+  build-clang-c-gentoo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: docker://gentoo/stage3-amd64:latest
+      - uses: actions/checkout@v2
+      - name: building..
+        run: make build-clang-c
+  ## Exherbo
+  build-gcc-c-exherbo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: docker://exherbo/exherbo_ci:latest
+      - uses: actions/checkout@v2
+      - name: building..
+        run: make build-gcc-c
+  build-clang-c-exherbo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: docker://exherbo/exherbo_ci:latest
+      - uses: actions/checkout@v2
+      - name: building..
+        run: make build-clang-c
+
+  # Run tests
+  ## Exherbo (Linux representative)
+  check-exherbo-gcc-cpp:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: docker://exherbo/exherbo_ci:latest
+      - run: make check-gcc-c
+  check-exherbo-clang-cpp:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: docker://exherbo/exherbo_ci:latest
+      - run: make check-clang-c
+  ## Windows
+  check-windows-gcc-cpp:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: make check-gcc-c
+  check-windows-clang-cpp:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: make check-clang-c
+  ## Darwin
+  check-darwin-gcc-cpp:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: make check-gcc-c
+  check-darwin-clang-cpp:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: make check-clang-c
+
+  # Benchmarks
+  ## Exherbo
+  bench-exherbo-gcc-cpp:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: docker://exherbo/exherbo_ci:latest
+      - name: running benchmarks..
+        run: make bench-gcc-cpp
+  bench-exherbo-clang-cpp:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: docker://exherbo/exherbo_ci:latest
+      - name: running benchmarks..
+        run: make bench-clang-cpp
