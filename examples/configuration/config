@@ -1,0 +1,10 @@
+This file is expected to be parsed for zernit to process inspired by portage and Zernit
+
+TODO: Implement if statements
+
+// General syntax
+category/name[=version]::source +option -option COMPONENT: value
+
+// Nano example
+// Applies for version 1.0.0 from master repository and implements bash_completion with optimization for amdgpu
+app-editors/nano[=1.0.0]::master +bash_completion VIDEO_CARDS: amdgpu

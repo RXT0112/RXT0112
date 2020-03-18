@@ -1,0 +1,1 @@
+This directory represents project configuration on the end-user's system
