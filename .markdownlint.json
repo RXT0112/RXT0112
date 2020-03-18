@@ -1,0 +1,8 @@
+// FIXME-LINT(18032020): Outputs invalid errors in gitpod
+
+{
+  // We do not need newlines on EOF
+  "single-trailing-newline": false,
+  // We don't care fore line lenght due to the softwrap
+  "line-length": false
+}
