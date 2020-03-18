@@ -1,0 +1,8 @@
+---
+// These are expected to be defined on-demand
+METADATA: value
+---
+
+src_phase() {
+  logic for phase?
+}
