@@ -28,3 +28,4 @@ jobs:
           event_path: ${{ github.event_path }}
           github.ref: ${{ github.ref }}
           github.head_ref: ${{ github.head_ref }}
+          github.base_ref: ${{ github.base_ref }}
