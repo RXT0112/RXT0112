@@ -1,5 +1,15 @@
 name: discord message
-on: [push]
+
+# Relevant to events - https://help.github.com/en/actions/automating-your-workflow-with-github-actions/events-that-trigger-workflows
+on: 
+  pull_request:
+    types: [synchronize, opened, reopened, ready_for_review]
+  issues:
+    types: [opened, transferred, pinned, unpinned]
+  fork:
+  release:
+    types: [published, deleted, edited]
+
 jobs:
 
   build:
