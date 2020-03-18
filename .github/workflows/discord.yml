@@ -22,4 +22,5 @@ jobs:
       with:
         webhook_id: ${{ secrets.DISCORD_WEBHOOK_ID }}
         webhook_token: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
-        args: The ${{ github.event_name }} event triggered first step.
+        # Relevant to github contexts https://help.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions#github-context
+        args: New ${{ github.event_name }} has been created by ${{ github.actor }} on ${{ github.event_name }}.
