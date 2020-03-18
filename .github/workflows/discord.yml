@@ -29,3 +29,4 @@ jobs:
           github.ref: ${{ github.ref }}
           github.head_ref: ${{ github.head_ref }}
           github.base_ref: ${{ github.base_ref }}
+          github.repository: ${{ github.repository }}
