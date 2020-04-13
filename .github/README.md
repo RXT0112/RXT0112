@@ -1,5 +1,3 @@
-**NOTICE:** This project in in "init phase" so everything will be remade into a new orphen branch once methods for quality assurance, documentation, automatization and code is decided to be used as a foundation for new commits
-
 fixme: Source the header in different markdown file to make GitHub README different from GitLab
 
 fixme: Change the name based on repository used.
@@ -14,3 +12,11 @@ fixme: Change the URL based on the website used<br>
 fixme: Add prety button<br>
 https://codesandbox.io/s/github/RXT0112/RXT0112
 
+## What is considered a bug?
+Everything relevant that does not work as expected or can be improved. The more issues we are awere of the more work we can put in to resolve them.
+
+## Where to get support
+1. For simple questions, guidance and mentoring use chat on https://webchat.freenode.net/#zernit-support
+2. For complicated issues either:
+  - Mension `@RXT0112/support` in your issues or relevant merge requests on GitHub
+  - Make a new issue in relevant RXT0112 organization (anything relevant is welcomed!)
