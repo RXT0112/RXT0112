@@ -20,10 +20,10 @@ jobs:
           if ! apt list --installed 2>/dev/null | grep -qP "^git\/stable.*"; then
             # Check if we can install git
             if ! apt list | grep -qP "^git\/stable.*"; then
-              sudo apt update || exit 1
+              apt update || exit 1
 
               # Install git
-              sudo apt install -y git
+              apt install -y git
 
               # Self-check
               if ! apt list --installed 2>/dev/null | grep -qP "^git\/stable.*"; then exit 255; fi
@@ -46,7 +46,7 @@ jobs:
           if ! command -v nim; then
             # Check if we can install nim
             if ! apt list | grep -qP "^nim\s{1}-.*"; then
-              sudo apt update || exit 1
+              apt update || exit 1
 
               # If nim is still not available -> Use upstream method
               if ! apt list | grep -qP "^nim\s{1}-.*"; then
@@ -54,7 +54,7 @@ jobs:
                 exit 0
               elif apt list | grep -qP "^nim\s{1}-.*"; then
                 # Install nim
-                sudo apt install -y nim
+                apt install -y nim
 
                 # Self-check
                 if ! apt list --installed 2>/dev/null | grep -qP "^nim\s{1}-.*"; then exit 255; fi
@@ -63,7 +63,7 @@ jobs:
               fi
             elif apt list | grep -qP "^nim\s{1}-.*"; then
               # Install nim
-              sudo apt install -y nim
+              apt install -y nim
             else
               exit 255
             fi
