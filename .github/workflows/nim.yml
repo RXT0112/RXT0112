@@ -108,5 +108,5 @@ jobs:
           ## NOTICE: Do not use for loop to avoid pitfall https://mywiki.wooledge.org/BashPitfalls#pf1
           git --git-dir="$GITHUB_WORKSPACE/.git" ls-files -z -- '*.nim' | while IFS= read -rd '' file; do
               printf 'linting nim file %s\n' "$file"
-              nim check "$file"
+              nim check "$file" || exit 1
           done
