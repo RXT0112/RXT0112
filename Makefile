@@ -116,6 +116,10 @@ check-vlang:
 	@ printf 'FIXME: %s\n' "Add tests for vlang"
 	@ exit 1
 
+check-nim:
+	@ printf 'FIXME: %s\n' "Add tests for nim"
+	@ exit 1
+	
 ## BENCHES ##
 
 # FIXME: Run all benches if this is executed
