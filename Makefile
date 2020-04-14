@@ -70,7 +70,7 @@ build-golang:
 	@ [ ! -d build/build-golang ] && mkdir build/build-golang
 	@ go build -o build/build-golang/zernit-golang src/bin/main.go
 
-build-golang:
+build-nim:
 	@ [ ! -d build ] && mkdir build
 	@ [ ! -d build/build-nim ] && mkdir build/build-nim
 	@ nim c -r -o build/build-nim/zernit-nim src/bin/main.nim
