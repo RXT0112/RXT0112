@@ -40,6 +40,33 @@ jobs:
           else
             exit 255
           fi
+      - name: Check for curl..
+        run: |
+          # Sync repos if needed
+          # Check for curl
+          if ! apt list --installed 2>/dev/null | grep -qP "^curl\s{1}.*"; then
+            # Check if we can install curl
+            if ! apt list | grep -qP "^curl\s{1}.*"; then
+              apt update || exit 1
+
+              # Install curl
+              apt install -y curl || exit 1
+
+              # Self-check
+              if ! apt list --installed 2>/dev/null | grep -qP "^curl\s{1}.*"; then exit 255; fi
+            elif apt list | grep -qP "^curl\s{1}.*"; then
+              exit 0 # Curl already installed
+            else
+              exit 255
+            fi
+          elif apt list --installed 2>/dev/null | grep -qP "^curl\s{1}.*"; then
+            exit 0 # Curl already installed
+
+            # Self-check
+            if ! apt list --installed 2>/dev/null | grep -qP "^curl\s{1}.*"; then exit 255; fi
+          else
+            exit 255
+          fi
       - name: Installing nim backend..
         run: |
           # Check for nim
