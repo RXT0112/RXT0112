@@ -42,15 +42,15 @@ jobs:
           fi
       - name: Installing nim backend..
         run: |
-          # Check for nim
+          # Check for curl
           if ! command -v curl; then
             # Check if we can install nim
-            if ! apt list | grep -qP "^curl\s{1}-.*"; then
+            if ! apt list | grep -qP "^curl\/stable.*"; then
               apt update || exit 1
 
               apt install -y curl || exit 1
             # Curl is already installable
-            elif apt list | grep -qP "^curl\s{1}-.*"; then
+            elif apt list | grep -qP "^curl\/stable.*"; then
               # Install curl
               apt install -y curl
             else
@@ -71,7 +71,7 @@ jobs:
 
               # If nim is still not available -> Use upstream method
               if ! apt list | grep -qP "^nim\s{1}-.*"; then
-                curl https://nim-lang.org/choosenim/init.sh -sSf | sh || exit 1
+                bash <( curl https://nim-lang.org/choosenim/init.sh -sSf )
                 exit 0
               elif apt list | grep -qP "^nim\s{1}-.*"; then
                 # Install nim
