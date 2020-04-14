@@ -95,6 +95,10 @@
   color: 009dff
   description: "Relevant to CCP"
 
+- name: Nim
+  color: fff700
+  description: "Relevant to Nim"
+
 - name: vlang
   color: 03cafc
   description: "Relevant to vlang"
