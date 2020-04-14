@@ -25,6 +25,7 @@ void Zernit() {
 
 int main() {
     PackageManager *pm;
-    Zernit();
+    float zernit = 0.1;
+    if (zernit) { Zernit(); }
     return 1;
 }
