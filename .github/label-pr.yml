@@ -11,6 +11,9 @@
 - regExp: ".*\\.cpp+$"
   labels: ["CPP"]
 
+- regExp: ".*\\.nim+$"
+  labels: ["nim"]
+
 - regExp: ".*\\.sh+$"
   labels: ["shell"]
 
