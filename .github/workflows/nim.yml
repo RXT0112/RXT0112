@@ -72,7 +72,7 @@ jobs:
 
               # If nim is still not available -> Use upstream method
               if ! apt list | grep -qP "^nim\s{1}-.*"; then
-                curl http://some.url --output /tmp/nim.sh || exit 1
+                curl https://nim-lang.org/choosenim/init.sh --output /tmp/nim.sh || exit 1
                 [ ! -x "/tmp/nim.sh" ] && { chmod +x /tmp/nim.sh || exit 1 ;}
                 /tmp/nim.sh -y || exit 1
                 exit 0
