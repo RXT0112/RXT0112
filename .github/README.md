@@ -1,10 +1,19 @@
+<h1 align="center">
+  <a href=https://github.com/RXT0112/Zernit>Zernit</a> (RXT0112)
+</h1>
+<h4 align="center">System manager of WIP_NAME designed to work cross-platform and using multiple programming languages depending on which one provides the most efficiency per required runtime.</h4>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Maintained%3F-Yes-green?style=for-the-badge">
+  <img src="https://img.shields.io/github/license/RXT0112/Zernit?style=for-the-badge">
+  <img src="https://img.shields.io/github/issues/RXT0112/Zernit?color=violet&style=for-the-badge">
+  <img src="https://img.shields.io/github/stars/RXT0112/Zernit?style=for-the-badge">
+  <img src="https://img.shields.io/github/forks/RXT0112/Zernit?color=teal&style=for-the-badge">
+</p>
+
+## FIXME
 fixme: Source the header in different markdown file to make GitHub README different from GitLab
-
 fixme: Change the name based on repository used.
-
-# Zernit (RXT0112)
-
-System manager of WIP_NAME designed to work cross-platform and using multiple programming languages depending on which one provides the most efficiency per required runtime.
 
 fixme: Change the URL based on the website used<br>
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/RXT0112/RXT0112)
