@@ -11,7 +11,7 @@ jobs:
     - uses: actions/stale@v1
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        stale-issue-message: 'Stale issue message'
-        stale-pr-message: 'Stale pull request message'
+        stale-issue-message: 'FIXME: Stale issue message (https://github.com/RXT0112/Zernit/edit/master/.github/workflows/stale.yml)'
+        stale-pr-message: 'FIXME: Stale pull request message (https://github.com/RXT0112/Zernit/edit/master/.github/workflows/stale.yml)'
         stale-issue-label: 'no-issue-activity'
         stale-pr-label: 'no-pr-activity'
