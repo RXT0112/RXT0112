@@ -2,14 +2,14 @@ FROM debian:latest
 
 # Blocked by https://github.com/gitpod-io/gitpod/issues/39
 COPY gitpod/scripts/root-access.sh /usr/bin/root-access
-RUN true "gsda4g56a" \
+RUN true "7ds8g7a9" \
 	&& chmod +x /usr/bin/root-access \
 	&& /usr/bin/root-access \
 	&& rm /usr/bin/root-access
 
 # Blocked by https://github.com/gitpod-io/gitpod/issues/1265
 COPY gitpod/scripts/vm-support.sh /usr/bin/vm-support
-RUN true "7dsg984sda" \
+RUN true "d1g32a4sd56g7a" \
 	&& chmod +x /usr/bin/vm-support \
 	&& /usr/bin/vm-support \
 	&& rm /usr/bin/vm-support
