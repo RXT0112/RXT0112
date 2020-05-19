@@ -40,4 +40,4 @@ case "$bugStatus" in
 	*)
 		printf '\033[31m\033[1mBUG:\033[0m %s\n' "GitHub API returned an unknown state '$bugStatus' of bug https://github.com/gitpod-io/gitpod/issues/39"
 		exit 1
-esac
+;; esac
