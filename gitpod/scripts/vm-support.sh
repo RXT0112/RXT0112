@@ -2,6 +2,7 @@
 # Created by Jacob Hrbek <kreyren@rixotstudio.cz> under GPLv3 <https://www.gnu.org/licenses/gpl-3.0.en.html> in 19/05/2020 16:28
 
 ###! Terminate gitpod if the blocking root access bug has not been resolved yet
+#
 
 set -e
 
