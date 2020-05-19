@@ -17,10 +17,14 @@ FIXME: Change the name based on name repository used.
 
 NOTICE: Code-related implementation merge requests are currently not accepted due to the development of abstract and documentation assuming multi-language project.
 
-FIXME: Change the URL based on the website used<br> [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/RXT0112/RXT0112)
+FIXME: Change the URL based on the website used<br>
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/RXT0112/RXT0112)
 
 FIXME: Add pretty button<br>
 https://codesandbox.io/sgithub/RXT0112/RXT0112
+
+FIXME: Change the URL based on the website used<br> 
+[![Run on Repl.it](https://repl.it/badge/github/RXT0112/Zernit)](https://repl.it/github/RXT0112/Zernit)
 
 
 ## What is considered a bug?
