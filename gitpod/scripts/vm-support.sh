@@ -3,16 +3,25 @@
 
 ###! Terminate gitpod if the blocking root access bug has not been resolved yet
 
+# FIXME: Quick-script
+
 set -e
 
-blocker() {
-	printf '\033[31m\033[1mBLOCKED:\033[0m %s\n' "$2"
-	if [ "$GITPOD_IGNORE_BLOCKERS" != 1 ]; then
-			exit 1
-		else
-			true
-		fi
+# FIXME: Rushed
+die() {
+	printf 'FATAL: %s\n' "$2"
+	exit "$1"
 }
+
+# FIXME: Sanitize
+if ! command -v curl 1>/dev/null; then
+	apt-get update
+	apt-get install curl -y
+elif command -v curl 1>/dev/null; then
+	true
+else
+	die 255 "processing curl"
+fi
 
 bugStatus="$(curl https://api.github.com/repos/gitpod-io/gitpod/issues/1265 2>/dev/null | grep -o state.* || true)"
 
