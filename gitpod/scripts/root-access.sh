@@ -9,35 +9,36 @@ set -e
 
 # FIXME: Rushed
 die() {
-	printf 'FATAL: %s\n' "$2"
-	exit "$1"
+  printf 'FATAL: %s\n' "$2"
+  exit "$1"
 }
 
 # FIXME: Sanitize
 if ! command -v curl 1>/dev/null; then
-	apt-get update
-	apt-get install curl -y
+  apt-get update
+  apt-get install curl -y
 elif command -v curl 1>/dev/null; then
-	true
+  true
 else
-	die 255 "processing curl"
+  die 255 "processing curl"
 fi
 
 bugStatus="$(curl https://api.github.com/repos/gitpod-io/gitpod/issues/39 2>/dev/null | grep -o state.* || true)"
 
 case "$bugStatus" in
-	"state\": \"open\",")
-		printf '\033[31m\033[1mBLOCKED:\033[0m %s\n' "Gitpod does not provide a root access which is mandatory for this repository, see it's tracking in https://github.com/gitpod-io/gitpod/issues/39"
-		if [ "$GITPOD_IGNORE_BLOCKERS" != 1 ]; then
-			exit 1
-		else
-			true
-		fi
-	;;
-	"state\": \"closed\",")
-		true
-	;;
-	*)
-		printf '\033[31m\033[1mBUG:\033[0m %s\n' "GitHub API returned an unknown state '$bugStatus' of bug https://github.com/gitpod-io/gitpod/issues/39"
-		exit 1
-;; esac
+  "state\": \"open\",")
+    printf '\033[31m\033[1mBLOCKED:\033[0m %s\n' "Gitpod does not provide a root access which is mandatory for this repository, see it's tracking in https://github.com/gitpod-io/gitpod/issues/39"
+    if [ "$GITPOD_IGNORE_BLOCKERS" != 1 ]; then
+      exit 1
+    else
+      true
+    fi
+    ;;
+  "state\": \"closed\",")
+    true
+    ;;
+  *)
+    printf '\033[31m\033[1mBUG:\033[0m %s\n' "GitHub API returned an unknown state '$bugStatus' of bug https://github.com/gitpod-io/gitpod/issues/39"
+    exit 1
+    ;;
+esac
