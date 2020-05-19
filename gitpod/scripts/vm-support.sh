@@ -5,16 +5,20 @@
 
 set -e
 
-bugStatus="$(curl https://api.github.com/repos/gitpod-io/gitpod/issues/1265 2>/dev/null | grep -o state.*)"
-
-case "$bugStatus" in
-	"state\": \"open\",")
-		printf '\033[31m\033[1mBLOCKED:\033[0m %s\n' "Gitpod does not provide a VM support which blocks cross-platform development, see tracking on https://github.com/gitpod-io/gitpod/issues/1265"
-		if [ "$GITPOD_IGNORE_BLOCKERS" != 1 ]; then
+blocker() {
+	printf '\033[31m\033[1mBLOCKED:\033[0m %s\n' "$2"
+	if [ "$GITPOD_IGNORE_BLOCKERS" != 1 ]; then
 			exit 1
 		else
 			true
 		fi
+}
+
+bugStatus="$(curl https://api.github.com/repos/gitpod-io/gitpod/issues/1265 2>/dev/null | grep -o state.*)"
+
+case "$bugStatus" in
+	"state\": \"open\",")
+		blocker
 	;;
 	"state\": \"closed\",")
 		true
