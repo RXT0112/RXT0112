@@ -1,5 +1,8 @@
 FROM debian:latest
 
+# FIXME: The script does not accept value from gitpod.io/settings
+ENV GITPOD_IGNORE_BLOCKERS=1
+
 # Blocked by https://github.com/gitpod-io/gitpod/issues/39
 COPY gitpod/scripts/root-access.sh /usr/bin/root-access
 RUN true "5g5fdhsfd" \
