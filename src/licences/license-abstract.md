@@ -1,5 +1,7 @@
 The licensing has been discussed in FSF which is due to the activity and info provided getting out of hand for me to process all the informations and resolve duplicate questions thus this file has been created hopefully being usable for the project in the future.
 
+TODO(Krey): Each license should have four freedom compilance statement.
+
 # What is this?
 Summary: This is project codenamed as RXT0112 with assigned name Zernit currently hosted on https://github.com/RXT0112/Zernit which is expected to be system/package-manager that is expected to supports any downstream on any kernel with custom dowsntream method.
 

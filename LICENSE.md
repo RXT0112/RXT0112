@@ -1,3 +1,3 @@
-This project's license is located in the LICENSE directory, please refer there for more informations.
+All rights reserved by Jacob Hrbek <kreyren@rixotstudio.cz> in 12/07/2018 unless explicitedly specified otherwise.
 
-License is transleted through crowdsourcing where file with name EN-LICENSE is the original license.
+This repository is designed to be used with a licences specified in src/licences that are custom made for this project and projects alike to define a new standard.
