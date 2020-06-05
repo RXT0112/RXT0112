@@ -33,7 +33,7 @@ RUN true \
 		sudo \
 	&& apt-get autoremove -y \
 	&& rm -rf /var/lib/apt/lists/* \
-	&& passwd -l root
+	&& printf '%s\n' "gitpod:gitpod" | chpasswd
 
 # Add custom functions
 RUN true \
