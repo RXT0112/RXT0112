@@ -1,6 +1,8 @@
 image:
   file: gitpod/debian.Dockerfile
 
+# Used to get root in gitpod for whitelisted users
+privileged: true
 
 # FIXME: Change gitpod user on GITPOD_GIT_USER_NAME env value
 tasks:
