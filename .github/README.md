@@ -38,10 +38,23 @@ https://codesandbox.io/sgithub/RXT0112/RXT0112
 All relavant questions are welcomed and will be answered as soon as possible depending on the lenght of the question and the understanding of the supporter.
 
 ### Bugs
+
 Everything relevant that does not work as expected or can be improved. The more issues we are aware of the more work we can put in to resolve them.
 
 ### Feature requests
+
 Propose anything we will listen and consider it as long as it's relevant.
+
+### Legal requests
+
+**NOTICE:** This is currently being implemented so there might be a delay in responses due to the lack of resources
+
+This project has custom community maintained license which is designed to avoid common issues related to FSF/GNU/OSS-endorsed licenses while directing the workflow, see License below for more info.
+
+Anything relevant to legal is welcomed in:
+- Our bug tracker
+- Mentioning `@RXT0112/legal-team` in your relevant GitHub tickets
+- Sending an e-mail on [zernit-legal@rixotstudio.cz](mailto:zernit-legal@rixotstudio.cz)
 
 ## Mentoring program
 
@@ -65,3 +78,9 @@ Project RXT0112 hopes to provide an environment for everyone to learn, freel fre
   - Mension `@RXT0112/support` in your issues or relevant merge requests on GitHub
   - Make a new issue in relevant RXT0112 organization (anything relevant is welcomed!)
 3. Sent an email on [zernit-support@rixotstudio.cz](mailto:zernit-support@rixotstudio.cz)
+
+## License
+
+This project is designed around a community maintained license that is used to direct a workflow while preserving end-user's freedoms to fix common FSF/GNU/OSS-endorsed license issues (FIXME: Reference the issues) that would allow blockchain implementation and for-profit business plan.
+
+**NOTICE:** The for-profit business plan is currently being investigated to make it suitable for this project, might be turned in non-profit
