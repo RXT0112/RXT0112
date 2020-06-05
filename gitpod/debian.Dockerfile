@@ -13,7 +13,8 @@ ENV LANG="en_US.UTF-8"
 ENV LC_ALL="C"
 
 # Install dependencies
-RUN apt-get update \
+RUN true \
+	&& apt-get update \
 	&& apt-get install -y \
 		rustc \
 		cargo \
@@ -28,7 +29,7 @@ RUN apt-get update \
 # FIXME-GITPOD(Krey): Disable cache for this so that it can be applied depending on priviledge in .gitpod.yml
 RUN true \
 	&& apt-get update -q \
-	&& apt-ige install -qy \
+	&& apt-get install -qy \
 		sudo \
 	&& apt-get autoremove -y \
 	&& rm -rf /var/lib/apt/lists/*
