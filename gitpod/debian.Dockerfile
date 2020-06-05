@@ -32,8 +32,8 @@ RUN true \
 	&& apt-get install -qy \
 		sudo \
 	&& apt-get autoremove -y \
-	&& rm -rf /var/lib/apt/lists/*
-
+	&& rm -rf /var/lib/apt/lists/* \
+	&& passwd -l root
 
 # Add custom functions
 RUN true \
