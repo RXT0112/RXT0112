@@ -1,2 +1,13 @@
 #+TITLE:     Gitpod test TODO list
 * TODO: TEST
+
+#+begin_src ditaa :file ditaa-simpleboxes.png
++---------+
+|         |
+| Foo     |
+|         |
++----+----+---+
+|Bar |Baz     |
+|    |        |
++----+--------+
+#+end_src
