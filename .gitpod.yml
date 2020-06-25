@@ -1,6 +1,7 @@
+privileged: true
+
 image:
   file: gitpod/debian.Dockerfile
-
 
 # FIXME: Change gitpod user on GITPOD_GIT_USER_NAME env value
 tasks:
