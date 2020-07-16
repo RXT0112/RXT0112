@@ -1,0 +1,19 @@
+{
+	"package": {
+		"name": "Some Name",
+		"summary": "Some summary",
+		"description": "long description of what this package is",
+		"homepage": "https://some.url",
+		"thumbnail": {
+			"64x64": "path/to/somewhere",
+			"128x128": "https://url.to/thumbnail",
+		},
+		"license": "some license",
+		"options": {
+			"X": {
+				"description": "Enables support for X.org",
+				"conflicts": ""
+			}
+
+	}
+}
