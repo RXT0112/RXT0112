@@ -1,3 +1,8 @@
+# Use https://github.com/maciejhirsz/json-rust to process?
+
+# FIXME: Comments and new lines have to be removed for zernit to process this file
+# - We should do this on runtime instead of enforcing comment-less json
+
 {
 	"package": {
 		"name": "Some Name",
@@ -9,11 +14,26 @@
 			"128x128": "https://url.to/thumbnail",
 		},
 		"license": "some license",
+		"shell-compat": {
+			"1.1.0": {
+				# FIXME: Allow end-users to use packages approved by specified people
+				"confirmed by": "Some Name <email> at 30/12/2020 15:00:00 CEST"
+			}
+		}
 		"options": {
 			"X": {
 				"description": "Enables support for X.org",
-				"conflicts": ""
+				"conflicts": {
+					"option": "wayland" {
+						"reasoning": "some reason for conflict"
+					}
+				}
+		},
+		"dependencies": {
+			# FIXME: Decide if this is the appropriate implementation
+			"category/package": {
+				"reasoning": "something"
 			}
-
+		}
 	}
 }

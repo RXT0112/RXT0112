@@ -1,5 +1,5 @@
 #!/bin/sh
-# All rights reserved by Jacob Hrbek <kreyren@rixotstudio.cz> in 04/2020
+# All rights reserved by Jacob Hrbek <kreyren@rixotstudio.cz> in 04/2020 (Prepared for four freedom respecting license)
 # Peer-reviewed by: <YOUR_NAME> <YOUR_EMAIL> in <DATE+TIME+TIMEZONE>
 
 # shellcheck shell=sh
@@ -289,6 +289,18 @@ elif ! command -v "$UNAME" 1>/dev/null; then
 	die 1 "Standard command '$UNAME' is not available on this system, unable to identify kernel"
 else
 	die 255 "Identifying system"
+fi
+
+# Define hostname
+# NOTICE: Variable 'HOSTNAME' is not defined on POSIX sh
+if command -v hostname 1>/dev/null; then
+	HOSTNAME="$(hostname)"
+elif [ -s /etc/hostname ]; then
+	HOSTNAME="$(cat /etc/hostname)"
+elif ! command -v hostname 1>/dev/null && [ ! -s /etc/hostname ]; then
+	die false "Unable to determine the hostname from command 'hostname' (which doesn't exists) and from file /etc/hostname (that doesn't exists or is blank)"
+else
+	die unexpected "processing hostname"
 fi
 
 # Argument management
