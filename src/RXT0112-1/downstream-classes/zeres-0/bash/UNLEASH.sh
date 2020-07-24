@@ -44,12 +44,14 @@
 
 # Maintainer info
 UPSTREAM="https://github.com/RXT0112/Zernit"
+UPSTREAM_NAME="RiXotStudio"
+UPSTREAM_EMAIL="rxt0112@rixotstudio.cz"
 MAINTAINER_EMAIL="kreyren@rixotstudio.cz"
 MAINTAINER_NICKNAME="kreyren"
 MAINTAINER_NAME="Jacob"
 MAINTAINER_SURNAME="Hrbek"
 
-# FIXME: _=${var:="some text"} is less verbose and less error prone than [ -z "$var" ] && var="some text"
+# FIXME-SUGGESTION: _=${var:="some text"} is less verbose and less error prone than [ -z "$var" ] && var="some text"
 
 # Command overrides
 ## These may be required on some systems
@@ -121,6 +123,8 @@ MAINTAINER_SURNAME="Hrbek"
 # ebench
 [ -z "$EBENCH_FORMAT_STRING_START" ] && EBENCH_FORMAT_STRING="BENCHMARK: Starting benchmark for action %s\n"
 [ -z "$EBENCH_FORMAT_STRING_RESULT" ] && EBENCH_FORMAT_STRING="BENCHMARK: Action %s took $SECONDS seconds\n"
+# invoke_privileged
+[ -z "$INVOKE_PRIVILEGED_FORMAT_STRING_QUESTION" ] && INVOKE_PRIVILEGED_FORMAT_STRING_QUESTION="### PRIVILEGED ACCESS REQUEST ###\n\n\s\n"
 
 # Exit on anything unexpected
 set -e

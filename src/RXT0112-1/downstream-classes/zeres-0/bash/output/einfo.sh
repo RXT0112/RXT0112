@@ -14,16 +14,16 @@ einfo() { funcname="einfo"
 		"$PRINTF" "$EINFO_FORMAT_STRING" "$1" || die invalid-format
 		"$PRINTF" "$EINFO_FORMAT_STRING_LOG" "$1" >> "$logPath" || die invalid-format
 		unset funcname
-		exit 0
+		return 0
 	elif [ "$DEBUG" = 1 ]; then
 		"$PRINTF" "$EINFO_FORMAT_STRING_DEBUG" "$1" || die invalid-format
 		"$PRINTF" "$EINFO_FORMAT_STRING_DEBUG_LOG" "$1" >> "$logPath" || die invalid-format
 		unset funcname
-		exit 0
+		return 0
 	else
 		case "$LANG" in
 			# FIXME-TRANSLATE: Translate to more languages
 			en-*|*) die bug "processing variable DEBUG with value '$DEBUG' in $funcname"
 		esac
 	fi
-}; alias einfo='einfo "$LINENO"'
+}; alias einfo='einfo "${LINENO:-0}"'

@@ -208,4 +208,4 @@ die() { funcname="die"
 			unset funcname
 			exit 255
 	esac
-}; alias die='die "$LINENO"'
+}; alias die='die "${LINENO:-0}"'

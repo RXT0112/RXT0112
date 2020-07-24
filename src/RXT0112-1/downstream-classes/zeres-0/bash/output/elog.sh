@@ -14,11 +14,11 @@ elog() { funcname="elog"
 		"debug")
 			if [ "$DEBUG" = 0 ] || [ -z "$DEBUG" ]; then
 				unset funcname
-				exit 0
+				return 0
 			elif [ "$DEBUG" = 1 ]; then
 				"$PRINTF" "$ELOG_FORMAT_STRING_DEBUG_LOG" "$2" >> "$logPath" || die invalid-format
 				unset funcname
-				exit 0
+				return 0
 			else
 				case "$LANG" in
 					# FIXME-TRANSLATE: Translate to more languages
@@ -27,4 +27,4 @@ elog() { funcname="elog"
 			fi ;;
 		*) die bug "Invalid argument '$2' has been parsed to $funcname"
 	esac
-}; alias einfo='einfo "$LINENO"'
+}; alias einfo='einfo "${LINENO:-0}"'
