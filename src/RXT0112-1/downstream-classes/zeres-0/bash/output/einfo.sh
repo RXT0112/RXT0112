@@ -26,4 +26,4 @@ einfo() { funcname="einfo"
 			en-*|*) die bug "processing variable DEBUG with value '$DEBUG' in $funcname"
 		esac
 	fi
-}; alias einfo='einfo "${LINENO:-0}"'
+}

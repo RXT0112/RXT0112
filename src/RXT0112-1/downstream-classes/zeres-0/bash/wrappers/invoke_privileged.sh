@@ -15,7 +15,12 @@
 invoke_privileged() { funcname="invoke_privileged"
 
 	if [ "$privileged" = "false" ]; then
-		die fixme "Implement $funcname to execute '$2' as privileged user, invoke this script as root as a workaround"
+		efixme "Implement $funcname to execute '$2' as privileged user, invoking 'sudo' as a workaround"
+
+		sudo "$@"
+
+		# DNM: HOTFIX!
+		return 0
 
 		edebug "Script '$myName' has been executed from an unprivileged user, deducing possible elevation"
 

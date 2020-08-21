@@ -17,6 +17,7 @@
 ###!    else
 ###!      die bug "Function 'cmd_check' returned unexpected exit code"
 ###!    fi
+###!
 
 # Check executability of a program
 cmd_check() { funcname="cmd_check"

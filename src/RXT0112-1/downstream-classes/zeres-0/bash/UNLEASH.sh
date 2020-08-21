@@ -68,7 +68,7 @@ MAINTAINER_SURNAME="Hrbek"
 # Customization of the output
 ## efixme
 [ -z "$EFIXME_FORMAT_STRING" ] && EFIXME_FORMAT_STRING="FIXME: %s\n"
-[ -z "$EFIXME_FORMAT_STRING_LOG" ] && EFIXME_FORMAT_STRING="${logPrefix}FIXME: %s\n"
+[ -z "$EFIXME_FORMAT_STRING_LOG" ] && EFIXME_FORMAT_STRING_LOG="${logPrefix}FIXME: %s\n"
 [ -z "$EFIXME_FORMAT_STRING_DEBUG" ] && EFIXME_FORMAT_STRING_DEBUG="FIXME($myName:$LINENO): %s\n"
 [ -z "$EFIXME_FORMAT_STRING_DEBUG_LOG" ] && EFIXME_FORMAT_STRING_DEBUG_LOG="${logPrefix}FIXME($myName:$LINENO): %s\n"
 ## eerror
@@ -93,11 +93,15 @@ MAINTAINER_SURNAME="Hrbek"
 [ -z "$DIE_FORMAT_STRING_DEBUG" ] && DIE_FORMAT_STRING_DEBUG="FATAL($myName:$1): %s\n"
 [ -z "$DIE_FORMAT_STRING_DEBUG_LOG" ] && DIE_FORMAT_STRING_DEBUG_LOG="${logPrefix}FATAL($myName:$1): %s\\n"
 ### Success trap
-# FIXME: Implement logic
-[ -z "$DIE_FORMAT_STRING_SUCCESS" ] && DIE_FORMAT_STRING_SUCCESS="FATAL: %s in script '$myName' located at '$0'\\n"
-[ -z "$DIE_FORMAT_STRING_LOG" ] && DIE_FORMAT_STRING_LOG="${logPath}FATAL: %s in script '$myName' located at '$0'\\n"
-[ -z "$DIE_FORMAT_STRING_DEBUG" ] && DIE_FORMAT_STRING_DEBUG="FATAL($myName:$1): %s\n"
-[ -z "$DIE_FORMAT_STRING_DEBUG_LOG" ] && DIE_FORMAT_STRING_DEBUG_LOG="${logPrefix}FATAL($myName:$1): %s\\n"
+[ -z "$DIE_FORMAT_STRING_SUCCESS" ] && DIE_FORMAT_STRING_SUCCESS="SUCCESS: Script '$myName' located at '$0' finished successfully\\n"
+[ -z "$DIE_FORMAT_STRING_LOG" ] && DIE_FORMAT_STRING_LOG="${logPath}$DIE_FORMAT_STRING_SUCCESS"
+[ -z "$DIE_FORMAT_STRING_DEBUG" ] && DIE_FORMAT_STRING_DEBUG="SUCCESS($myName:$1): Script '$myName' located at '$0' finished successfully\\n"
+[ -z "$DIE_FORMAT_STRING_DEBUG_LOG" ] && DIE_FORMAT_STRING_DEBUG_LOG="${logPrefix}$DIE_FORMAT_STRING_DEBUG_LOG"
+### Syntax error (syntaxerr) trap
+[ -z "$DIE_FORMAT_STRING_SYNTAXERR" ] && DIE_FORMAT_STRING_SYNTAXERR="SyntaxErr: Invalid argument(s) '$0' '$1' '$2' '$3' '$4' has been provided to $myName\\n"
+[ -z "$DIE_FORMAT_STRING_SYNTAXERR_LOG" ] && DIE_FORMAT_STRING_LOG="${logPath}$DIE_FORMAT_STRING_SUCCESS"
+[ -z "$DIE_FORMAT_STRING_SYNTAXERR_DEBUG" ] && DIE_FORMAT_STRING_DEBUG="SyntaxErr($myName:$1): Invalid argument(s) '$0' '$1' '$2' '$3' '$4' has been provided to $myName\\n"
+[ -z "$DIE_FORMAT_STRING_SYNTAXERR_DEBUG_LOG" ] && DIE_FORMAT_STRING_DEBUG_LOG="${logPrefix}$DIE_FORMAT_STRING_DEBUG_LOG"
 ### Fixme trap
 [ -z "$DIE_FORMAT_STRING_FIXME" ] && DIE_FORMAT_STRING_FIXME="FATAL: %s in script '$myName' located at '$0', fixme?\n"
 [ -z "$DIE_FORMAT_STRING_FIXME_LOG" ] && DIE_FORMAT_STRING_FIXME_LOG="${logPrefix}FATAL: %s, fixme?\n"
@@ -121,8 +125,8 @@ MAINTAINER_SURNAME="Hrbek"
 # elog
 [ -z "$ELOG_FORMAT_STRING_DEBUG_LOG" ] && ELOG_FORMAT_STRING_DEBUG_LOG="${logPrefix}LOG: %s\\n"
 # ebench
-[ -z "$EBENCH_FORMAT_STRING_START" ] && EBENCH_FORMAT_STRING="BENCHMARK: Starting benchmark for action %s\n"
-[ -z "$EBENCH_FORMAT_STRING_RESULT" ] && EBENCH_FORMAT_STRING="BENCHMARK: Action %s took $SECONDS seconds\n"
+[ -z "$EBENCH_FORMAT_STRING_START" ] && EBENCH_FORMAT_STRING_START="BENCHMARK: Starting benchmark for action %s\n"
+[ -z "$EBENCH_FORMAT_STRING_RESULT" ] && EBENCH_FORMAT_STRING_RESULT="BENCHMARK: Action %s took $SECONDS seconds\n"
 # invoke_privileged
 [ -z "$INVOKE_PRIVILEGED_FORMAT_STRING_QUESTION" ] && INVOKE_PRIVILEGED_FORMAT_STRING_QUESTION="### PRIVILEGED ACCESS REQUEST ###\n\n\s\n"
 
@@ -247,6 +251,9 @@ rootCheck() { funcname=rootCheck
 }
 
 # Identify system
+# FIXME: /etc/issue could also be used to identify the system
+# FIXME: /etc/debian_version can also be used
+# FIXME: /etc/devuan_version can also be used
 if command -v "$UNAME" 1>/dev/null; then
 	unameKernel="$("$UNAME" -s)"
 	edebug "Identified the kernel as '$unameKernel"

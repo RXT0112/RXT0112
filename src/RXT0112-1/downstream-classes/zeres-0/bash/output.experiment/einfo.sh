@@ -7,17 +7,17 @@
 # DNM: Specify somewhere
 # shellcheck source=somewhere
 
-###! Function to warn the end-user about something important
+###! Function to inform the end-user about what is happening during the runtime
 
-ewarn() { funcname="ewarn"
+einfo() { funcname="einfo"
 	if [ "$DEBUG" = 0 ] || [ -z "$DEBUG" ]; then
-		"$PRINTF" "$EWARN_FORMAT_STRING" "$1" || die invalid-format
-		"$PRINTF" "$EWARN_FORMAT_STRING_LOG" "$1" >> "$logPath" || die invalid-format
+		"$PRINTF" "$EINFO_FORMAT_STRING" "$1" || die invalid-format
+		"$PRINTF" "$EINFO_FORMAT_STRING_LOG" "$1" >> "$logPath" || die invalid-format
 		unset funcname
 		return 0
 	elif [ "$DEBUG" = 1 ]; then
-		"$PRINTF" "$EWARN_FORMAT_STRING_DEBUG" "$1" || die invalid-format
-		"$PRINTF" "$EWARN_FORMAT_STRING_DEBUG_LOG" "$1" >> "$logPath" || die invalid-format
+		"$PRINTF" "$EINFO_FORMAT_STRING_DEBUG" "$1" || die invalid-format
+		"$PRINTF" "$EINFO_FORMAT_STRING_DEBUG_LOG" "$1" >> "$logPath" || die invalid-format
 		unset funcname
 		return 0
 	else
@@ -26,4 +26,4 @@ ewarn() { funcname="ewarn"
 			en-*|*) die bug "processing variable DEBUG with value '$DEBUG' in $funcname"
 		esac
 	fi
-}
+}; alias einfo='einfo "${LINENO:-0}"'

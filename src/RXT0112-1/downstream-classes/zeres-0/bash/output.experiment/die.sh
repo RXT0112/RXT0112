@@ -25,13 +25,13 @@
 # NOTICE(Krey): End-users are allowed to customize the format string so we have to capture printf failures using `|| { "$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT" "Invalid format string was parsed in $funcname calling argument '$2' with message '$3'"; exit 111 ;}` instead of `die invalid-format`
 # FIXME-DUP_CODE: Fix duplicate code for easier maintainance
 die() { funcname="die"
-	case "$1" in
+	case "$2" in
 		###! Generic true
 		###! - Used to exit the shell successfully
 		###! Compatibility: Returns Error code 0 on Unix and Error Code 1 on Windows
 		"true")
 			# In case no message is provided
-			if [ -z "$2" ]; then
+			if [ -z "$3" ]; then
 				if [ "$DEBUG" = 0 ] || [ -z "$DEBUG" ]; then
 					case "$LANG" in
 						# FIXME-TRANSLATE: Translate in your language
@@ -54,13 +54,13 @@ die() { funcname="die"
 					esac
 				fi
 			# Message on second argument is provided
-			elif [ -n "$2" ]; then
+			elif [ -n "$3" ]; then
 				if [ "$DEBUG" = 0 ] || [ -z "$DEBUG" ]; then
-					"$PRINTF" "$DIE_FORMAT_STRING_TRUE" "$2"
-					"$PRINTF" "$DIE_FORMAT_STRING_TRUE" "$2" >> "$logPath"
+					"$PRINTF" "$DIE_FORMAT_STRING_TRUE" "$3"
+					"$PRINTF" "$DIE_FORMAT_STRING_TRUE" "$3" >> "$logPath"
 				elif [ "$DEBUG" = 1 ]; then
-					"$PRINTF" "$DIE_FORMAT_STRING_TRUE_DEBUG" "$2"
-					"$PRINTF" "$DIE_FORMAT_STRING_TRUE_DEBUG" "$2" >> "$logPath"
+					"$PRINTF" "$DIE_FORMAT_STRING_TRUE_DEBUG" "$3"
+					"$PRINTF" "$DIE_FORMAT_STRING_TRUE_DEBUG" "$3" >> "$logPath"
 				else
 					# NOTICE(Krey): Do not use die() in die for unexpected
 					case "$LANG" in
@@ -89,11 +89,11 @@ die() { funcname="die"
 		###! Compatibility: Returns Error code 1 on Unix and Error Code 0 on Windows
 		"false")
 			if [ "$DEBUG" = 0 ] || [ -z "$DEBUG" ]; then
-				"$PRINTF" "$DIE_FORMAT_STRING_FALSE" "$2" || { "$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT" "Invalid format string was parsed in $funcname calling argument '$1' with message '$2'"; exit 111 ;}
-				"$PRINTF" "$DIE_FORMAT_STRING_FALSE_LOG" "$2" >> "$logPath" || { "$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT" "Invalid format string was parsed in $funcname calling argument '$1' with message '$2'"; exit 111 ;}
+				"$PRINTF" "$DIE_FORMAT_STRING_FALSE" "$3" || { "$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT" "Invalid format string was parsed in $funcname calling argument '$2' with message '$3'"; exit 111 ;}
+				"$PRINTF" "$DIE_FORMAT_STRING_FALSE_LOG" "$3" >> "$logPath" || { "$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT" "Invalid format string was parsed in $funcname calling argument '$2' with message '$3'"; exit 111 ;}
 			elif [ "$DEBUG" = 1 ]; then
-				"$PRINTF" "$DIE_FORMAT_STRING_FALSE_DEBUG" "$2" || { "$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT" "Invalid format string was parsed in $funcname calling argument '$1' with message '$2'"; exit 111 ;}
-				"$PRINTF" "$DIE_FORMAT_STRING_FALSE_DEBUG_LOG" "$2" >> "$logPath" || { "$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT" "Invalid format string was parsed in $funcname calling argument '$1' with message '$2'"; exit 111 ;}
+				"$PRINTF" "$DIE_FORMAT_STRING_FALSE_DEBUG" "$3" || { "$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT" "Invalid format string was parsed in $funcname calling argument '$2' with message '$3'"; exit 111 ;}
+				"$PRINTF" "$DIE_FORMAT_STRING_FALSE_DEBUG_LOG" "$3" >> "$logPath" || { "$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT" "Invalid format string was parsed in $funcname calling argument '$2' with message '$3'"; exit 111 ;}
 			else
 				case "$LANG" in
 					# FIXME-TRANSLATE: Translate in your language
@@ -117,11 +117,11 @@ die() { funcname="die"
 		;;
 		2|syntaxerr)
 			if [ "$DEBUG" = 0 ] || [ -z "$DEBUG" ]; then
-				"$PRINTF" "$DIE_FORMAT_STRING_SYNTAXERR" "$2" || { "$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT" "Invalid format string was parsed in $funcname calling argument '$1' with message '$2'"; exit 111 ;}
-				"$PRINTF" "$DIE_FORMAT_STRING_SYNTAXERR_LOG" "$2" >> "$logPath" || { "$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT" "Invalid format string was parsed in $funcname calling argument '$1' with message '$2'"; exit 111 ;}
+				"$PRINTF" "$DIE_FORMAT_STRING_SYNTAXERR" "$3" || { "$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT" "Invalid format string was parsed in $funcname calling argument '$2' with message '$3'"; exit 111 ;}
+				"$PRINTF" "$DIE_FORMAT_STRING_SYNTAXERR_LOG" "$3" >> "$logPath" || { "$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT" "Invalid format string was parsed in $funcname calling argument '$2' with message '$3'"; exit 111 ;}
 			elif [ "$DEBUG" = 1 ]; then
-				"$PRINTF" "$DIE_FORMAT_STRING_SYNTAXERR_DEBUG" "$2" || { "$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT" "Invalid format string was parsed in $funcname calling argument '$1' with message '$2'"; exit 111 ;}
-				"$PRINTF" "$DIE_FORMAT_STRING_SYNTAXERR_DEBUG_LOG" "$2" >> "$logPath" || { "$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT" "Invalid format string was parsed in $funcname calling argument '$1' with message '$2'"; exit 111 ;}
+				"$PRINTF" "$DIE_FORMAT_STRING_SYNTAXERR_DEBUG" "$3" || { "$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT" "Invalid format string was parsed in $funcname calling argument '$2' with message '$3'"; exit 111 ;}
+				"$PRINTF" "$DIE_FORMAT_STRING_SYNTAXERR_DEBUG_LOG" "$3" >> "$logPath" || { "$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT" "Invalid format string was parsed in $funcname calling argument '$2' with message '$3'"; exit 111 ;}
 			else
 				case "$LANG" in
 						# FIXME-TRANSLATE: Translate in your language
@@ -134,11 +134,11 @@ die() { funcname="die"
 		;;
 		28|"security")
 			if [ "$DEBUG" = 0 ] || [ -z "$DEBUG" ]; then
-				"$PRINTF" "$DIE_FORMAT_STRING_SECURITY" "$2" || { "$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT" "Invalid format string was parsed in $funcname calling argument '$1' with message '$2'"; exit 111 ;}
-				"$PRINTF" "$DIE_FORMAT_STRING_SECURITY_LOG" "$2" >> "$logPath" || { "$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT" "Invalid format string was parsed in $funcname calling argument '$1' with message '$2'"; exit 111 ;}
+				"$PRINTF" "$DIE_FORMAT_STRING_SECURITY" "$3" || { "$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT" "Invalid format string was parsed in $funcname calling argument '$2' with message '$3'"; exit 111 ;}
+				"$PRINTF" "$DIE_FORMAT_STRING_SECURITY_LOG" "$3" >> "$logPath" || { "$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT" "Invalid format string was parsed in $funcname calling argument '$2' with message '$3'"; exit 111 ;}
 			elif [ "$DEBUG" = 1 ]; then
-				"$PRINTF" "$DIE_FORMAT_STRING_SECURITY_DEBUG" "$2" || { "$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT" "Invalid format string was parsed in $funcname calling argument '$1' with message '$2'"; exit 111 ;}
-				"$PRINTF" "$DIE_FORMAT_STRING_SECURITY_DEBUG_LOG" "$2" >> "$logPath" || { "$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT" "Invalid format string was parsed in $funcname calling argument '$1' with message '$2'"; exit 111 ;}
+				"$PRINTF" "$DIE_FORMAT_STRING_SECURITY_DEBUG" "$3" || { "$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT" "Invalid format string was parsed in $funcname calling argument '$2' with message '$3'"; exit 111 ;}
+				"$PRINTF" "$DIE_FORMAT_STRING_SECURITY_DEBUG_LOG" "$3" >> "$logPath" || { "$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT" "Invalid format string was parsed in $funcname calling argument '$2' with message '$3'"; exit 111 ;}
 			else
 				case "$LANG" in
 						# FIXME-TRANSLATE: Translate in your language
@@ -151,11 +151,11 @@ die() { funcname="die"
 		;;
 		38|"fixme") # For features that needs to be implemented and prefents runtime from continuing
 			if [ "$DEBUG" = 0 ] || [ -z "$DEBUG" ]; then
-				"$PRINTF" "$DIE_FORMAT_STRING_FIXME" "$2" || { "$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT" "Invalid format string was parsed in $funcname calling argument '$1' with message '$2'"; exit 111 ;}
-				"$PRINTF" "$DIE_FORMAT_STRING_FIXME_LOG" "$2" >> "$logPath" || { "$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT" "Invalid format string was parsed in $funcname calling argument '$1' with message '$2'"; exit 111 ;}
+				"$PRINTF" "$DIE_FORMAT_STRING_FIXME" "$3" || { "$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT" "Invalid format string was parsed in $funcname calling argument '$2' with message '$3'"; exit 111 ;}
+				"$PRINTF" "$DIE_FORMAT_STRING_FIXME_LOG" "$3" >> "$logPath" || { "$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT" "Invalid format string was parsed in $funcname calling argument '$2' with message '$3'"; exit 111 ;}
 			elif [ "$DEBUG" = 1 ]; then
-				"$PRINTF" "$DIE_FORMAT_STRING_FIXME_DEBUG" "$2" || { "$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT" "Invalid format string was parsed in $funcname calling argument '$1' with message '$2'"; exit 111 ;}
-				"$PRINTF" "$DIE_FORMAT_STRING_FIXME_DEBUG_LOG" "$2" >> "$logPath" || { "$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT" "Invalid format string was parsed in $funcname calling argument '$1' with message '$2'"; exit 111 ;}
+				"$PRINTF" "$DIE_FORMAT_STRING_FIXME_DEBUG" "$3" || { "$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT" "Invalid format string was parsed in $funcname calling argument '$2' with message '$3'"; exit 111 ;}
+				"$PRINTF" "$DIE_FORMAT_STRING_FIXME_DEBUG_LOG" "$3" >> "$logPath" || { "$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT" "Invalid format string was parsed in $funcname calling argument '$2' with message '$3'"; exit 111 ;}
 			else
 				case "$LANG" in
 						# FIXME-TRANSLATE: Translate in your language
@@ -168,11 +168,11 @@ die() { funcname="die"
 		;;
 		111|"invalid-format")
 			if [ "$DEBUG" = 0 ] || [ -z "$DEBUG" ]; then
-				"$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT" "$2" || { "$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT" "Invalid format string was parsed in $funcname calling argument '$1' with message '$2'"; exit 111 ;}
-				"$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT_LOG" "$2" >> "$logPath" || { "$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT" "Invalid format string was parsed in $funcname calling argument '$1' with message '$2'"; exit 111 ;}
+				"$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT" "$3" || { "$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT" "Invalid format string was parsed in $funcname calling argument '$2' with message '$3'"; exit 111 ;}
+				"$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT_LOG" "$3" >> "$logPath" || { "$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT" "Invalid format string was parsed in $funcname calling argument '$2' with message '$3'"; exit 111 ;}
 			elif [ "$DEBUG" = 1 ]; then
-				"$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT_DEBUG" "$2" || { "$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT" "Invalid format string was parsed in $funcname calling argument '$1' with message '$2'"; exit 111 ;}
-				"$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT_DEBUG_LOG" "$2" >> "$logPath" || { "$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT" "Invalid format string was parsed in $funcname calling argument '$1' with message '$2'"; exit 111 ;}
+				"$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT_DEBUG" "$3" || { "$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT" "Invalid format string was parsed in $funcname calling argument '$2' with message '$3'"; exit 111 ;}
+				"$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT_DEBUG_LOG" "$3" >> "$logPath" || { "$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT" "Invalid format string was parsed in $funcname calling argument '$2' with message '$3'"; exit 111 ;}
 			else
 				case "$LANG" in
 					# FIXME-TRANSLATE: Translate to more languages
@@ -185,11 +185,11 @@ die() { funcname="die"
 		;;
 		223|"bug") # Unexpected trap
 			if [ "$DEBUG" = 0 ] || [ -z "$DEBUG" ]; then
-				"$PRINTF" "$DIE_FORMAT_STRING_BUG" "$2" || { "$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT" "Invalid format string was parsed in $funcname calling argument '$1' with message '$2'"; exit 111 ;}
-				"$PRINTF" "$DIE_FORMAT_STRING_BUG_LOG" "$2" >> "$logPath" || { "$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT" "Invalid format string was parsed in $funcname calling argument '$1' with message '$2'"; exit 111 ;}
+				"$PRINTF" "$DIE_FORMAT_STRING_BUG" "$3" || { "$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT" "Invalid format string was parsed in $funcname calling argument '$2' with message '$3'"; exit 111 ;}
+				"$PRINTF" "$DIE_FORMAT_STRING_BUG_LOG" "$3" >> "$logPath" || { "$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT" "Invalid format string was parsed in $funcname calling argument '$2' with message '$3'"; exit 111 ;}
 			elif [ "$DEBUG" = 1 ]; then
-				"$PRINTF" "$DIE_FORMAT_STRING_BUG_DEBUG" "$2" || { "$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT" "Invalid format string was parsed in $funcname calling argument '$1' with message '$2'"; exit 111 ;}
-				"$PRINTF" "$DIE_FORMAT_STRING_BUG_DEBUG_LOG" "$2" >> "$logPath" || { "$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT" "Invalid format string was parsed in $funcname calling argument '$1' with message '$2'"; exit 111 ;}
+				"$PRINTF" "$DIE_FORMAT_STRING_BUG_DEBUG" "$3" || { "$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT" "Invalid format string was parsed in $funcname calling argument '$2' with message '$3'"; exit 111 ;}
+				"$PRINTF" "$DIE_FORMAT_STRING_BUG_DEBUG_LOG" "$3" >> "$logPath" || { "$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT" "Invalid format string was parsed in $funcname calling argument '$2' with message '$3'"; exit 111 ;}
 			else
 				case "$LANG" in
 					# FIXME-TRANSLATE: Translate to more languages
@@ -202,11 +202,11 @@ die() { funcname="die"
 		;;
 		255|"unexpected") # Unexpected trap
 			if [ "$DEBUG" = 0 ] || [ -z "$DEBUG" ]; then
-				"$PRINTF" "$DIE_FORMAT_STRING_UNEXPECTED" "$2" || { "$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT" "Invalid format string was parsed in $funcname calling argument '$1' with message '$2'"; exit 111 ;}
-				"$PRINTF" "$DIE_FORMAT_STRING_UNEXPECTED_LOG" "$2" >> "$logPath" || { "$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT" "Invalid format string was parsed in $funcname calling argument '$1' with message '$2'"; exit 111 ;}
+				"$PRINTF" "$DIE_FORMAT_STRING_UNEXPECTED" "$3" || { "$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT" "Invalid format string was parsed in $funcname calling argument '$2' with message '$3'"; exit 111 ;}
+				"$PRINTF" "$DIE_FORMAT_STRING_UNEXPECTED_LOG" "$3" >> "$logPath" || { "$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT" "Invalid format string was parsed in $funcname calling argument '$2' with message '$3'"; exit 111 ;}
 			elif [ "$DEBUG" = 1 ]; then
-				"$PRINTF" "$DIE_FORMAT_STRING_UNEXPECTED_DEBUG" "$2" || { "$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT" "Invalid format string was parsed in $funcname calling argument '$1' with message '$2'"; exit 111 ;}
-				"$PRINTF" "$DIE_FORMAT_STRING_UNEXPECTED_DEBUG_LOG" "$2" >> "$logPath" || { "$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT" "Invalid format string was parsed in $funcname calling argument '$1' with message '$2'"; exit 111 ;}
+				"$PRINTF" "$DIE_FORMAT_STRING_UNEXPECTED_DEBUG" "$3" || { "$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT" "Invalid format string was parsed in $funcname calling argument '$2' with message '$3'"; exit 111 ;}
+				"$PRINTF" "$DIE_FORMAT_STRING_UNEXPECTED_DEBUG_LOG" "$3" >> "$logPath" || { "$PRINTF" "$DIE_FORMAT_STRING_INVALID_FORMAT" "Invalid format string was parsed in $funcname calling argument '$2' with message '$3'"; exit 111 ;}
 			else
 				case "$LANG" in
 					# FIXME-TRANSLATE: Translate to more languages
@@ -220,9 +220,9 @@ die() { funcname="die"
 		*)
 			case "$LANG" in
 				# FIXME-TRANSLATE: Translate to more languages
-				en-*|*) "$PRINTF" 'BUG: %s\n' "Invalid argument '$1' has been provided in $funcname"
+				en-*|*) "$PRINTF" 'BUG: %s\n' "Invalid argument '$2' has been provided in $funcname"
 			esac
 			unset funcname
 			exit 255
 	esac
-}
+}; alias die='die "${LINENO:-0}"'

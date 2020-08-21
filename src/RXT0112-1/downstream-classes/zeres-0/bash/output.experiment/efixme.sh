@@ -25,17 +25,17 @@
 efixme() { funcname="efixme"
 	if [ "$IGNORE_FIXME" = 1 ]; then
 		# FIXME: Implement 'fixme' debug channel
-		edebug fixme "Fixme message for '$1' disabled"
+		edebug fixme "Fixme message for '$2' disabled"
 		return 0
 	elif [ "$IGNORE_FIXME" = 0 ] || [ -z "$IGNORE_FIXME" ]; then
 		if [ "$DEBUG" = 0 ] || [ -z "$DEBUG" ]; then
-			"$PRINTF" "$EFIXME_FORMAT_STRING" "$1" || die invalid-format
-			"$PRINTF" "$EFIXME_FORMAT_STRING_LOG" "$1" >> "$logPath" || die invalid-format
+			"$PRINTF" "$EFIXME_FORMAT_STRING" "$2" || die invalid-format
+			"$PRINTF" "$EFIXME_FORMAT_STRING_LOG" "$2" >> "$logPath" || die invalid-format
 			unset funcname
 			return 0
 		elif [ "$DEBUG" = 1 ]; then
-			"$PRINTF" "$EFIXME_FORMAT_STRING_DEBUG" "$1" || die invalid-format
-			"$PRINTF" "$EFIXME_FORMAT_STRING_DEBUG_LOG" "$1" >> "$logPath" || die invalid-format
+			"$PRINTF" "$EFIXME_FORMAT_STRING_DEBUG" "$2" || die invalid-format
+			"$PRINTF" "$EFIXME_FORMAT_STRING_DEBUG_LOG" "$2" >> "$logPath" || die invalid-format
 			unset funcname
 			return 0
 		else
@@ -50,4 +50,4 @@ efixme() { funcname="efixme"
 			en-*|*) die 255 "processing variable IGNORE_FIXME with value '$IGNORE_FIXME' in $0"
 		esac
 	fi
-}
+}; alias efixme='efixme "${LINENO:-0}"'
