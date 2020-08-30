@@ -8,6 +8,11 @@ all:
 	@ printf '%s\n' "Unknown option '$1' parsed in target all"
 	@ exit 2
 
+## UNLEASH RUNTIME ##
+
+unleash-elisp:
+	@ src/RXT0112-1/downstream-classes/zeres-0/elisp/UNLEASH.el
+
 ## BUILD ##
 # All build targets are expected in 'build/build-LANG' where 'LANG' is the unique identifier of the language used
 # FIXME: Replace 'exit 1' with helpful messages
@@ -117,7 +122,7 @@ check-vlang:
 # FIXME: Run all benches if this is executed
 bench: bench-rustlang
 
-# FIXME: Run vendor and 
+# FIXME: Run vendor and
 bench-rustlang:
 	@ cargo bench
 
