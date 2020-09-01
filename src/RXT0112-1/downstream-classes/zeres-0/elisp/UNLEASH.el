@@ -15,7 +15,6 @@
 ;; Source variables
 (load "/home/kreyren/Repositories/Zernit/src/RXT0112-1/downstream-classes/zeres-0/elisp/variables/emacs-debug.el")
 (load "/home/kreyren/Repositories/Zernit/src/RXT0112-1/downstream-classes/zeres-0/elisp/variables/emacs-log-file.el")
-;;(setq emacs-log-file "/home/kreyren/emacs.log")
 
 ;; Source functions
 (load "/home/kreyren/Repositories/Zernit/src/RXT0112-1/downstream-classes/zeres-0/elisp/output/die.el")
@@ -24,5 +23,3 @@
 (load "/home/kreyren/Repositories/Zernit/src/RXT0112-1/downstream-classes/zeres-0/elisp/output/efixme.el")
 (load "/home/kreyren/Repositories/Zernit/src/RXT0112-1/downstream-classes/zeres-0/elisp/output/edebug.el")
 (load "/home/kreyren/Repositories/Zernit/src/RXT0112-1/downstream-classes/zeres-0/elisp/output/eerror.el")
-
-(die "true")
