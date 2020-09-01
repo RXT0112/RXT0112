@@ -4,6 +4,8 @@
 
 ;; RELEVANT: XDG specification used for non-standard file hiearchy on unix https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
 
+(require 'cl-lib)
+
 ;; FIXME-QA: Wrap defvar simmilar to defun so that we can use 'var-name'
 (zn-defvar emacs-log-file
 	(cl-case system-type
