@@ -12,7 +12,7 @@
 		((or (= (length message) 0) (boundp 'message))
 			(princ (format die-format-string-bug (format "Function '%1$s' was used without specified message '%2$s'" function-name message))
 			(append-to-file (format die-format-string-bug (format "Function '%1$s' was used without specified message '%2$s'" function-name message)) nil emacs-log-file)) )
-		((> (lenght message) 0)
+		((> (length message) 0)
 			(princ (format efixme-format-string message)
 			(append-to-file (format efixme-format-string message) nil emacs-log-file)) )
 		(t
