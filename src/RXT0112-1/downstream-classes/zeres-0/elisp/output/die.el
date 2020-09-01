@@ -34,6 +34,7 @@
 (defvar die-format-string-buunexpectedg-debug "UNEXPECTED: %s\n" "Non-standard variable storing formatting string for non-standard function `die' to be used for debugging output using unexpected trap")
 (defvar die-format-string-unexpected-debug-log "UNEXPECTED: %s\n" "Non-standard variable storing formatting string for non-standard function `die' to be used for debugging log entry using unexpected trap")
 
+;; FIXME-TEST: Make sure that function 'die' works after changes
 (zn-defun die (exitcode &optional message)
 "Reimplementation of a non-standard function provided by the Zernit project (https://github.com/RXT0112/Zernit/blob/master/src/RXT0112-1/downstream-classes/zeres-0/bash/output/die.sh) into an emacs lisp that allow assertion of elisp runner with specified exit code and message with logging and debugging.
 
@@ -63,8 +64,7 @@ Requires following variables:
 				;; Process the message by lenght and debug state
 				((> (length message) 0)
 					(cond
-						;; FIXME: This does not trigger if message is unbound or ""
-						((> (lenght message) 0)
+						((or (= (length message) 0) (boundp 'message))
 							(princ (format die-format-string-success message))
 							(append-to-file (format die-format-string-success-log message) nil emacs-log-file) )
 						;; FIXME: Implement logic that triggers only when emacs-debug contains 'function-name
@@ -73,10 +73,11 @@ Requires following variables:
 							(append-to-file (format die-format-string-success-debug-log message) nil emacs-log-file ) )
 						(t
 							(princ (format die-format-string-bug "Function '%1$s' with argument '%2$s' triggered unexpected case while processing variable 'emacs-debug' containing value '%3$s'" function-name exitcode emacs-debug)) )
-					) )
-				((= (length message) 0)
-					(princ (format die-format-string-success message "Logically determined that processed finished successfully"))
-					(append-to-file (format die-format-string-success-log message "Logically determined that processed finished successfully") nil emacs-log-file) )
+					)
+				)
+				((or (= (length message) 0) (boundp 'message))
+					(princ (format die-format-string-success "Logically determined that processed finished successfully"))
+					(append-to-file (format die-format-string-success-log "Logically determined that processed finished successfully") nil emacs-log-file) )
 				(t
 					(princ (format die-format-string-bug (format "Function '%1$s' tripped unexpected trap while processing message '%2$s' with argument '%3$s'" function-name message exitcode)))
 					(append-to-file (format die-format-string-bug-log (format "Function '%1$s' tripped unexpected trap while processing message '%2$s' with argument '%3$s'" function-name message exitcode)) nil emacs-log-file )
@@ -98,8 +99,7 @@ Requires following variables:
 				;; Process the message by lenght and debug state
 				((> (length message) 0)
 					(cond
-						;; FIXME: This does not trigger if message is unbound or ""
-						((> (lenght message) 0)
+						((> (length message) 0)
 							(princ (format die-format-string-failure message))
 							(append-to-file (format die-format-string-failure-log message) nil emacs-log-file) )
 						;; FIXME: Implement logic that triggers only when emacs-debug contains 'function-name
@@ -109,7 +109,7 @@ Requires following variables:
 						(t
 							(princ (format die-format-string-bug "Function '%1$s' with argument '%2$s' triggered unexpected case while processing variable 'emacs-debug' containing value '%3$s'" function-name exitcode emacs-debug)) )
 					) )
-				((= (length message) 0)
+				((or (= (length message) 0) (boundp 'message))
 					(princ (format die-format-string-failure message "Logically determined that process failed"))
 					(append-to-file (format die-format-string-failure-log message "Logically determined that processed failed") nil emacs-log-file) )
 				(t
@@ -134,7 +134,7 @@ Requires following variables:
 				((> (length message) 0)
 					(cond
 						;; FIXME: This does not trigger if message is unbound or ""
-						((> (lenght message) 0)
+						((> (length message) 0)
 							(princ (format die-format-string-security message))
 							(append-to-file (format die-format-string-security-log message) nil emacs-log-file) )
 						;; FIXME: Implement logic that triggers only when emacs-debug contains 'function-name
@@ -144,7 +144,7 @@ Requires following variables:
 						(t
 							(princ (format die-format-string-bug "Function '%1$s' with argument '%2$s' triggered unexpected case while processing variable 'emacs-debug' containing value '%3$s'" function-name exitcode emacs-debug)) )
 					) )
-				((= (length message) 0)
+				((or (= (length message) 0) (boundp 'message))
 					(princ (format die-format-string-security message "Runtime tripped security trap, exitting for safety"))
 					(append-to-file (format die-format-string-security-log message "Runtime tripped security trap, exitting for safety") nil emacs-log-file) )
 				(t
@@ -160,7 +160,7 @@ Requires following variables:
 				((> (length message) 0)
 					(cond
 						;; FIXME: This does not trigger if message is unbound or ""
-						((> (lenght message) 0)
+						((> (length message) 0)
 							(princ (format die-format-string-fixme message))
 							(append-to-file (format die-format-string-fixme-log message) nil emacs-log-file) )
 						;; FIXME: Implement logic that triggers only when emacs-debug contains 'function-name
@@ -170,7 +170,7 @@ Requires following variables:
 						(t
 							(princ (format die-format-string-bug "Function '%1$s' with argument '%2$s' triggered unexpected case while processing variable 'emacs-debug' containing value '%3$s'" function-name exitcode emacs-debug)) )
 					) )
-				((= (length message) 0)
+				((or (= (length message) 0) (boundp 'message))
 					(princ (format die-format-string-fixme message "Runtime tripped fixme trap with no message provided, this is likely a bug where developer forgot to provide a message"))
 					(append-to-file (format die-format-string-fixme-log message "Runtime tripped fixme trap with no message provided, this is likely a bug where developer forgot to provide a message") nil emacs-log-file) )
 				(t
@@ -186,7 +186,7 @@ Requires following variables:
 				((> (length message) 0)
 					(cond
 						;; FIXME: This does not trigger if message is unbound or ""
-						((> (lenght message) 0)
+						((> (length message) 0)
 							(princ (format die-format-string-bug message))
 							(append-to-file (format die-format-string-bug-log message) nil emacs-log-file) )
 						;; FIXME: Implement logic that triggers only when emacs-debug contains 'function-name
@@ -196,7 +196,7 @@ Requires following variables:
 						(t
 							(princ (format die-format-string-bug "Function '%1$s' with argument '%2$s' triggered unexpected case while processing variable 'emacs-debug' containing value '%3$s'" function-name exitcode emacs-debug)) )
 					) )
-				((= (length message) 0)
+				((or (= (length message) 0) (boundp 'message))
 					(princ (format die-format-string-bug message "Runtime tripped bug trap with no message provided, this is likely a bug where developer forgot to provide a message"))
 					(append-to-file (format die-format-string-bug-log message "Runtime tripped bug trap with no message provided, this is likely a bug where developer forgot to provide a message") nil emacs-log-file) )
 				(t
@@ -212,7 +212,7 @@ Requires following variables:
 				((> (length message) 0)
 					(cond
 						;; FIXME: This does not trigger if message is unbound or ""
-						((> (lenght message) 0)
+						((> (length message) 0)
 							(princ (format die-format-string-unexpected message))
 							(append-to-file (format die-format-string-unexpected-log message) nil emacs-log-file) )
 						;; FIXME: Implement logic that triggers only when emacs-debug contains 'function-name
@@ -222,7 +222,7 @@ Requires following variables:
 						(t
 							(princ (format die-format-string-bug "Function '%1$s' with argument '%2$s' triggered unexpected case while processing variable 'emacs-debug' containing value '%3$s'" function-name exitcode emacs-debug)) )
 					) )
-				((= (length message) 0)
+				((or (= (length message) 0) (boundp 'message))
 					(princ (format die-format-string-unexpected message "Runtime tripped unexpected trap with no message provided, this is likely a bug where developer forgot to provide a message"))
 					(append-to-file (format die-format-string-unexpected-log message "Runtime tripped unexpected trap with no message provided, this is likely a bug where developer forgot to provide a message") nil emacs-log-file) )
 				(t

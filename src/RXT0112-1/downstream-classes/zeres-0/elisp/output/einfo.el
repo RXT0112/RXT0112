@@ -8,14 +8,14 @@
 "Non-standard function used to output in the buffer with logging support to inform the end-user about runtime events"
 
 	(cond
-		((= (lenght message ) 0)
-			(princ (format die-format-string-bug (format "Function '%1$s' was used without specified message '%2$s'" function-name message))
+		((or (= (length message) 0) (boundp 'message))
+			(princ (format die-format-string-bug (format "Function '%1$s' was used without specified message '%2$s'" function-name message)))
 			(append-to-file (format die-format-string-bug (format "Function '%1$s' was used without specified message '%2$s'" function-name message)) nil emacs-log-file) )
 		((> (lenght message) 0)
 			(princ (format einfo-format-string message)
 			(append-to-file (format einfo-format-string message) nil emacs-log-file)) )
 		(t
-			(princ (format die-format-string-unexpected (format "Function '%1$s' with argument 'message' storing value '%2$s' triggered an unexpected trap which usually indicates insufficient programming logic" function-name message))
+			(princ (format die-format-string-unexpected (format "Function '%1$s' with argument 'message' storing value '%2$s' triggered an unexpected trap which usually indicates insufficient programming logic" function-name message)))
 			(append-to-file (format die-format-string-unexpected (format "Function '%1$s' with argument 'message' storing value '%2$s' triggered an unexpected trap which usually indicates insufficient programming logic" function-name message)) nil emacs-log-file)
 		)
 	)
