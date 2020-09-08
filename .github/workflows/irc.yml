@@ -1,0 +1,26 @@
+on: [push]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    name: Deploy Chain
+    steps:
+    - name: Acknowledge
+      id: acknowledge
+      uses: Gottox/irc-message-action@v1
+      with:
+        channel: '##mychannel'
+        nickname: mynickname
+        response_allow_from: Operator1, Operator2, Operator3
+        # 5 hours:
+        response_timeout: 18000
+        message: |-
+          ${{ github.actor }} pushed something: ${{ github.event.compare }}
+          Please acknowledge with "ok"!
+    # An Acknowledger can reply to this with "mynickname: ok"
+    - name: Print Acknowledger
+      run: echo "${{ steps.response.outputs.response_from }}"
+    - name: Check Acknowledge
+      run: test "${{ steps.response.outputs.response }}" = "ok"
+    - name: Deploy
+      run: ./deploy.sh
