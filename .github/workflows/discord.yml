@@ -1,0 +1,32 @@
+name: discord message
+
+# Relevant to events - https://help.github.com/en/actions/automating-your-workflow-with-github-actions/events-that-trigger-workflows
+on: 
+  pull_request:
+    types: [synchronize, opened, reopened, ready_for_review]
+  issues:
+    types: [opened, transferred, pinned, unpinned]
+  fork:
+  release:
+    types: [published, deleted, edited]
+
+jobs:
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: send custom message with args
+      uses: appleboy/discord-action@master
+      with:
+        webhook_id: ${{ secrets.DISCORD_WEBHOOK_ID }}
+        webhook_token: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
+        # Relevant to github contexts https://help.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions#github-context
+        args: |
+          New ${{ github.event_name }} has been created by ${{ github.actor }} on ${{ github.event_name }}.
+          event_path: ${{ github.event_path }}
+          github.ref: ${{ github.ref }}
+          github.head_ref: ${{ github.head_ref }}
+          github.base_ref: ${{ github.base_ref }}
+          github.repository: ${{ github.repository }}
