@@ -1,0 +1,13 @@
+name: 'Issue Reference'
+on: 
+  pull_request:
+    types: [opened]
+
+jobs:
+  issue-reference:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: kentaro-m/add-an-issue-reference-action@v2
+        with:
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"
+          branch-prefix: "issue"
